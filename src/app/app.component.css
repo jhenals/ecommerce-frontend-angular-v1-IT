@@ -1,0 +1,65 @@
+.banner {
+  background-color: var(--header-banner-color);
+  height: 20rem;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.banner-left-column {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.banner-right-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.banner-img {
+  width: 20rem;
+}
+
+.banner-right-column h1 {
+  font: 3rem Robota Bold;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+
+.banner-right-column a {
+  text-decoration: none;
+  margin-top: 1rem;
+  color: #000;
+}
+
+.themed-button {
+  background-color: var(--dark-brown);
+  color: #fff;
+}
+
+.themed-button:hover {
+  background-color: var(--nude-color);
+  border: solid 1px var(--dark-brown);
+  color: var(--dark-brown);
+}
+
+.oldPrice {
+  text-decoration: line-through;
+  color: red;
+  margin-left: 10px;
+}
+
+.newPrice {
+  font-weight: bold;
+}
+
+.titlebar {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+}

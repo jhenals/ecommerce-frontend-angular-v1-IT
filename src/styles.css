@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  text-transform: none;
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+section {
+  padding-top: 120px;
+  width: 100vw;
+  margin-left: -14px;
+  left: 0;
+  right: 0;
+}
+
+.full-width {
+  width: 100vw;
+}
+
+:root {
+  --dark-brown: #4c1f04;
+  --light-brown: #b07b5b;
+  --light-grey: #F6F5F7;
+  --nude-color: #fef8f5;
+  --header-banner-color: #f9f2e9 --rotate-speed: 40;
+}
