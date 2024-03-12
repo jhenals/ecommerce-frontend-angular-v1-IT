@@ -21,7 +21,7 @@
             </ng-container>
 
             <ng-template #renderList>
-               <a mat-list-item  (click)="goToBookDetails(book)" *ngFor="let book of filteredList"> <img class="search-image" src="{{book.coverUrl}}" alt=""> {{ book.title }} - {{book.author.name}} </a>
+               <a mat-list-item  (click)="goToBookDetails(book.book)" *ngFor="let book of filteredList"> <img class="search-image" src="{{book.book.coverUrl}}" alt=""> {{ book.book.title }} <!---  {{book.author.name}}  --></a>
             </ng-template>
 
         </mat-nav-list>
@@ -67,20 +67,10 @@
         </mat-menu>
 
         <ng-container>
-          <button mat-icon-button class="topnav-buttons"  matTooltip="My Wishlist" routerLink="/wishlist" >
-            <mat-icon>favorite</mat-icon>
-          </button>
-        </ng-container>
-
-        <ng-container>
          <button mat-icon-button  matTooltip="Cart" [matBadge]="cartItemsCount" matBadgeColor="warn" matBadgeSize="small" [matBadgeHidden]="hidden || cartItemsCount === 0" routerLink="/cart" (click)="toggleBadgeVisibility()" class="topnav-buttons" aria-label="shopping cart">
             <mat-icon>shopping_cart</mat-icon>
           </button>
         </ng-container>
-
-
-
-
 
       </div>
 

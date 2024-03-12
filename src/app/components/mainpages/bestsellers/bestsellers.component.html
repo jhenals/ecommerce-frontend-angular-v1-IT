@@ -1,0 +1,39 @@
+
+<section>
+  <div class="banner mb-4">
+    <div class="row container">
+      <div class="col-6 banner-left-column">
+        <img class="bannerimage " src="../../../../assets/images/bookssold.jpg" alt="New Books" >
+      </div>
+      <div class="col-6 banner-right-column">
+        <h1>Best Selling Books</h1>
+        <p>Check out these best selling books to hit the shelves.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <h1 class="large">Best Sellers</h1>
+    <h3>These were the most popular books on BookHaven so far! </h3>
+    <p class="small">Click the book cover to know more</p>
+
+    <div class=" row container bestsellerscontainer mt-4 mb-4" >
+      <div class="d-flex" *ngFor="let book of bestsellers">
+        <div>
+          <a (click)="goToBookDetails(book)"> <img class="bookimage" [src]="book.coverUrl"></a>
+        </div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="mt-4">
+      <h1>You might also like...</h1>
+        <app-bookshelf ></app-bookshelf>
+    </div>
+
+  </div>
+
+
+</section>

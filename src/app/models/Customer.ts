@@ -1,7 +1,6 @@
 export class Customer {
   id: number = 0;
-  firstname: string = '';
-  lastname: string = '';
+  name: string = '';
   email: string = '';
   phone: string = '';
   address: string = '';
@@ -9,5 +8,8 @@ export class Customer {
   state: string = '';
   zip: string = '';
   country: string = '';
-  active: boolean = false;
+  notes: string = '';
+  active: boolean = true;
+  created: Date = new Date();
+  updated: Date = new Date();
 }

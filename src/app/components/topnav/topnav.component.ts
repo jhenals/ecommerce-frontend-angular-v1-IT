@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 
-import { Book } from '../../core/models/Book';
+import { AuthService } from 'src/app/services/auth.service';
+import { UtilService } from 'src/app/services/util.service';
+
+import { Book } from 'src/app/models/Book';
+import { BookAuthor } from 'src/app/models/BookAuthor';
 
 @Component({
   selector: 'app-topnav',
@@ -13,24 +17,35 @@ export class TopnavComponent {
   firstName: any;
   lastName: any;
   searchInput: string = '';
-  filteredList: Book[] = [];
+  filteredList: BookAuthor[] = [];
+  bookList: BookAuthor[] = [];
 
   cartItemsCount: number = 0;
   hidden: boolean = true;
 
-  login() {
-    throw new Error('Method not implemented.');
+  constructor(
+    private authService: AuthService,
+    private utilService: UtilService
+  ) {
   }
+
+  login() {
+    this.authService.login();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  goToLink(url: string) {
+    this.utilService.goToLink(url);
+  }
+
   goToAdminDashboard() {
     throw new Error('Method not implemented.');
   }
 
-  goToLink(arg0: string) {
-    throw new Error('Method not implemented.');
-  }
-  logout() {
-    throw new Error('Method not implemented.');
-  }
+
 
   isAdmin() {
     return false;
@@ -38,8 +53,17 @@ export class TopnavComponent {
   goToBookDetails(book: Book) {
     throw new Error('Method not implemented.');
   }
-  fetchBooks($event: KeyboardEvent) {
-    throw new Error('Method not implemented.');
+
+
+  fetchBooks(event: any) {
+    if (event.target.value === '') {
+      return this.filteredList = [];
+    }
+    this.filteredList = this.bookList.filter((book) => {
+      return book.book.title.toLowerCase().includes(event.target.value.toLowerCase()) ||
+        book.author.name.toLowerCase().includes(event.target.value.toLowerCase());
+    });
+    return this.filteredList;
   }
 
   toggleBadgeVisibility() {

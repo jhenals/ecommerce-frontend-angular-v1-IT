@@ -2,10 +2,8 @@ export const environment = {
   production: false,
   serverUrl: '/api',
   keycloak: {
-    // Url of the Identity Provider
-    issuer: 'http://localhost:8080/auth/',
-    // Realm
-    realm: 'demo-realm',
-    clientId: 'demo-angular',
+    issuer: 'http://localhost:8080/',     // Url of the Identity Provider
+    realm: 'bookhaven',
+    clientId: 'bookhaven-client',
   },
 };
