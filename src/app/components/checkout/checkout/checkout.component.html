@@ -1,0 +1,94 @@
+<section class="mt-4">
+  <div class="container p-0">
+    <mat-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="shippingInfoControl">
+          <form [formGroup]="shippingInfoControl">
+            <ng-template matStepLabel>Fill out shipping details</ng-template>
+                <mat-form-field>
+                  <mat-label>Recipient</mat-label>
+                  <input matInput placeholder="First name, LastName" formControlName="recipientCtrl" required>
+                </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="addressCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                          required>
+                  </mat-form-field>
+
+                    <mat-form-field>
+                      <mat-label>Phone number</mat-label>
+                      <input matInput formControlName="phoneCtrl" placeholder="Ex. 123-456-7890"
+                            required>
+                    </mat-form-field>
+
+              <div>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="paymentMethodControl" label="Payment Method">
+          <form [formGroup]="paymentMethodControl">
+            <ng-template matStepLabel>Payment </ng-template>
+              <div>
+                <mat-form-field class="col-4">
+                  <mat-label>Card number</mat-label>
+                  <input matInput formControlName="cardCtrl" required>
+                </mat-form-field>
+                <mat-form-field class="col-4">
+                  <mat-label>Expiration Date</mat-label>
+                  <input matInput formControlName="expDateCtrl" required>
+                </mat-form-field>
+                <mat-form-field class="col-4">
+                  <mat-label>CVV</mat-label>
+                  <input matInput placeholder="Insert CVV" formControlName="emptyInputCtrl" required>
+                </mat-form-field>
+              </div>
+              <mat-form-field class="col-12">
+                <mat-label>Card Holder</mat-label>
+                <input matInput  formControlName="cardHolderCtrl" isDisabled>
+              </mat-form-field>
+
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Confirmation</ng-template>
+          <div class="d-flex">
+            <div class="col-6">
+              <h2 class="mb-2">Order</h2>
+            <!--   <app-cart-summary [dataSource]="dataSource" [totalPrice]="totalPrice"></app-cart-summary> -->
+            </div>
+
+            <div class="col-6" >
+            <!--  <div>
+                <h2>Shipping Address</h2>
+                <p>{{shippingAddr.recipientFirstName}} {{shippingAddr.recipientLastname}}</p>
+                <p>{{shippingAddr.street}},</p>
+                <p>{{shippingAddr.city}}, {{shippingAddr.province}},</p>
+                <p>{{shippingAddr.zip}},</p>
+                <p>{{shippingAddr.country}}</p>
+                <p>Contact number: {{shippingAddr.phoneNumber}}</p>
+              </div>
+              <mat-divider class="mb-4"></mat-divider>
+              <div>
+                <h2>Payment Method</h2>
+                <p>Card Holder: {{shippingPaymentMethod.cardholderName}}</p>
+                <p>Card ending in **{{shippingPaymentMethod.cardNumber.slice(-4)}}</p>
+                <p>Expiration date: {{shippingPaymentMethod.expirationDate}}</p>
+              </div> -->
+          </div>
+
+          </div>
+          <div  class="stepperButton">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button (click)="checkout()">Checkout</button>
+          </div>
+        </mat-step>
+    </mat-stepper>
+  </div>
+</section>

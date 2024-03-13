@@ -6,4 +6,7 @@ export class Order {
   customer: Customer = new Customer();
   total: number = 0;
   orderStatus: string = '';
+  recipientName: string = '';
+  shippingAddress: string = '';
+  contactNumber: string = '';
 }

@@ -1,0 +1,58 @@
+<section class="container">
+  <app-title-bar [title]="'My Orders'"></app-title-bar>
+  <mat-divider/>
+
+  <ng-container>
+
+    <div class="orderContainer">
+      <div class="d-flex headerContainer">
+        <div class="col-2">
+          <h3>Order Placed</h3>
+          <p>{{order.orderDate| date:'mediumDate'}}</p>
+        </div>
+        <div class="col-2">
+          <h3>Total</h3>
+          <p class="font-weight-bold">{{order.total| currency:'EUR':'symbol':'1.2-2'}}</p>
+        </div>
+        <div class="col-2">
+          <h3>Shipped to</h3>
+          <p>{{order.recipientName}}</p>
+        </div>
+
+        <div class="col-3">
+          <h3>Shipping Address</h3>
+          <p>{{order.shippingAddress}}</p>
+        </div>
+
+        <div class="col-3 d-flex pr-4 justify-content-end">
+          <div class=>
+            <h3>STATUS:</h3>
+            <p class= "italic">{{order.orderStatus}}</p>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+
+      <div class="row">
+        <ul>
+          <li *ngFor="let orderBook of cartItems" class="m-4">
+            <div class="d-flex">
+              <div class="col-sm-2 imgContainer">
+                <img [src]="orderBook.book.coverUrl" [alt]="(orderBook.book.title) + ' book cover'" class="bookCover">
+             </div>
+              <div class="col-sm-6 d-flex flex-column">
+                <p> <span class="font-weight-bold">{{orderBook.book.title}} </span> by {{getAuthor(orderBook.book.id)}} </p>
+                <p> <span class="font-weight-bold">Quantity:  </span>{{orderBook.quantity}}</p>
+                <p> <span class="font-weight-bold">Book Price:</span> {{orderBook.book.price | currency:'EUR':'symbol':'1.2-2'}}</p>
+              </div>
+              <button class="col-sm-4" mat-raised-button (click)="reorder(orderBook.book.id)">Reorder</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+  </div>
+
+  </ng-container>
+
+
+</section>

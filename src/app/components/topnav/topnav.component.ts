@@ -13,9 +13,9 @@ import { BookAuthor } from 'src/app/models/BookAuthor';
 })
 export class TopnavComponent {
 
-  isLogin: any;
-  firstName: any;
-  lastName: any;
+  isLogin: boolean = true;
+  firstName: string = '';
+  lastName: string = '';
   searchInput: string = '';
   filteredList: BookAuthor[] = [];
   bookList: BookAuthor[] = [];
@@ -27,6 +27,8 @@ export class TopnavComponent {
     private authService: AuthService,
     private utilService: UtilService
   ) {
+    this.firstName = sessionStorage.getItem('firstName') as string;
+    this.lastName = sessionStorage.getItem('lastName') as string;
   }
 
   login() {

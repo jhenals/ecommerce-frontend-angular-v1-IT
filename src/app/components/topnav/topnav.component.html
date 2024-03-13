@@ -29,11 +29,6 @@
 
       </ng-container>
 
-
-
-
-
-
       <div class="col-lg-4 topnav-toprow-buttons topnav-right ">
         <ng-container *ngIf=" isAdmin()===true">
           <button mat-icon-button class="topnav-buttons" (click)= "goToAdminDashboard()" > <!-- login page is rendered only if user is not logged in -->
@@ -42,29 +37,29 @@
         </ng-container>
 
         <ng-container *ngIf="isLogin; else notLoggedIn">
-          <span class="greetUser" routerLink="/user-profile" >
+          <span class="greetUser" (click)="goToLink('/manage-user-account/' + firstName + lastName)">
              Hello, {{firstName}}!
           </span>
-        <button mat-icon-button class="topnav-buttons" [matMenuTriggerFor]="menu"  matTooltip="Account">
-          <mat-icon >
-            <span class="material-symbols-outlined">
-              manage_accounts
-            </span>
-          </mat-icon>
-        </button>
-       </ng-container>
+          <button mat-icon-button class="topnav-buttons" [matMenuTriggerFor]="menu"  matTooltip="Account">
+            <mat-icon >
+              <span class="material-symbols-outlined">
+                manage_accounts
+              </span>
+            </mat-icon>
+          </button>
 
-       <ng-template #notLoggedIn>
-        <button mat-icon-button class="topnav-buttons" (click)= "login()" > <!-- login page is rendered only if user is not logged in -->
-          <mat-icon>person</mat-icon>
-        </button>
-       </ng-template>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="goToLink('/manage-user-account/' + firstName + lastName)">Profile</button>
+            <button mat-menu-item (click)="goToLink('/orders')">Orders</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+          </mat-menu>
+        </ng-container>
 
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/user-profile">Profile</button>
-          <button mat-menu-item (click)="goToLink('/manage-user-account/' + firstName + lastName)">Settings</button>
-          <button mat-menu-item (click)="logout()">Logout</button>
-        </mat-menu>
+        <ng-template #notLoggedIn>
+          <button mat-icon-button class="topnav-buttons" (click)= "login()" >
+            <mat-icon>person</mat-icon>
+          </button>
+        </ng-template>
 
         <ng-container>
          <button mat-icon-button  matTooltip="Cart" [matBadge]="cartItemsCount" matBadgeColor="warn" matBadgeSize="small" [matBadgeHidden]="hidden || cartItemsCount === 0" routerLink="/cart" (click)="toggleBadgeVisibility()" class="topnav-buttons" aria-label="shopping cart">

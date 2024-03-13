@@ -1,9 +1,11 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+
 
 import { ComponentsModule } from './components/components.module';
 import { MaterialModule } from './core/material/material.module';
@@ -38,8 +40,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     HttpClientModule,
     ComponentsModule,
     MaterialModule,
-    KeycloakAngularModule
-
+    KeycloakAngularModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

@@ -4,7 +4,7 @@ import { Book } from "./Book";
 
 export class OrderDetail {
   order: Order = new Order();
-  book: BookAuthor = new BookAuthor();
+  book: Book = new Book();
   quantity: number = 0;
   price: number = 0;
 }
