@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { BookService } from 'src/app/services/book.service';
+
 import { Book } from 'src/app/models/Book';
 import { BookAuthor } from 'src/app/models/BookAuthor';
 
@@ -14,7 +16,9 @@ export class BookComponent implements OnInit {
   bookTitle: string = '';
   bookAuthor: string = '';
 
-  constructor() {
+  constructor(
+    private bookService: BookService
+  ) {
 
   }
 
@@ -31,7 +35,7 @@ export class BookComponent implements OnInit {
   }
 
   goToBookDetails(book: BookAuthor) {
-    console.log('Book details: ', book);
+    this.bookService.goToBookDetails(book.book);
   }
 
   getDiscountedPrice(book: Book) {

@@ -1,29 +1,27 @@
 <section>
   <div class="container pt-4 d-flex">
     <div class=" col-3 ">
-      <img class="book-detail-image" [src]="book.bookCoverUrl" alt="book image">
+      <img class="book-detail-image" [src]="book.book.coverUrl" alt="book image">
     </div>
     <div class=" col-9 mt-4 mb-4 book-detail-content">
-      <h1>{{book.title}}</h1>
+      <h1>{{book.book.title}}</h1>
       <p>{{book.author}}</p>
-      <p>{{book.editor}}</p>
-      <ng-container *ngIf="book.discount ===0 ||book.discount ===null; else discounted">
-        <h3 class="newPrice">{{book.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</h3>
+      <ng-container *ngIf="book.book.discount ===0 ||book.book.discount ===null; else discounted">
+        <h3 class="newPrice">{{book.book.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</h3>
       </ng-container>
 
       <ng-template #discounted >
         <div class="d-flex">
-          <h3 class="oldPrice mr-4 ">{{book.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</h3>
-          <h3 class="newPrice">{{book.discountedPrice | currency: 'EUR' : 'symbol' : '1.2-2'}}</h3>
+          <h3 class="oldPrice mr-4 ">{{book.book.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</h3>
+          <h3 class="newPrice">{{ getDiscountedPrice(book.book) | currency: 'EUR' : 'symbol' : '1.2-2'}}</h3>
         </div>
       </ng-template>
 
       <div class="row mt-4 mb-4">
         <app-add-to-cart-button [bookInput]="book" [bookDetailPage]="true"></app-add-to-cart-button>
-        <app-add-to-wishlist-button [bookInput]="book"  [bookDetailPage]="true" ></app-add-to-wishlist-button>
       </div>
 
-      <p>{{book.description}}</p>
+      <p>{{book.book.description}}</p>
 
 
       <h2 class="mt-4">Product Details</h2>
@@ -32,35 +30,35 @@
         <table style="border-collapse: collapse;">
           <tr>
             <td><strong>Suggested Price:</strong></td>
-            <td>{{book.price | currency: 'EUR' : 'symbol' : '1.2-2' }}</td>
+            <td>{{book.book.price | currency: 'EUR' : 'symbol' : '1.2-2' }}</td>
           </tr>
           <tr>
             <td><strong>ISBN:</strong></td>
-            <td>{{book.isbn10}}</td>
+            <td></td>
           </tr>
           <tr>
             <td><strong>Pages:</strong></td>
-            <td>{{book.pages}}</td>
+            <td></td>
           </tr>
           <tr>
             <td><strong>Language:</strong></td>
-            <td>{{book.language}}</td>
+            <td></td>
           </tr>
           <tr>
             <td><strong>Publication:</strong></td>
-            <td>{{book.dataPubblicazione}}</td>
+            <td>{{book.book.publicationDate}}</td>
           </tr>
           <tr>
             <td><strong>Format:</strong></td>
-            <td>{{book.format}}</td>
+            <td></td>
           </tr>
           <tr>
             <td><strong>Weight:</strong></td>
-            <td>{{book.weight}}</td>
+            <td></td>
           </tr>
           <tr>
             <td><strong>Category:</strong></td>
-            <td>{{book.category.name}}</td>
+            <td>{{book.book.category.name}}</td>
           </tr>
         </table>
       </div>

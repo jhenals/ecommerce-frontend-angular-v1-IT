@@ -61,26 +61,18 @@
           <div class="d-flex">
             <div class="col-6">
               <h2 class="mb-2">Order</h2>
-            <!--   <app-cart-summary [dataSource]="dataSource" [totalPrice]="totalPrice"></app-cart-summary> -->
+               <app-cart-summary [dataSource]="dataSource" [totalPrice]="totalPrice"></app-cart-summary>
             </div>
 
             <div class="col-6" >
-            <!--  <div>
+            <div>
                 <h2>Shipping Address</h2>
-                <p>{{shippingAddr.recipientFirstName}} {{shippingAddr.recipientLastname}}</p>
-                <p>{{shippingAddr.street}},</p>
-                <p>{{shippingAddr.city}}, {{shippingAddr.province}},</p>
-                <p>{{shippingAddr.zip}},</p>
-                <p>{{shippingAddr.country}}</p>
-                <p>Contact number: {{shippingAddr.phoneNumber}}</p>
+                <p>{{recipientName}}</p>
+                <p>{{shippingAddress}},</p>
+
+                <p>Contact number: {{phoneNumber}}</p>
               </div>
               <mat-divider class="mb-4"></mat-divider>
-              <div>
-                <h2>Payment Method</h2>
-                <p>Card Holder: {{shippingPaymentMethod.cardholderName}}</p>
-                <p>Card ending in **{{shippingPaymentMethod.cardNumber.slice(-4)}}</p>
-                <p>Expiration date: {{shippingPaymentMethod.expirationDate}}</p>
-              </div> -->
           </div>
 
           </div>

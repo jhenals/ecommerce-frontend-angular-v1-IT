@@ -13,7 +13,7 @@ import { BookAuthor } from 'src/app/models/BookAuthor';
 })
 export class TopnavComponent {
 
-  isLogin: boolean = true;
+  isLogin: boolean = false;
   firstName: string = '';
   lastName: string = '';
   searchInput: string = '';
@@ -27,6 +27,7 @@ export class TopnavComponent {
     private authService: AuthService,
     private utilService: UtilService
   ) {
+    this.isLogin = sessionStorage.getItem('isLogin') === 'true' ? true : false;
     this.firstName = sessionStorage.getItem('firstName') as string;
     this.lastName = sessionStorage.getItem('lastName') as string;
   }

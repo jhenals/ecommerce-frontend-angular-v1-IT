@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { KeycloakService, KeycloakEventType } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { from, Observable, } from 'rxjs';
+import { UtilService } from './util.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,13 @@ export class AuthService {
     private keycloak: KeycloakService,
   ) {
     this.initializeKeycloak();
+    this.keycloak.keycloakEvents$.subscribe({
+      next(event) {
+        if (event.type == KeycloakEventType.OnTokenExpired) {
+          keycloak.updateToken(20);
+        }
+      }
+    });
 
   }
 
@@ -46,6 +54,7 @@ export class AuthService {
             sessionStorage.setItem('lastName', this.lastName);
             sessionStorage.setItem('email', this.email);
             sessionStorage.setItem('token', this.keycloak.getKeycloakInstance().token as string)
+            sessionStorage.setItem('isLogin', 'true');
           });
       }
     });
@@ -61,9 +70,8 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.clear();
+    sessionStorage.clear();
     this.keycloak.logout("http://localhost:4200");
-    this.loggedin = false;
   }
 
   isAdmin() {

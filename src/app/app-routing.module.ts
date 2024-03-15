@@ -7,9 +7,11 @@ import { CartComponent } from './components/mainpages/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout/checkout.component';
 import { UserAccountComponent } from './components/user/user-account/user-account.component';
 import { ManageUserOrdersComponent } from './components/user/manage-user-orders/manage-user-orders.component';
+import { BookDetailComponent } from './components/book/book-detail/book-detail.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'book/:id/:title', component: BookDetailComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'manage-user-account/:userProfile', component: UserAccountComponent }, /* , canActivate: [AuthGuard], data: { edit: true }  TODO: change with user's name */

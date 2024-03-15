@@ -1,1 +1,16 @@
-<p>sidenav works!</p>
+<div class="fixedSideNav p-4">
+  <ul class="d-flex flex-column">
+    <li [ngClass]="{'selected': selectedLink === 'manage-products'}" class="sideNavButton">
+      <button routerLink="/admin/manage-products" (click)="selectedLink = 'manage-products'">Manage Products</button>
+    </li>
+    <li [ngClass]="{'selected': selectedLink === 'manage-customers'}" class="sideNavButton">
+      <button routerLink="/admin/manage-customers" (click)="selectOption('manage-customers')">Manage Customers</button>
+    </li>
+    <li [ngClass]="{'selected': selectedLink === 'manage-orders'}" class="sideNavButton">
+      <button routerLink="/admin/manage-orders" (click)="selectedLink = 'manage-orders'">Manage Orders</button>
+    </li>
+    <li [ngClass]="{'selected': selectedLink === 'add-new-book'}" class="sideNavButton">
+      <button routerLink="/admin/add-new-book" (click)="selectedLink = 'add-new-book'">Add New Book</button>
+    </li>
+  </ul>
+</div>

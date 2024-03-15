@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Order } from 'src/app/models/Order';
+import { OrderDetail } from 'src/app/models/OrderDetail';
 
 @Component({
   selector: 'app-checkout',
@@ -7,6 +9,13 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
+  dataSource: OrderDetail[] = [];
+  totalPrice: number = 0;
+
+  recipientName: string = '';
+  shippingAddress: string = '';
+  phoneNumber: string = '';
+
   constructor(private _formBuilder: FormBuilder) {
   }
   shippingInfoControl = this._formBuilder.group({

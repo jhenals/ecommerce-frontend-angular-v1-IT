@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { MaterialModule } from '../core/material/material.module';
 import { HomepageComponentsModule } from './homepage-components/homepage-components.module';
@@ -38,6 +40,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MaterialModule,
+    BrowserAnimationsModule,
     HomepageComponentsModule,
     CheckoutModule,
     AdminModule,

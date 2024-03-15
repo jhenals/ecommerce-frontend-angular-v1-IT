@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { ComponentsModule } from './components/components.module';
 import { MaterialModule } from './core/material/material.module';
 import { environment } from '../../environment';

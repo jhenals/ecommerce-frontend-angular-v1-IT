@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { OrderDetail } from 'src/app/models/OrderDetail';
 
 @Component({
   selector: 'app-cart-summary',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./cart-summary.component.css']
 })
 export class CartSummaryComponent {
+  @Input() dataSource: OrderDetail[] = [];
+  @Input() totalPrice: number = 0;
+
 
 }

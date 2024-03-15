@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+import { BookService } from 'src/app/services/book.service';
 import { BookAuthor } from 'src/app/models/BookAuthor';
 
 @Component({
@@ -8,13 +10,18 @@ import { BookAuthor } from 'src/app/models/BookAuthor';
 })
 export class BookshelfComponent implements OnInit {
   allBooks: BookAuthor[] = [];
-  constructor() { }
+  constructor(
+    private bookService: BookService,
+  ) { }
 
   ngOnInit(): void {
+    console.log("bookshelf component")
     this.getAllBooksWithAuthors();
   }
 
   getAllBooksWithAuthors() {
-    // this.allBooks = this.bookService.getAllBooksWithAuthors();
+    this.bookService.getAllBookAuthors().subscribe((data: BookAuthor[]) => {
+      this.allBooks = data;
+    })
   }
 }

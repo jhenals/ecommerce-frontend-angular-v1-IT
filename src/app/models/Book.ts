@@ -6,6 +6,7 @@ export class Book {
   coverUrl: string = '';
   price: number = 0;
   discount: number = 0;
+  description: string = '';
   publicationDate: Date = new Date();
   category: Category = new Category();
 }
