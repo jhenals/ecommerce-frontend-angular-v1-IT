@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { BookService } from 'src/app/services/book.service';
 
 import { Book } from 'src/app/models/Book';
-import { BookAuthor } from 'src/app/models/BookAuthor';
 
 @Component({
   selector: 'app-manage-products',
@@ -12,7 +11,7 @@ import { BookAuthor } from 'src/app/models/BookAuthor';
 })
 export class ManageProductsComponent {
 
-  allProducts: BookAuthor[] = [];
+  allProducts: Book[] = [];
 
   constructor(private bookService: BookService) {
   }

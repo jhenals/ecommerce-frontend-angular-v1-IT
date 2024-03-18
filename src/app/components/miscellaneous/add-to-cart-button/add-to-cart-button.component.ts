@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 
 import { UtilService } from 'src/app/services/util.service';
-import { BookAuthor } from 'src/app/models/BookAuthor';
+
+import { Book } from 'src/app/models/Book';
 
 @Component({
   selector: 'app-add-to-cart-button',
@@ -9,15 +10,15 @@ import { BookAuthor } from 'src/app/models/BookAuthor';
   styleUrls: ['./add-to-cart-button.component.css']
 })
 export class AddToCartButtonComponent {
-  @Input() bookInput!: BookAuthor;
+  @Input() bookInput!: Book;
   @Input() bookDetailPage: boolean = true;
-  book!: BookAuthor;
+  book!: Book;
 
   constructor(
     private utilService: UtilService
   ) { }
 
-  addToCart(book: BookAuthor) {
+  addToCart(book: Book) {
     console.log('Add to cart: ', book);
   }
 
@@ -25,7 +26,7 @@ export class AddToCartButtonComponent {
     this.utilService.goToLink(url);
   }
 
-  bookIsInCart(book: BookAuthor) {
+  bookIsInCart(book: Book) {
     return false;
   }
 

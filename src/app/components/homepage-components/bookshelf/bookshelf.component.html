@@ -1,4 +1,28 @@
+<ng-container *ngIf="(booksState$ | async) as state " [ngSwitch]="state.appState">
+  <div class="bookshelf-main row">
 
-<div class="bookshelf-main row">
-  <app-book class= "container-flex"  [bookInput]="book" *ngFor="let book of allBooks" ></app-book>
-</div>
+    <ng-container *ngSwitchCase="'APP_ERROR'">
+      <span style="color:red"> Error in retrieving data.</span>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'APP_LOADING'">
+      <div class="d-flex justify-content-center mt-4">
+        <div class="spinner-border text-dark" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container  *ngSwitchCase="'APP_LOADED'">
+      <app-book class= "container-flex"  [bookInput]="book" *ngFor="let book of state.appData.data.page.content; let i= index" ></app-book>
+      <mat-paginator
+        [length]="100"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page">
+      </mat-paginator>
+    </ng-container>
+
+  </div>
+
+</ng-container>

@@ -5,7 +5,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UtilService } from 'src/app/services/util.service';
 
 
-import { BookAuthor } from 'src/app/models/BookAuthor';
 import { Book } from 'src/app/models/Book';
 
 @Component({
@@ -14,7 +13,7 @@ import { Book } from 'src/app/models/Book';
   styleUrls: ['./book-detail.component.css']
 })
 export class BookDetailComponent implements OnInit {
-  book: BookAuthor = new BookAuthor();
+  book: Book = new Book();
 
   constructor(
     private route: ActivatedRoute,
@@ -27,13 +26,13 @@ export class BookDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    /* this.route.paramMap.subscribe(params => {
       const bookId = parseInt(params.get('id') || '', 10);
       this.bookService.getBookAuthorByBookId(bookId).subscribe(book => {
         this.book = book;
         console.log(this.book)
       })
-    })
+    }) */
 
 
   }

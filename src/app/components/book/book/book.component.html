@@ -1,6 +1,6 @@
 <div class="book-card container d-flex">
   <div class="d-flex">
-    <a (click)="goToBookDetails(book)"> <img class="book-imageUrl" [src]="book.book.coverUrl"/></a>
+    <a (click)="goToBookDetails(book)"> <img class="book-imageUrl" [src]="book.coverUrl"/></a>
   </div>
 
   <div class=" book-content "  >
@@ -11,15 +11,15 @@
       <p class="text-secondary text-truncate">{{this.bookAuthor}}</p>
 
       <div class="priceContainer d-flex">
-        <ng-container *ngIf="book.book.discount ===0 ||book.book.discount ===null ; else discountedPrice">
-          <p class="newPrice"> {{book.book.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</p>
+        <ng-container *ngIf="book.discount ===0 ||book.discount ===null ; else discountedPrice">
+          <p class="newPrice"> {{book.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</p>
         </ng-container>
 
         <ng-template #discountedPrice>
           <p class="newPrice mr-4">
-            {{getDiscountedPrice(book.book)| currency: 'EUR' : 'symbol' : '1.2-2'}}
+            {{getDiscountedPrice(book)| currency: 'EUR' : 'symbol' : '1.2-2'}}
           </p>
-          <p class="oldPrice">{{book.book.price | currency: 'EUR' : 'symbol' : '1.2-2'}} </p>
+          <p class="oldPrice">{{book.price | currency: 'EUR' : 'symbol' : '1.2-2'}} </p>
         </ng-template>
       </div>
 

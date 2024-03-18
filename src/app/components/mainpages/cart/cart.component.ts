@@ -5,7 +5,6 @@ import { UtilService } from 'src/app/services/util.service';
 import { BookService } from 'src/app/services/book.service';
 
 import { Book } from 'src/app/models/Book';
-import { BookAuthor } from 'src/app/models/BookAuthor';
 import { OrderDetail } from 'src/app/models/OrderDetail';
 
 @Component({
@@ -20,7 +19,7 @@ export class CartComponent implements OnInit {
   dataSource: OrderDetail[] = [];
   totalPrice: number = 0;
   bookFinalPrice: number = 0;
-  book: BookAuthor = new BookAuthor();
+  book: Book = new Book();
 
   @Output()
   onOrderFinished!: EventEmitter<boolean>;

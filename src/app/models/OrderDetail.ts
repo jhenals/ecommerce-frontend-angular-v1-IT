@@ -1,5 +1,4 @@
 import { Order } from "./Order";
-import { BookAuthor } from "./BookAuthor";
 import { Book } from "./Book";
 
 export class OrderDetail {

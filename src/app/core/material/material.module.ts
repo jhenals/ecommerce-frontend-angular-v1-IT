@@ -14,6 +14,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 
@@ -40,7 +42,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatStepperModule,
     MatInputModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule
 
   ],
 
@@ -59,7 +62,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatStepperModule,
     MatInputModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule
 
   ],
   providers: [],

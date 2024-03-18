@@ -21,21 +21,21 @@
       <div class=" mt-4 books" *ngFor="let book of discountedbooks">
         <mat-card class="book-card ml-5 mb-2 ">
             <div class="discount-container">
-              <p class="discount">{{book.book.discount}}%!</p>
+              <p class="discount">{{book.discount}}%!</p>
               <img class="discountStar" src="../../../../assets/images/discountStar.png" alt="">
             </div>
-          <img mat-card-image  class="bookimage" [src]="book.book.coverUrl" alt="book-cover">
+          <img mat-card-image  class="bookimage" [src]="book.coverUrl" alt="book-cover">
           <div class="card-container">
-            <mat-card-title class="text-center">{{book.book.title}}</mat-card-title>
-            <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
+            <mat-card-title class="text-center">{{book.title}}</mat-card-title>
+            <!-- <mat-card-subtitle>{{book.author}}</mat-card-subtitle> -->
             <div class="d-flex">
-              <p class="oldPrice mr-4">€{{book.book.price}} </p>
+              <p class="oldPrice mr-4">€{{book.price}} </p>
               <p class="newPrice mr-4">
-                €{{ book.book.price| number : '1.2-2'}}
+                €{{ book.price| number : '1.2-2'}}
               </p>
             </div>
           </div>
-          <button matbutton class="themed-button" (click)="goToBookDetails(book.book.id)">More about this Book</button>
+          <button matbutton class="themed-button" (click)="goToBookDetails(book.id)">More about this Book</button>
           </mat-card>
        </div>
     </div>

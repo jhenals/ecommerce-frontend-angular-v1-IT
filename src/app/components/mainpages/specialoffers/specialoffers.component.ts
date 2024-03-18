@@ -5,14 +5,13 @@ import { BookService } from 'src/app/services/book.service';
 import { UtilService } from 'src/app/services/util.service';
 
 import { Book } from 'src/app/models/Book';
-import { BookAuthor } from 'src/app/models/BookAuthor';
 @Component({
   selector: 'app-specialoffers',
   templateUrl: './specialoffers.component.html',
   styleUrls: ['./specialoffers.component.css']
 })
 export class SpecialoffersComponent {
-  discountedbooks: BookAuthor[] = [];
+  discountedbooks: Book[] = [];
 
   constructor(
     private bookService: BookService,

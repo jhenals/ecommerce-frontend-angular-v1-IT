@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UtilService } from 'src/app/services/util.service';
 
 import { Book } from 'src/app/models/Book';
-import { BookAuthor } from 'src/app/models/BookAuthor';
 
 @Component({
   selector: 'app-topnav',
@@ -17,8 +16,8 @@ export class TopnavComponent {
   firstName: string = '';
   lastName: string = '';
   searchInput: string = '';
-  filteredList: BookAuthor[] = [];
-  bookList: BookAuthor[] = [];
+  filteredList: Book[] = [];
+  bookList: Book[] = [];
 
   cartItemsCount: number = 0;
   hidden: boolean = true;
@@ -63,8 +62,8 @@ export class TopnavComponent {
       return this.filteredList = [];
     }
     this.filteredList = this.bookList.filter((book) => {
-      return book.book.title.toLowerCase().includes(event.target.value.toLowerCase()) ||
-        book.author.name.toLowerCase().includes(event.target.value.toLowerCase());
+      return book.title.toLowerCase().includes(event.target.value.toLowerCase()) /*||
+       book.author.name.toLowerCase().includes(event.target.value.toLowerCase()); */
     });
     return this.filteredList;
   }
