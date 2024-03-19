@@ -11,6 +11,7 @@ import { BookModule } from './book/book.module';
 import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
+import { DialogsModule } from './dialogs/dialogs.module';
 
 import { TopnavComponent } from './topnav/topnav.component';
 import { FooterComponent } from './footer/footer.component';
@@ -47,6 +48,7 @@ const routes: Routes = [
     BookModule,
     UserModule,
     MiscellaneousModule,
+    DialogsModule,
     RouterModule.forChild(routes),
 
   ],

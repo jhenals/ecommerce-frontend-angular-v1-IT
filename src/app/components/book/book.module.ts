@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MiscellaneousModule } from '../miscellaneous/miscellaneous.module';
+import { MaterialModule } from 'src/app/core/material/material.module';
 import { BookComponent } from './book/book.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 
@@ -13,7 +14,8 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
   ],
   imports: [
     CommonModule,
-    MiscellaneousModule
+    MiscellaneousModule,
+    MaterialModule
   ],
   exports: [
     BookComponent,

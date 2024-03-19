@@ -7,13 +7,18 @@
     <td mat-cell *matCellDef="let order">{{ order.id }}</td>
   </ng-container>
 
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef>Date Ordered</th>
+    <td mat-cell *matCellDef="let order">{{ order.id }}</td>
+  </ng-container>
+
   <ng-container matColumnDef="customerName">
     <th mat-header-cell *matHeaderCellDef>Customer Name</th>
     <td mat-cell *matCellDef="let order">{{ order.customerName }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="productName">
-    <th mat-header-cell *matHeaderCellDef>Product Name</th>
+  <ng-container matColumnDef="orderedBooks">
+    <th mat-header-cell *matHeaderCellDef>List of Ordered Books</th>
     <td mat-cell *matCellDef="let order">{{ order.productName }}</td>
   </ng-container>
 
@@ -29,12 +34,25 @@
 
   <ng-container matColumnDef="deliveryStatus">
     <th mat-header-cell *matHeaderCellDef>Delivery Status</th>
-    <td mat-cell *matCellDef="let order">{{ order.deliveryStatus }}</td>
+    <td mat-cell *matCellDef="let order">{{ order.orderStatus }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="recipient">
+    <th mat-header-cell *matHeaderCellDef>Recipient name</th>
+    <td mat-cell *matCellDef="let order">{{ order.orderStatus }}</td>
+  </ng-container>
+  <ng-container matColumnDef="shippingAddress">
+    <th mat-header-cell *matHeaderCellDef>Shipping Address</th>
+    <td mat-cell *matCellDef="let order">{{ order.orderStatus }}</td>
+  </ng-container>
+  <ng-container matColumnDef="contactNumber">
+    <th mat-header-cell *matHeaderCellDef>Contact Number</th>
+    <td mat-cell *matCellDef="let order">{{ order.orderStatus }}</td>
   </ng-container>
 
   <!-- Add other columns as needed -->
 
   <!-- Table rows -->
-  <tr mat-header-row *matHeaderRowDef="['id', 'customerName', 'productName', 'quantity', 'price', 'deliveryStatus']"></tr>
-  <tr mat-row *matRowDef="let row; columns: ['id', 'customerName', 'productName', 'quantity', 'price', 'deliveryStatus']"></tr>
+  <tr mat-header-row *matHeaderRowDef="['id','date', 'customerName', 'orderedBooks', 'quantity', 'price', 'deliveryStatus' , 'recipient' , 'shippingAddress' , 'contactNumber']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['id', 'date', 'customerName', 'orderedBooks', 'quantity', 'price', 'deliveryStatus' , 'recipient' , 'shippingAddress' , 'contactNumber']"></tr>
 </table>

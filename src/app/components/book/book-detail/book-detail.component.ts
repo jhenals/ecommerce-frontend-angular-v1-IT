@@ -3,9 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UtilService } from 'src/app/services/util.service';
-
-
 import { Book } from 'src/app/models/Book';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -19,7 +18,8 @@ export class BookDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private bookService: BookService,
     private authService: AuthService,
-    private utilsService: UtilService
+    private utilsService: UtilService,
+    private orderService: OrderService
   ) {
 
   }
@@ -45,7 +45,11 @@ export class BookDetailComponent implements OnInit {
   }
 
   addToCart(book: Book) {
-    // this.cartService.addToCart(book);
+    this.orderService.addToCart(book);
+  }
+
+  bookIsInCart(book: Book): boolean {
+    return this.orderService.bookIsInCart(book);
   }
 
 

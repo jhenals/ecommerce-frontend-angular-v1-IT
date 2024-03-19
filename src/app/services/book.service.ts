@@ -82,4 +82,8 @@ export class BookService {
     return this.httpClient.get<Book[]>(`${url}`);
   }
 
+  deleteBook(book: Book) {
+    //DELETE METHOD
+  }
+
 }//book.service.ts
