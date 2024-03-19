@@ -26,7 +26,8 @@
     </div>
 
     <div class="buttonContainer ">
-      <app-add-to-cart-button [bookInput]="bookInput" [bookDetailPage]="false"></app-add-to-cart-button>
+      <button class="themed-button-1  " (click)="addToCart(bookInput)" *ngIf="!bookIsInCart(bookInput)"> Add to cart</button>
+      <button class="themed-button-1 " *ngIf="bookIsInCart(bookInput)" (click)="goToLink('/cart')"> Go to cart</button>
     </div>
 
 

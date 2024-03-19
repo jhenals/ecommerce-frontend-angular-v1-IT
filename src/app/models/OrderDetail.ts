@@ -5,5 +5,5 @@ export class OrderDetail {
   order: Order = new Order();
   book: Book = new Book();
   quantity: number = 0;
-  price: number = 0;
+  finalPrice: number = 0;
 }

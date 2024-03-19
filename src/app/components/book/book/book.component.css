@@ -64,4 +64,18 @@
   text-decoration: line-through;
 }
 
-.buttonContainer {}
+.themed-button-1 {
+  border-radius: 5px;
+  border: none;
+  padding: auto;
+  background-color: var(--dark-brown);
+  color: var(--nude-color);
+  outline: none;
+  cursor: pointer;
+}
+
+.themed-button-1:hover {
+  background-color: var(--nude-color);
+  border: solid 1px var(--dark-brown);
+  color: var(--dark-brown);
+}

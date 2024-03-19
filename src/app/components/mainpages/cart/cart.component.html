@@ -31,12 +31,17 @@
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="item">
           <th mat-header-cell *matHeaderCellDef class="item-column-header" >Item</th>
-          <td mat-cell *matCellDef="let item" class="item-column-header" >{{ item.book.book.title }} by {{ item.book.book.author }}</td>
+          <td mat-cell *matCellDef="let item" class="item-column-header" >{{ item.book.title }} by
+              <ng-container *ngFor="let author of item.book.authors; let last = last">
+              {{ author.name }}
+              <span *ngIf="!last">,</span>
+              </ng-container>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="unitprice">
           <th mat-header-cell *matHeaderCellDef class="price-column-header" >Unit Price*</th>
-          <td mat-cell *matCellDef="let item" class="price-column-header" >{{ item.book.book.price | currency : 'EUR' : 'symbol' : '1.2-2' }}</td>
+          <td mat-cell *matCellDef="let item" class="price-column-header" >{{ item.book.price | currency : 'EUR' : 'symbol' : '1.2-2' }}</td>
         </ng-container>
 
         <ng-container matColumnDef="quantity">
@@ -57,7 +62,7 @@
 
         <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef class="qty-column-header">Price</th>
-          <td mat-cell *matCellDef="let item" class="qty-column-header">{{ item.quantity * item.book.book.discountedPrice | currency: 'EUR' : 'symbol' : '1.2-2' }}</td>
+          <td mat-cell *matCellDef="let item" class="qty-column-header">{{ item.quantity * item.book.finalPrice | currency: 'EUR' : 'symbol' : '1.2-2' }}</td>
         </ng-container>
 
         <!-- Table rows -->

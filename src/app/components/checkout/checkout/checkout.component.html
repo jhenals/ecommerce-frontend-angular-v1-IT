@@ -4,21 +4,21 @@
         <mat-step [stepControl]="shippingInfoControl">
           <form [formGroup]="shippingInfoControl">
             <ng-template matStepLabel>Fill out shipping details</ng-template>
-                <mat-form-field>
+                <mat-form-field class="container-fluid">
                   <mat-label>Recipient</mat-label>
-                  <input matInput placeholder="First name, LastName" formControlName="recipientCtrl" required>
+                  <input matInput placeholder="First name, LastName" formControlName="recipientCtrl" required  [(ngModel)]="recipientName">
                 </mat-form-field>
 
-                  <mat-form-field>
-                    <mat-label>Address</mat-label>
+                  <mat-form-field  class="container-fluid">
+                    <mat-label>Shipping Address</mat-label>
                     <input matInput formControlName="addressCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                          required>
+                      [(ngModel)]="shippingAddress" required>
                   </mat-form-field>
 
-                    <mat-form-field>
+                    <mat-form-field class="container-fluid">
                       <mat-label>Phone number</mat-label>
                       <input matInput formControlName="phoneCtrl" placeholder="Ex. 123-456-7890"
-                            required>
+                      [(ngModel)]="phoneNumber" required>
                     </mat-form-field>
 
               <div>
@@ -66,11 +66,10 @@
 
             <div class="col-6" >
             <div>
-                <h2>Shipping Address</h2>
-                <p>{{recipientName}}</p>
-                <p>{{shippingAddress}},</p>
-
-                <p>Contact number: {{phoneNumber}}</p>
+                <h2>Shipping Information</h2>
+                <p><span class="font-weight-bold">Recipient:</span> {{recipientName}}</p>
+                <p><span class="font-weight-bold">Shipping address:</span> {{shippingAddress}}</p>
+                <p> <span class="font-weight-bold">Contact number:</span> {{phoneNumber}}</p>
               </div>
               <mat-divider class="mb-4"></mat-divider>
           </div>

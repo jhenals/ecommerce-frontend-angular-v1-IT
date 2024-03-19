@@ -21,7 +21,9 @@ export class AddToCartButtonComponent {
     private authService: AuthService,
     private orderService: OrderService,
     private cdr: ChangeDetectorRef
-  ) { }
+  ) {
+    console.log("book in cart", this.bookInput)
+  }
 
   addToCart(book: Book) {
     this.authService.isLoggedIn().then((loggedIn) => {
@@ -29,12 +31,8 @@ export class AddToCartButtonComponent {
         this.authService.login();
         return;
       } else {
-        if (this.orderService.bookIsInCart(book)) {
-          return;
-        } else {
-          this.orderService.addToCart(book);
-
-        }
+        console.log(book)
+        this.orderService.addToCart(book);
       }
     });
     this.cdr.detectChanges();
