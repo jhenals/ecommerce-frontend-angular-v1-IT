@@ -4,6 +4,7 @@ import { BookshelfComponent } from './bookshelf/bookshelf.component';
 import { HomepageBannerComponent } from './homepage-banner/homepage-banner.component';
 import { BookModule } from '../book/book.module';
 import { MaterialModule } from 'src/app/core/material/material.module';
+import { MiscellaneousModule } from '../miscellaneous/miscellaneous.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MaterialModule } from 'src/app/core/material/material.module';
   imports: [
     CommonModule,
     BookModule,
-    MaterialModule
+    MaterialModule,
+    MiscellaneousModule
   ],
   exports: [
     BookshelfComponent,

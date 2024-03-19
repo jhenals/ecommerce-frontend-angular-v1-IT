@@ -1,5 +1,12 @@
 <ng-container *ngIf="(booksState$ | async) as state " [ngSwitch]="state.appState">
-  <div class="bookshelf-main row">
+
+
+  <ng-container>
+    <app-filter-sort  (filterChanged)="applyFilters($event)"
+    (sortChanged)="sortBy($event)"  ></app-filter-sort>
+  </ng-container>
+
+  <div class="bookshelf-main row mt-4">
 
     <ng-container *ngSwitchCase="'APP_ERROR'">
       <span style="color:red"> Error in retrieving data.</span>
@@ -23,16 +30,16 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-end">
         <li class="page-item pointer" [ngClass]="0 === (currentPage$ | async) ? 'disabled' : '' ">
-          <a (click)="goToNextOrPreviousPage('backward', searchInput)" class="page-link" >Previous</a>
+          <a (click)="goToNextOrPreviousPage('backward')" class="page-link" >Previous</a>
         </li>
         <li *ngFor="let pageNumber of [].constructor(state.appData.data.page.totalPages); let i=index;"
           class="page-item pointer" [ngClass]="i == (currentPage$ | async) ? 'active' : '' ">
-          <a (click)="goToPage(searchInput, i)" class="page-link">
+          <a (click)="goToPage(i)" class="page-link">
             {{i+1}}
           </a>
         </li>
         <li class="page-item pointer"  [ngClass]="(state.appData.data.page.totalPages-1) === (currentPage$ | async) ? 'disabled' : '' ">
-          <a (click)="goToNextOrPreviousPage('forward', searchInput)" class="page-link">Next</a>
+          <a (click)="goToNextOrPreviousPage('forward')" class="page-link">Next</a>
         </li>
       </ul>
     </nav>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BookService } from 'src/app/services/book.service';
 import { UtilService } from 'src/app/services/util.service';
@@ -16,19 +17,17 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./bookshelf.component.css']
 })
 export class BookshelfComponent implements OnInit {
-  searchInput: string = '';
-
   booksState$: Observable<{ appState: string, appData?: ApiResponse<Page>, error?: HttpErrorResponse }>;
   responseSubject = new BehaviorSubject<ApiResponse<Page>>(null);
 
   private currentPageSubject = new BehaviorSubject<number>(0);
   currentPage$ = this.currentPageSubject.asObservable();
 
+  selectedFilters: number[] = [];
+  sort: string = 'id';
+  sortDirection: string = 'ASC';
 
-  constructor(
-    private bookService: BookService,
-    private utilService: UtilService
-  ) { }
+  constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
     this.booksState$ = this.bookService.getBooks().pipe(
@@ -47,8 +46,56 @@ export class BookshelfComponent implements OnInit {
 
   }
 
-  goToPage(title?: string, page?: number) {
-    this.booksState$ = this.bookService.getBooks(title, page).pipe(
+  applyFilters(filters: number[]) {
+    this.selectedFilters = filters;
+    console.log("filters", filters);
+    this.booksState$ = this.bookService.getBooksByCategories(this.selectedFilters).pipe(
+      map((response: ApiResponse<Page>) => {
+        this.responseSubject.next(response);
+        this.currentPageSubject.next(response.data.page.number);
+        this.selectedFilters = [];
+        console.log("response", response);
+        return ({ appState: 'APP_LOADED', appData: response });
+      }
+      ),
+      startWith({ appState: 'APP_LOADED', appData: this.responseSubject.value }),
+      catchError((error: HttpErrorResponse) =>
+        of({ appState: 'APP_ERROR', error: error }))
+    );
+  }
+
+
+  sortBy(field: string) {
+    if (field === "alphabetical") {
+      this.sort = "title";
+      this.sortDirection = "ASC";
+    } else if (field === "price-low-high") {
+      this.sort = "price";
+      this.sortDirection = "ASC";
+    } else if (field === "price-high-low") {
+      this.sort = "price";
+      this.sortDirection = "DESC";
+    }
+
+    this.booksState$ = this.bookService.getBooks(0, 12, this.sort, this.sortDirection).pipe(
+      map((response: ApiResponse<Page>) => {
+        this.responseSubject.next(response);
+        this.currentPageSubject.next(response.data.page.number);
+        console.log("response", response);
+        this.sort = 'id';
+        this.sortDirection = 'ASC';
+        return ({ appState: 'APP_LOADED', appData: response });
+      }
+      ),
+      startWith({ appState: 'APP_LOADED', appData: this.responseSubject.value }),
+      catchError((error: HttpErrorResponse) =>
+        of({ appState: 'APP_ERROR', error: error }))
+    );
+
+  }
+
+  goToPage(page?: number) {
+    this.booksState$ = this.bookService.getBooks(page, 12, this.sort, this.sortDirection).pipe(
       map((response: ApiResponse<Page>) => {
         this.responseSubject.next(response);
         this.currentPageSubject.next(response.data.page.number);
@@ -62,8 +109,8 @@ export class BookshelfComponent implements OnInit {
     );
   }
 
-  goToNextOrPreviousPage(direction?: string, title?: string): void {
-    this.goToPage(title, direction === 'forward' ?
+  goToNextOrPreviousPage(direction?: string): void {
+    this.goToPage(direction === 'forward' ?
       this.currentPageSubject.value + 1 :
       this.currentPageSubject.value - 1);
   }

@@ -4,6 +4,8 @@ import { MaterialModule } from 'src/app/core/material/material.module';
 import { TitleBarComponent } from './title-bar/title-bar.component';
 import { GoBackButtonComponent } from './go-back-button/go-back-button.component';
 import { AddToCartButtonComponent } from './add-to-cart-button/add-to-cart-button.component';
+import { FilterSortComponent } from './filter-sort/filter-sort.component';
+import { filter } from 'rxjs';
 
 
 
@@ -11,7 +13,8 @@ import { AddToCartButtonComponent } from './add-to-cart-button/add-to-cart-butto
   declarations: [
     TitleBarComponent,
     GoBackButtonComponent,
-    AddToCartButtonComponent
+    AddToCartButtonComponent,
+    FilterSortComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,8 @@ import { AddToCartButtonComponent } from './add-to-cart-button/add-to-cart-butto
   exports: [
     TitleBarComponent,
     GoBackButtonComponent,
-    AddToCartButtonComponent
+    AddToCartButtonComponent,
+    FilterSortComponent
   ]
 })
 export class MiscellaneousModule { }

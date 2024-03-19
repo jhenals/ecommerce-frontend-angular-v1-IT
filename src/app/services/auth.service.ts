@@ -74,6 +74,11 @@ export class AuthService {
     this.keycloak.logout("http://localhost:4200");
   }
 
+  isLoggedIn(): Promise<boolean> {
+    return this.keycloak.isLoggedIn();
+  }
+
+
   isAdmin() {
     return this.keycloak.isUserInRole('admin');
   }

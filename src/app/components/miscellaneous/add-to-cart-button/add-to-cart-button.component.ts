@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectorRef } from '@angular/core';
 
 import { UtilService } from 'src/app/services/util.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { OrderService } from 'src/app/services/order.service';
 
 import { Book } from 'src/app/models/Book';
 
@@ -15,11 +17,27 @@ export class AddToCartButtonComponent {
   book!: Book;
 
   constructor(
-    private utilService: UtilService
+    private utilService: UtilService,
+    private authService: AuthService,
+    private orderService: OrderService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   addToCart(book: Book) {
-    console.log('Add to cart: ', book);
+    this.authService.isLoggedIn().then((loggedIn) => {
+      if (!loggedIn) {
+        this.authService.login();
+        return;
+      } else {
+        if (this.orderService.bookIsInCart(book)) {
+          return;
+        } else {
+          this.orderService.addToCart(book);
+
+        }
+      }
+    });
+    this.cdr.detectChanges();
   }
 
   goToLink(url: string) {
@@ -27,7 +45,7 @@ export class AddToCartButtonComponent {
   }
 
   bookIsInCart(book: Book) {
-    return false;
+    return this.orderService.bookIsInCart(book);
   }
 
 }

@@ -7,6 +7,7 @@ import { UtilService } from './util.service';
 
 import { Book } from '../models/Book';
 import { Author } from '../models/Author';
+import { Category } from '../models/Category';
 import { Observable } from 'rxjs';
 import { Page } from '../interface/page';
 
@@ -22,10 +23,16 @@ export class BookService {
     private router: Router
   ) { }
 
-  getBooks(title: string = this.searchInput, page: number = 0, size: number = 12): Observable<ApiResponse<Page>> {
+  getBooks(page: number = 0, size: number = 12, sortBy: string = 'id', sortDirection: string = "ASC"): Observable<ApiResponse<Page>> {
     const endpoint = '/books';
     const url = `${this.baseUrl}${endpoint}`;
-    return this.httpClient.get<ApiResponse<Page>>(`${url}?title=${title}&page=${page}&size=${size}`);
+    return this.httpClient.get<ApiResponse<Page>>(`${url}?page=${page}&size=${size}&sortBy=${sortBy}&sortDirection=${sortDirection}`);
+  }
+
+  getBooksByCategories(categoryIds: number[], page: number = 0, size: number = 12): Observable<ApiResponse<Page>> {
+    const endpoint = '/books/categories';
+    const url = `${this.baseUrl}${endpoint}`;
+    return this.httpClient.get<ApiResponse<Page>>(`${url}?ids=${categoryIds}&page=${page}&size=${size}`);
   }
 
   getAuthorsByBookId(id: number): Observable<Author[]> {
@@ -53,8 +60,10 @@ export class BookService {
   }
 
 
-  getAllCategories() {
-    //GET METHOD
+  getAllCategories(): Observable<Category[]> {
+    const endpoint = '/categories';
+    const url = `${this.baseUrl}${endpoint}`;
+    return this.httpClient.get<Category[]>(`${url}`);
   }
 
   addNewBook(book: Book) {
