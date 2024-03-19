@@ -1,11 +1,14 @@
 <section>
   <div class="container pt-4 d-flex">
-    <div class=" col-3 ">
+    <div class=" col-4 ">
       <img class="book-detail-image" [src]="book.coverUrl" alt="book image">
     </div>
-    <div class=" col-9 mt-4 mb-4 book-detail-content">
+    <div class=" col-8 mt-4 mb-4 book-detail-content">
       <h1>{{book.title}}</h1>
-      <!-- <p>{{book.author}}</p> -->
+      <ng-container *ngFor="let author of book.authors">
+        <p> {{author.name}}</p>
+      </ng-container>
+
       <ng-container *ngIf="book.discount ===0 ||book.discount ===null; else discounted">
         <h3 class="newPrice">{{book.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</h3>
       </ng-container>

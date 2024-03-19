@@ -6,6 +6,7 @@ import { ApiResponse } from '../interface/api-response';
 import { UtilService } from './util.service';
 
 import { Book } from '../models/Book';
+import { Author } from '../models/Author';
 import { Observable } from 'rxjs';
 import { Page } from '../interface/page';
 
@@ -14,35 +15,35 @@ import { Page } from '../interface/page';
 })
 export class BookService {
   private readonly baseUrl = 'http://localhost:8081/api/v1';
-
+  searchInput: string = '';
   constructor(
     private httpClient: HttpClient,
     private utilService: UtilService,
     private router: Router
   ) { }
 
-  getBooks(title: string = '', page: number = 0, size: number = 10): Observable<ApiResponse<Page>> {
+  getBooks(title: string = this.searchInput, page: number = 0, size: number = 12): Observable<ApiResponse<Page>> {
     const endpoint = '/books';
     const url = `${this.baseUrl}${endpoint}`;
     return this.httpClient.get<ApiResponse<Page>>(`${url}?title=${title}&page=${page}&size=${size}`);
   }
-  /*
-    getAllBooks(): Observable<Book[]> {
-      return this.httpClient.get<Book[]>(`${this.baseUrl}/books`);
 
-    } */
+  getAuthorsByBookId(id: number): Observable<Author[]> {
+    const endpoint = '/authors/book';
+    const url = `${this.baseUrl}${endpoint}?id=${id}`;
+    return this.httpClient.get<Author[]>(`${url}`);
+  }
 
 
   getBookById(id: number) {
-    /*  const endpoint = `/books/${id}`;
-     const url = `${this.baseUrl}${endpoint}`;
-     return this.httpClient.get<BookAuthor>(`${url}`); */
+    const endpoint = `/books/book?id=${id}`;
+    const url = `${this.baseUrl}${endpoint}`;
+    return this.httpClient.get<Book>(`${url}`);
   }
 
   goToBookDetails(book: Book) {
     const bookId = book.id;
     const bookTitle = book.title;
-
     this.router.navigate([`book/${bookId}/${bookTitle}`]);
   }
 
@@ -59,4 +60,17 @@ export class BookService {
   addNewBook(book: Book) {
     //POST METHOD
   }
-}
+
+  getAllDiscountedBooks() {
+    const endpoint = '/books/discounted-books';
+    const url = `${this.baseUrl}${endpoint}`;
+    return this.httpClient.get<Book[]>(`${url}`);
+  }
+
+  getBestSellers() {
+    const endpoint = '/books/best-sellers';
+    const url = `${this.baseUrl}${endpoint}`;
+    return this.httpClient.get<Book[]>(`${url}`);
+  }
+
+}//book.service.ts

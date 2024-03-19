@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BookService } from 'src/app/services/book.service';
 
 import { Book } from 'src/app/models/Book';
+import { Author } from 'src/app/interface/author';
 
 @Component({
   selector: 'app-book',
@@ -11,8 +12,8 @@ import { Book } from 'src/app/models/Book';
 })
 export class BookComponent implements OnInit {
   @Input() bookInput!: Book;
-  book!: Book;
   bookTitle: string = '';
+  bookAuthors: Author[] = [];
   bookAuthor: string = '';
 
   constructor(
@@ -22,29 +23,21 @@ export class BookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getBookAuthorOfBook();
-    this.bookTitle = this.book?.title;
-    this.bookAuthor = '';
-    const maxLength = 20;
+    this.bookTitle = this.bookInput?.title;
+    this.bookAuthors = this.bookInput.authors;
+    const maxLength = 15;
     const maxLengthAuthor = 10;
     const ellipsis = '...';
-    this.bookTitle = this.book.title.length > maxLength ? this.book.title.slice(0, maxLength) + ellipsis : this.book.title;
-    /* this.bookAuthor = this.book.author.name.length > maxLengthAuthor ? this.book.author.name.slice(0, maxLengthAuthor) + ellipsis : this.book.author.name; */
+    this.bookTitle = this.bookInput.title.length > maxLength ? this.bookInput.title.slice(0, maxLength) + ellipsis : this.bookInput.title;
+    this.bookAuthor = this.bookAuthors[0].name.length > maxLengthAuthor ? this.bookAuthors[0].name.slice(0, maxLengthAuthor) + ellipsis as string : this.bookAuthors[0].name as string;
 
   }
-
-  getBookAuthorOfBook() {
-    /* this.bookService.getBookAuthorByBookId(this.book.book.id).subscribe(book => {
-      this.book = book;
-    }) */
-  }
-
 
   goToBookDetails(book: Book) {
     this.bookService.goToBookDetails(book);
   }
 
-  getDiscountedPrice(book: Book) {
-    return book.price - (book.price * book.discount / 100);
+  getDiscountedPrice(book: Book): number {
+    return this.bookService.getDiscountedPrice(book);
   }
 }

@@ -4,30 +4,33 @@
         <a routerLink="/"><img class="main-logo" src="../../../assets/images/Bookhaven.png" /></a>
       </div>
 
-      <ng-container class="searchContainer">
-        <div class="searchBox" >
-            <input
-                type="text"
-                placeholder="Search books or authors ..."
-                class="text search-term"
-                [(ngModel)]="searchInput"
-                (keyup)="fetchBooks($event)"
-                >
-        </div>
+      <div class="col-lg-4">
+        <input
+        type="text"
+        placeholder="Search books or authors ..."
+        class="text search-term"
+        [(ngModel)]="searchInput"
+        (keyup)="fetchBooks($event)"
+        >
 
         <mat-nav-list  *ngIf="searchInput " class="searchResultBox">
-            <ng-container *ngIf="filteredList.length===0; else renderList">
-              <p>No result...</p>
-            </ng-container>
+          <ng-container *ngIf="filteredList.length===0; else renderList">
+            <p>No result...</p>
+          </ng-container>
 
-            <ng-template #renderList>
-               <a mat-list-item  (click)="goToBookDetails(book)" *ngFor="let book of filteredList"> <img class="search-image" src="{{book.coverUrl}}" alt=""> {{ book.title }} <!---  {{book.author.name}}  --></a>
-            </ng-template>
+          <ng-template #renderList>
+             <a mat-list-item class="m-2"
+              (click)="goToBookDetails(book)" *ngFor="let book of filteredList">
+                <img class="search-image" src="{{book.coverUrl}}" alt="{{book.title}}">
+                <span class="font-weight-bold">{{ book.title }}</span> by {{book.authors.at(0).name}}
+              </a>
+          </ng-template>
 
-        </mat-nav-list>
+      </mat-nav-list>
 
 
-      </ng-container>
+      </div>
+
 
       <div class="col-lg-4 topnav-toprow-buttons topnav-right ">
         <ng-container *ngIf=" isAdmin()===true">

@@ -14,15 +14,29 @@
     </ng-container>
 
     <ng-container  *ngSwitchCase="'APP_LOADED'">
-      <app-book class= "container-flex"  [bookInput]="book" *ngFor="let book of state.appData.data.page.content; let i= index" ></app-book>
-      <mat-paginator
-        [length]="100"
-        [pageSize]="10"
-        [pageSizeOptions]="[5, 10, 25, 100]"
-        aria-label="Select page">
-      </mat-paginator>
+      <app-book class= "container-flex"  [bookInput]="book" *ngFor="let book of state.appData.data.page.content" ></app-book>
     </ng-container>
 
   </div>
+
+  <ng-container class="row" >
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item pointer" [ngClass]="0 === (currentPage$ | async) ? 'disabled' : '' ">
+          <a (click)="goToNextOrPreviousPage('backward', searchInput)" class="page-link" >Previous</a>
+        </li>
+        <li *ngFor="let pageNumber of [].constructor(state.appData.data.page.totalPages); let i=index;"
+          class="page-item pointer" [ngClass]="i == (currentPage$ | async) ? 'active' : '' ">
+          <a (click)="goToPage(searchInput, i)" class="page-link">
+            {{i+1}}
+          </a>
+        </li>
+        <li class="page-item pointer"  [ngClass]="(state.appData.data.page.totalPages-1) === (currentPage$ | async) ? 'disabled' : '' ">
+          <a (click)="goToNextOrPreviousPage('forward', searchInput)" class="page-link">Next</a>
+        </li>
+      </ul>
+    </nav>
+
+  </ng-container>
 
 </ng-container>

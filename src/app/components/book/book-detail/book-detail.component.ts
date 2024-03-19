@@ -17,7 +17,6 @@ export class BookDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    // private cartService: CartService,
     private bookService: BookService,
     private authService: AuthService,
     private utilsService: UtilService
@@ -26,13 +25,13 @@ export class BookDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /* this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe(params => {
       const bookId = parseInt(params.get('id') || '', 10);
-      this.bookService.getBookAuthorByBookId(bookId).subscribe(book => {
+      this.bookService.getBookById(bookId).subscribe(book => {
         this.book = book;
         console.log(this.book)
       })
-    }) */
+    })
 
 
   }

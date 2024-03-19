@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { UtilService } from 'src/app/services/util.service';
+import { BookService } from 'src/app/services/book.service';
 
 import { Book } from 'src/app/models/Book';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-topnav',
@@ -12,24 +15,31 @@ import { Book } from 'src/app/models/Book';
 })
 export class TopnavComponent {
 
-  isLogin: boolean = false;
-  firstName: string = '';
-  lastName: string = '';
   searchInput: string = '';
   filteredList: Book[] = [];
   bookList: Book[] = [];
+
+
+  isLogin: boolean = false;
+  firstName: string = '';
+  lastName: string = '';
 
   cartItemsCount: number = 0;
   hidden: boolean = true;
 
   constructor(
     private authService: AuthService,
+    private bookService: BookService,
     private utilService: UtilService
   ) {
     this.isLogin = sessionStorage.getItem('isLogin') === 'true' ? true : false;
     this.firstName = sessionStorage.getItem('firstName') as string;
     this.lastName = sessionStorage.getItem('lastName') as string;
+    this.bookService.getBooks().subscribe((response) => {
+      this.bookList = response.data.page.content;
+    });
   }
+
 
   login() {
     this.authService.login();
@@ -53,7 +63,8 @@ export class TopnavComponent {
     return false;
   }
   goToBookDetails(book: Book) {
-    throw new Error('Method not implemented.');
+    this.bookService.goToBookDetails(book);
+    this.searchInput = '';
   }
 
 
@@ -62,8 +73,8 @@ export class TopnavComponent {
       return this.filteredList = [];
     }
     this.filteredList = this.bookList.filter((book) => {
-      return book.title.toLowerCase().includes(event.target.value.toLowerCase()) /*||
-       book.author.name.toLowerCase().includes(event.target.value.toLowerCase()); */
+      return book.title.toLowerCase().includes(event.target.value.toLowerCase()) ||
+        book.authors.find.name.toLowerCase().includes(event.target.value.toLowerCase());
     });
     return this.filteredList;
   }
@@ -71,6 +82,7 @@ export class TopnavComponent {
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
   }
+
 
 
 }

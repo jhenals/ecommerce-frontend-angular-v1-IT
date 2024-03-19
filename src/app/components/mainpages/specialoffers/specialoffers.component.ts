@@ -22,17 +22,17 @@ export class SpecialoffersComponent {
 
   ngOnInit(): void {
     this.getDiscountedBooks();
-    /* this.discountedbooks = dummyBooks; */
+
   }
   private getDiscountedBooks() {
-    /* this.booksService.getBooksWithDiscount().subscribe((data) => {
+    this.bookService.getAllDiscountedBooks().subscribe((data) => {
       this.discountedbooks = data;
       console.log(this.discountedbooks);
-    }); */
+    });
   }
 
-  goToBookDetails(bookId: number) {
-    //this.utilsService.goToBookDetails(bookId);
+  goToBookDetails(book: Book) {
+    this.bookService.goToBookDetails(book);
   }
 
 

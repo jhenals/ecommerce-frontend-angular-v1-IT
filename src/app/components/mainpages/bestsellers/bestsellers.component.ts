@@ -15,7 +15,8 @@ export class BestsellersComponent {
   bestsellers: Book[] = [];
   book: Book = new Book();
 
-  constructor(private bookService: BookService,
+  constructor(
+    private bookService: BookService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -23,16 +24,15 @@ export class BestsellersComponent {
   }
 
   private getBestSellers() {
-    /*  this.bookService.getBestSellers().subscribe((data: any[]) => {
-       this.bestsellers = data;
-       console.log(this.bestsellers);
-     }); */
+    this.bookService.getBestSellers().subscribe((data) => {
+      this.bestsellers = data;
+      console.log(this.bestsellers);
+    });
   }
 
   goToBookDetails(book: any) {
     console.log(book);
-    const bookId = book.id;
-    this.router.navigate([`book/${bookId}`]);
+    this.bookService.goToBookDetails(book);
   }
 
 }

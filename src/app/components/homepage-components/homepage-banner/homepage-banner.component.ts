@@ -25,22 +25,22 @@ export class HomepageBannerComponent {
 
 
   private getRandomDiscountedBooks() {
-    /* this.bookService.getBooksWithDiscount().subscribe((data) => {
+    this.bookService.getAllDiscountedBooks().subscribe((data) => {
       this.discountedBooks = data;
       this.discountedBooks = this.getRandomBooks();
     }
-    ); */
+    );
   }
 
   private getRandomBooks(): Book[] {
     let randomBooks: Book[] = [];
-    /*  while (randomBooks.length < 4) {
-       let randomIndex = Math.floor(Math.random() * this.discountedBooks.length);
-       let randomBook = this.discountedBooks[randomIndex];
-       if (!randomBooks.includes(randomBook)) {
-         randomBooks.push(randomBook);
-       }
-     } */
+    while (randomBooks.length < 4) {
+      let randomIndex = Math.floor(Math.random() * this.discountedBooks.length);
+      let randomBook = this.discountedBooks[randomIndex];
+      if (!randomBooks.includes(randomBook)) {
+        randomBooks.push(randomBook);
+      }
+    }
     return randomBooks;
   }
 
