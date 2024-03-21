@@ -3,7 +3,7 @@ import { EventEmitter, Output } from '@angular/core';
 
 import { BookService } from 'src/app/services/book.service';
 
-import { Category } from 'src/app/models/Category';
+import { Category } from 'src/app/interface/category';
 
 @Component({
   selector: 'app-filter-sort',

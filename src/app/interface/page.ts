@@ -1,4 +1,4 @@
-import { Book } from "./books";
+import { Book } from "./book";
 
 export interface Page {
   content: Book[],

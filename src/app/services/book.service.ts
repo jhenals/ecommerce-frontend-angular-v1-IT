@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { ApiResponse } from '../interface/api-response';
 import { UtilService } from './util.service';
 
-import { Book } from '../models/Book';
-import { Author } from '../models/Author';
-import { Category } from '../models/Category';
+import { Book } from '../interface/book';
+import { Author } from '../interface/author';
+import { Category } from '../interface/category';
 import { Observable } from 'rxjs';
 import { Page } from '../interface/page';
 

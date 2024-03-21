@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
 import { UtilService } from 'src/app/services/util.service';
 
-import { Book } from 'src/app/models/Book';
+import { Book } from 'src/app/interface/book';
 @Component({
   selector: 'app-specialoffers',
   templateUrl: './specialoffers.component.html',

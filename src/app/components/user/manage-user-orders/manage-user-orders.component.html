@@ -2,17 +2,16 @@
   <app-title-bar [title]="'My Orders'"></app-title-bar>
   <mat-divider/>
 
-  <ng-container>
-
+  <ng-container  *ngIf="orderList.length !== 0; else emptyOrderList">
     <div class="orderContainer">
       <div class="d-flex headerContainer">
         <div class="col-2">
           <h3>Order Placed</h3>
-          <p>{{order.orderDate| date:'mediumDate'}}</p>
+          <p>{{order.dateCreated| date:'mediumDate'}}</p>
         </div>
         <div class="col-2">
           <h3>Total</h3>
-          <p class="font-weight-bold">{{order.total| currency:'EUR':'symbol':'1.2-2'}}</p>
+          <p class="font-weight-bold">{{order.totalAmount| currency:'EUR':'symbol':'1.2-2'}}</p>
         </div>
         <div class="col-2">
           <h3>Shipped to</h3>
@@ -55,4 +54,26 @@
   </ng-container>
 
 
+  <ng-template #emptyOrderList>
+    <div class="empty-container ">
+      <div class="col-lg-4">
+       <img class="emptyBox" src="https://img.freepik.com/vecteurs-premium/boite-carton-vide-ouverte-livraison-cadeau-deballage-illustration-vectorielle-noir-blanc-dessine-main_172597-432.jpg?w=740" alt="">
+      </div>
+      <div class="col-lg-6 d-flex flex-column align-items-center justify-content-center">
+        <h1 class="mb-4">Empty</h1>
+        <button mat-raised-button class="themed-button" (click)="goToLink('/')">Shop Now!</button>
+      </div>
+    </div>
+  </ng-template>
+
+
+
+
+
 </section>
+
+
+<!-- TODO: color code each header: green : shipped
+        gray: cancelled
+        blue: paid
+        yellow : in transit -->

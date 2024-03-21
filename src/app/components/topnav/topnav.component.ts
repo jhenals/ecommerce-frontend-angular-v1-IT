@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
 import { AuthService } from 'src/app/services/auth.service';
 import { UtilService } from 'src/app/services/util.service';
 import { BookService } from 'src/app/services/book.service';
 
-import { Book } from 'src/app/models/Book';
+import { Book } from 'src/app/interface/book';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -15,31 +16,41 @@ import { FormControl } from '@angular/forms';
 })
 export class TopnavComponent {
 
-  searchInput: string = '';
-  filteredList: Book[] = [];
-  bookList: Book[] = [];
-
-
+  userProfile: KeycloakProfile | null = null;
   isLogin: boolean = false;
   firstName: string = '';
   lastName: string = '';
+
+  searchInput: string = '';
+  filteredList: Book[] = [];
+  bookList: Book[] = [];
 
   cartItemsCount: number = 0;
   hidden: boolean = true;
 
   constructor(
     private authService: AuthService,
+    private keycloakService: KeycloakService,
     private bookService: BookService,
     private utilService: UtilService
   ) {
-    this.isLogin = sessionStorage.getItem('isLogin') === 'true' ? true : false;
-    this.firstName = sessionStorage.getItem('firstName') as string;
-    this.lastName = sessionStorage.getItem('lastName') as string;
-    this.bookService.getBooks().subscribe((response) => {
-      this.bookList = response.data.page.content;
-    });
+    this.authService.isLoggedIn().then((loggedIn) => {
+      if (loggedIn) {
+        this.isLogin = true;
+        this.keycloakService.getKeycloakInstance().loadUserProfile()
+          .then((user: KeycloakProfile) => {
+            this.userProfile = user;
+            this.firstName = user.firstName as string;
+          })
+        this.bookService.getBooks().subscribe((response) => {
+          this.bookList = response.data.page.content;
+        });
+      }
+    }).catch((error) => {
+      console.log('Error in checking login status:', error);
+    }
+    );
   }
-
 
   login() {
     this.authService.login();

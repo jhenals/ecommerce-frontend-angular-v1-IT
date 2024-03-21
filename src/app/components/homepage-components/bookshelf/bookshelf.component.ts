@@ -6,7 +6,7 @@ import { UtilService } from 'src/app/services/util.service';
 
 import { ApiResponse } from 'src/app/interface/api-response';
 import { Page } from 'src/app/interface/page';
-import { Book } from 'src/app/models/Book';
+import { Book } from 'src/app/interface/book';
 import { BehaviorSubject, Observable, catchError, map, of, startWith } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PageEvent } from '@angular/material/paginator';

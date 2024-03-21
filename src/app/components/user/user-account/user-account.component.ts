@@ -14,8 +14,6 @@ export class UserAccountComponent {
   constructor() {
     this.firstName = sessionStorage.getItem('firstName') as string;
     this.lastName = sessionStorage.getItem('lastName') as string;
-    this.address = sessionStorage.getItem('address') as string;
-    this.mobile = sessionStorage.getItem('mobile') as string;
     this.email = sessionStorage.getItem('email') as string;
   }
 

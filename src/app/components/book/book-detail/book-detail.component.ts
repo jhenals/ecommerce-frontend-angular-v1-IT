@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UtilService } from 'src/app/services/util.service';
-import { Book } from 'src/app/models/Book';
+import { Book } from 'src/app/interface/book';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { OrderService } from 'src/app/services/order.service';
   styleUrls: ['./book-detail.component.css']
 })
 export class BookDetailComponent implements OnInit {
-  book: Book = new Book();
+  book: Book;
 
   constructor(
     private route: ActivatedRoute,

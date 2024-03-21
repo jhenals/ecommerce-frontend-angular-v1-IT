@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { OrderService } from 'src/app/services/order.service';
+import { UtilService } from 'src/app/services/util.service';
 
-import { Order } from 'src/app/models/Order';
-import { OrderDetail } from 'src/app/models/OrderDetail';
+import { Order } from 'src/app/interface/order';
 import { OrderForm } from 'src/app/models/OrderForm';
 
 @Component({
@@ -13,7 +13,7 @@ import { OrderForm } from 'src/app/models/OrderForm';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
-  dataSource: OrderDetail[] = []; /* passed from cart component */
+  dataSource: any[] = []; /* passed from cart component */
   totalPrice: number = 0; /* passed from cart component */
 
 
@@ -25,6 +25,7 @@ export class CheckoutComponent {
   paymentMethodControl: any;
 
   constructor(
+    private utilService: UtilService,
     private formBuilder: FormBuilder,
     private orderService: OrderService) {
   }
@@ -51,13 +52,22 @@ export class CheckoutComponent {
     });
   }
 
-  notExpiredValidator(control: any) {
+  notExpiredValidator(control: FormControl) {
     const currentDate = new Date();
-    const inputDate = new Date(control.value);
-    if (inputDate < currentDate) {
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
+
+    const inputMonth = control.value.slice(0, 2);
+    const inputYear = control.value.slice(3, 7);
+
+    const year = parseInt(inputYear, 10);
+    const month = parseInt(inputMonth, 10);
+
+    if (year > currentYear || (year === currentYear && month >= currentMonth)) {
+      return null;
+    } else {
       return { expired: true };
     }
-    return null;
   }
 
   checkout() {
@@ -65,9 +75,12 @@ export class CheckoutComponent {
     orderForm.recipientName = this.recipientName;
     orderForm.shippingAddress = this.shippingAddress;
     orderForm.phoneNumber = this.phoneNumber;
-    orderForm.OrderDetails = this.dataSource;
-    orderForm.totalPrice = this.totalPrice;
 
     this.orderService.checkout(orderForm);
   }
+
+  goToLink(url: string) {
+    this.utilService.goToLink(url);
+  }
+
 }
