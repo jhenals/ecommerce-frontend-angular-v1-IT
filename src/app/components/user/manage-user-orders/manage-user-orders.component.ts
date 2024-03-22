@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { Book } from 'src/app/models/Book';
-import { Order } from 'src/app/models/Order';
-import { OrderDetail } from 'src/app/models/OrderDetail';
+
+import { UtilService } from 'src/app/services/util.service';
+
+import { Book } from 'src/app/interface/book';
+import { Order } from 'src/app/interface/order';
+import { OrderBook } from 'src/app/interface/orderBook';
 
 @Component({
   selector: 'app-manage-user-orders',
@@ -11,10 +14,12 @@ import { OrderDetail } from 'src/app/models/OrderDetail';
 export class ManageUserOrdersComponent {
 
   orderList: Order[] = [];
-  order: Order = new Order();
-  cartItems: OrderDetail[] = [];
+  order: Order;
+  cartItems: OrderBook[] = [];
 
-  constructor() {
+  constructor(
+    private utilService: UtilService,
+  ) {
 
   }
 
@@ -25,6 +30,10 @@ export class ManageUserOrdersComponent {
   reorder(bookId: number) {
     /* go to Book details */
     throw new Error('Method not implemented.');
+  }
+
+  goToLink(url: string) {
+    this.utilService.goToLink(url);
   }
 
 }

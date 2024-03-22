@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { BookService } from 'src/app/services/book.service';
 
-import { Book } from 'src/app/models/Book';
+import { Book } from 'src/app/interface/book';
 import { Author } from 'src/app/interface/author';
 import { OrderService } from 'src/app/services/order.service';
 import { UtilService } from 'src/app/services/util.service';

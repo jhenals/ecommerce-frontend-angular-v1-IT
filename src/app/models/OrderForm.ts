@@ -1,9 +1,5 @@
-import { OrderDetail } from "./OrderDetail";
-
 export class OrderForm {
-  recipientName: String = '';
-  shippingAddress: String = '';
-  phoneNumber: String = '';
-  OrderDetails: OrderDetail[] = [];
-  totalPrice: number = 0;
+  recipientName: string;
+  shippingAddress: string;
+  phoneNumber: string;
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Book } from 'src/app/models/Book';
+import { Book } from 'src/app/interface/book';
 
 import { BookService } from 'src/app/services/book.service';
 
@@ -13,7 +13,7 @@ import { BookService } from 'src/app/services/book.service';
 export class BestsellersComponent {
 
   bestsellers: Book[] = [];
-  book: Book = new Book();
+  book: Book;
 
   constructor(
     private bookService: BookService,

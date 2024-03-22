@@ -22,6 +22,7 @@ export class AuthService {
 
   constructor(
     private keycloak: KeycloakService,
+    private utilService: UtilService
   ) {
     this.initializeKeycloak();
     this.keycloak.keycloakEvents$.subscribe({
@@ -72,6 +73,7 @@ export class AuthService {
   logout() {
     sessionStorage.clear();
     this.keycloak.logout("http://localhost:4200");
+    this.utilService.showToast("Logout Successful");
   }
 
   isLoggedIn(): Promise<boolean> {

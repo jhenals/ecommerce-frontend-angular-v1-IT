@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { Category } from 'src/app/models/Category';
-import { Book } from 'src/app/models/Book';
+import { Category } from 'src/app/interface/category';
+import { Book } from 'src/app/interface/book';
 import { BookService } from 'src/app/services/book.service';
 @Component({
   selector: 'app-add-new-book',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Order } from 'src/app/models/Order';
+import { Order } from 'src/app/interface/order';
 
 @Component({
   selector: 'app-manage-orders',

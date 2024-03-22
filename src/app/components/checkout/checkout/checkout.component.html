@@ -1,8 +1,9 @@
 <section class="mt-4">
+
   <div class="container p-0">
-    <mat-stepper [linear]="true" #stepper>
+    <mat-stepper class="mt-4" [linear]="true" #stepper>
         <mat-step [stepControl]="shippingInfoControl">
-          <form [formGroup]="shippingInfoControl">
+          <form [formGroup]="shippingInfoControl" >
             <ng-template matStepLabel>Fill out shipping details</ng-template>
                 <mat-form-field class="container-fluid">
                   <mat-label>Recipient</mat-label>
@@ -22,7 +23,10 @@
                     </mat-form-field>
 
               <div>
-                <button mat-button matStepperNext>Next</button>
+                  <button mat-raised-button (click)="goToLink('/cart')" class="align-items-center justify-content-center">
+                  Back to cart
+                  </button>
+                <button mat-raised-button matStepperNext>Next</button>
               </div>
           </form>
         </mat-step>
@@ -37,7 +41,10 @@
                 </mat-form-field>
                 <mat-form-field class="col-4">
                   <mat-label>Expiration Date</mat-label>
-                  <input matInput formControlName="expDateCtrl" required>
+                  <input matInput formControlName="expDateCtrl" placeholder="MM/YYYY" pattern="^(0[1-9]|1[0-2])\/\d{4}$" required>
+                  <mat-error *ngIf="paymentMethodControl.get('expDateCtrl').invalid">
+                    Expiration date must be in the format MM/YYYY.
+                  </mat-error>
                 </mat-form-field>
                 <mat-form-field class="col-4">
                   <mat-label>CVV</mat-label>
@@ -50,8 +57,8 @@
               </mat-form-field>
 
             <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-raised-button matStepperPrevious>Back</button>
+              <button mat-raised-button matStepperNext>Next</button>
             </div>
           </form>
         </mat-step>

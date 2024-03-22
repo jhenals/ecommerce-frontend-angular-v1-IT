@@ -3,6 +3,7 @@
   color: var(--light-brown);
   max-width: 100vw;
   height: 45px;
+  padding: 5px;
 }
 
 .sortfilter {
