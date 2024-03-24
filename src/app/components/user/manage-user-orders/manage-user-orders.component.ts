@@ -16,7 +16,6 @@ import { OrderBook } from 'src/app/interface/orderBook';
 export class ManageUserOrdersComponent {
 
   orderList: Order[] = [];
-  order: Order;
   cartItems: OrderBook[] = [];
 
   constructor(
@@ -42,11 +41,12 @@ export class ManageUserOrdersComponent {
   }
 
   reorder(book: Book) {
-    this.bookService.goToBookDetails(book)
+    this.bookService.goToBookDetails(book);
   }
 
   goToLink(url: string) {
     this.utilService.goToLink(url);
   }
+
 
 }
