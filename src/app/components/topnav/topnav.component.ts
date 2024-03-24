@@ -5,6 +5,7 @@ import { KeycloakProfile } from 'keycloak-js';
 import { AuthService } from 'src/app/services/auth.service';
 import { UtilService } from 'src/app/services/util.service';
 import { BookService } from 'src/app/services/book.service';
+import { CartService } from 'src/app/services/cart.service';
 
 import { Book } from 'src/app/interface/book';
 import { FormControl } from '@angular/forms';
@@ -18,6 +19,7 @@ export class TopnavComponent {
 
   userProfile: KeycloakProfile | null = null;
   isLogin: boolean = false;
+
   firstName: string = '';
   lastName: string = '';
 
@@ -32,7 +34,8 @@ export class TopnavComponent {
     private authService: AuthService,
     private keycloakService: KeycloakService,
     private bookService: BookService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private cartService: CartService
   ) {
     this.authService.isLoggedIn().then((loggedIn) => {
       if (loggedIn) {
@@ -50,6 +53,10 @@ export class TopnavComponent {
       console.log('Error in checking login status:', error);
     }
     );
+
+    this.cartService.cartItems$.subscribe((cartItems) => {
+      this.cartItemsCount = cartItems.length;
+    });
   }
 
   login() {
@@ -68,10 +75,8 @@ export class TopnavComponent {
     throw new Error('Method not implemented.');
   }
 
-
-
   isAdmin() {
-    return false;
+    return this.authService.isAdmin();
   }
   goToBookDetails(book: Book) {
     this.bookService.goToBookDetails(book);

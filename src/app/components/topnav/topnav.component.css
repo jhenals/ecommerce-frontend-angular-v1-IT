@@ -125,3 +125,28 @@ p {
   color: #4c1f04;
   cursor: pointer;
 }
+
+.dashboard-button {
+  display: flex;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.dashboard-button span {
+  font-size: small;
+  color: #F6F5F7;
+  margin-right: 10px;
+}
+
+.dashboard-button:hover {
+  background-color: #F6F5F7;
+  color: var(--dark-brown);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dashboard-button span:hover {
+  color: var(--dark-brown);
+}

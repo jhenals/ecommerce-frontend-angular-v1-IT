@@ -33,10 +33,11 @@
 
 
       <div class="col-lg-4 topnav-toprow-buttons topnav-right ">
-        <ng-container *ngIf=" isAdmin()===true">
-          <button mat-icon-button class="topnav-buttons" (click)= "goToAdminDashboard()" > <!-- login page is rendered only if user is not logged in -->
+        <ng-container class="dashboard-button" *ngIf=" isAdmin()===true">
+          <div class="dashboard-button">
             <mat-icon>dashboard</mat-icon>
-          </button>
+            <span>ADMIN DASHBOARD</span>
+          </div>
         </ng-container>
 
         <ng-container *ngIf="isLogin; else notLoggedIn">
