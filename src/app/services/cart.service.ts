@@ -124,6 +124,7 @@ export class CartService {
         this.utilService.showToast("Error adding new order. Please try again.");
       }
     )
+    this.cartItemsSubject.unsubscribe();
   }
 
 
