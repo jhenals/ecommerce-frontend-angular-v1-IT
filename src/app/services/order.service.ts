@@ -43,20 +43,20 @@ export class OrderService {
     return this.httpClient.get<Order>(url);
   }
 
-  updateOrder(order: Order) {
+  updateOrder(order: Order, status: string) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json; charset= UTF-8',
       'Accept': '*/*',
     });
 
-    const body = JSON.stringify({
-      order
-    });
+    const body = `{"orderStatus": "${status}"}`; // Not recommended, but illustrates the need for quotes
+
     const endpoint = `/orders/order?id=${order.id}`;
     const url = `${this.baseUrl}${endpoint}`;
-    this.httpClient.put(url, order, { headers }).subscribe(
+    this.httpClient.put(url, body, { headers }).subscribe(
       response => {
         console.log('API response:', response);
+        this.fetchAllOrdersFromDB();
       },
       error => {
         console.error('API error:', error);

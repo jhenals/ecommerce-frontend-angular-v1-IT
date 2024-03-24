@@ -25,8 +25,8 @@ export class UpdateOrderStatusComponent {
     'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELED'];
 
   updateOrder(order: Order) {
-    order.orderStatus = this.selectedStatus;
-    this.orderService.updateOrder(order);
+    //order.orderStatus = this.selectedStatus;
+    this.orderService.updateOrder(order, this.selectedStatus);
     this.dialogRef.close();
     this.utilService.showToast('Order updated successfully');
   }
