@@ -72,7 +72,7 @@ export class TopnavComponent {
   }
 
   goToAdminDashboard() {
-    throw new Error('Method not implemented.');
+    this.utilService.goToLink('/admin/manage-products');
   }
 
   isAdmin() {

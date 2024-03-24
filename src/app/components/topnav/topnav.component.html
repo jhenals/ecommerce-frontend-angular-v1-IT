@@ -34,7 +34,7 @@
 
       <div class="col-lg-4 topnav-toprow-buttons topnav-right ">
         <ng-container class="dashboard-button" *ngIf=" isAdmin()===true">
-          <div class="dashboard-button">
+          <div class="dashboard-button" (click)= "goToAdminDashboard()">
             <mat-icon>dashboard</mat-icon>
             <span>ADMIN DASHBOARD</span>
           </div>
