@@ -16,6 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -43,7 +45,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatPaginatorModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule,
+    MatSelectModule
 
   ],
 
@@ -64,7 +68,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatPaginatorModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule,
+    MatSelectModule
 
   ],
   providers: [],

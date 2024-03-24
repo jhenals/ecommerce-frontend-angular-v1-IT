@@ -82,6 +82,10 @@ export class BookService {
     return this.httpClient.get<Book[]>(`${url}`);
   }
 
+  updateBook(book: Book) {
+    //PUT METHOD
+  }
+
   deleteBook(book: Book) {
     //DELETE METHOD
   }

@@ -1,0 +1,4 @@
+.bookDetail:hover {
+  background-color: var(--nude-color);
+  cursor: pointer;
+}

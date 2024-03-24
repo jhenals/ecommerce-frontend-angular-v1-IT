@@ -6,4 +6,5 @@ export class User {
   phone: string;
   address: string;
   createdAt: string;
+  roles: string[];
 }

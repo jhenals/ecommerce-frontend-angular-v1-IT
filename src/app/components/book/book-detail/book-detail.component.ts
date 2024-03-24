@@ -51,8 +51,10 @@ export class BookDetailComponent implements OnInit {
   }
 
   bookIsInCart(book: Book): boolean {
-    return this.orderService.bookIsInCart(book);
+    return this.cartService.bookIsInCart(this.book);
   }
+
+
 
 
 }

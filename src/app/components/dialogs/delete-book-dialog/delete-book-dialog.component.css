@@ -2,3 +2,8 @@
   width: 300px;
   padding: 20px;
 }
+
+.warning {
+  font-size: small;
+  color: red;
+}

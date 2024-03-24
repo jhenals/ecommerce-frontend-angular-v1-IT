@@ -12,6 +12,7 @@ import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { DialogsModule } from './dialogs/dialogs.module';
+import { SharedModule } from './shared/shared.module';
 
 import { TopnavComponent } from './topnav/topnav.component';
 import { FooterComponent } from './footer/footer.component';
@@ -49,6 +50,7 @@ const routes: Routes = [
     UserModule,
     MiscellaneousModule,
     DialogsModule,
+    SharedModule,
     RouterModule.forChild(routes),
 
   ],

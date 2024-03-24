@@ -1,6 +1,8 @@
 <div class="dialogBox">
   <h2>Are you sure you want to delete this book from the database?</h2>
-  <div class="d-flex justify-content-center">
+  <span class="warning">*Make sure there are no books stocked in the inventory before deleting this book.</span>
+
+  <div class="d-flex justify-content-center mt-4">
     <button mat-raised-button (click)="deleteBook(data)">Yes</button>
     <button mat-raised-button color="warn" (click)="closeDialog()">No</button>
 </div>

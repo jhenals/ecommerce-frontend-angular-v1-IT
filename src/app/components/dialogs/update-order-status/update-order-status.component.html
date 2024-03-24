@@ -1,0 +1,10 @@
+<div class="dialogBox">
+  <mat-form-field>
+    <mat-select placeholder="{{order.orderStatus}}" [(ngModel)]="selectedStatus" >
+      <mat-option *ngFor="let status of orderStatus" [value]="status">{{status}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="d-flex justify-content-center mt-4">
+    <button mat-raised-button (click)="updateOrder(order)">OK</button>
+    <button mat-raised-button color="warn" (click)="closeDialog()">Cancel</button>
+</div>

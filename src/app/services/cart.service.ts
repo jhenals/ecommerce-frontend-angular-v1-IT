@@ -70,10 +70,15 @@ export class CartService {
     );
   }
 
-  /* bookIsInCart(book: Book): boolean {
-    return this.itemsInPendingCart.some((orderBook) => orderBook.book.id === book.id);
+  bookIsInCart(book: Book): boolean {
+    let isInCart = false;
+    this.cartItems$.subscribe((orderBooks) => {
+      isInCart = orderBooks.some((orderBook) => orderBook.book.id === book.id);
+    });
+    return isInCart;
+
   }
-   */
+
 
 
   increaseBookQuantity(book: Book) {
