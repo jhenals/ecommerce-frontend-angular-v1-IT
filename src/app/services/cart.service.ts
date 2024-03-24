@@ -111,7 +111,7 @@ export class CartService {
 
   checkout(orderForm: OrderForm) {
     const userId = sessionStorage.getItem('id');
-    const endpoint = `/orders/user?id=${userId}`;
+    const endpoint = `/orders/${userId}/checkout`;
     const url = `${this.baseUrl}${endpoint}`;
     this.httpClient.post(url, orderForm).subscribe(
       response => {

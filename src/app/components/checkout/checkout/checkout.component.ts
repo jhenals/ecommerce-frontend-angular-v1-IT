@@ -19,6 +19,8 @@ export class CheckoutComponent {
 
 
   cartItems$: Observable<OrderBook[]>;
+  cartItems: OrderBook[] = [];
+
 
   dataSource: any[] = []; /* passed from cart component */
   totalPrice: number = 0; /* passed from cart component */
@@ -39,9 +41,14 @@ export class CheckoutComponent {
   }
 
   ngOnInit(): void {
-    this.cartItems$ = this.cartService.cartItems$;
-    this.totalPrice = this.orderService.getTotalPrice();
     this.initForm();
+    this.cartItems$.subscribe((items) => {
+      this.cartItems = items;
+      this.cartItems$.subscribe((items) => {
+        this.totalPrice = items.reduce((acc, orderBook) => acc + orderBook.bookFinalPrice, 0);
+      });
+    });
+
   }
 
 

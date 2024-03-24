@@ -5,16 +5,11 @@
         <h1 class="cart-title ml-4">Shopping Cart</h1>
       </div>
     </div>
-
-
     <ng-container *ngIf="cartItems$ | async as cartItems">
 
       <ng-container *ngIf="cartItems.length !=0; else emptyCart">
-
-        <div class="checkout-button">
-          <button mat-button class="themed-button mr-4" (click)="goToLink('/checkout')">
-            CHECK-OUT (Total: {{ totalAmount | currency: 'EUR' : 'symbol' : '1.2-2' }})
-          </button>
+        <div class="col-12 d-flex mb-4 align-items-center justify-content-end ">
+          <button mat-button class="themed-button mr-4" (click)="goToLink('/checkout')">CHECK-OUT (Total: {{ totalAmount | currency: 'EUR' : 'symbol' : '1.2-2'}}) </button>
         </div>
 
         <table mat-table [dataSource]="cartItems" class="mat-elevation-z8">

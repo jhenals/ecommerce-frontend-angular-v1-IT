@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { BookService } from 'src/app/services/book.service';
 import { UtilService } from 'src/app/services/util.service';
+import { CartService } from 'src/app/services/cart.service';
 
 import { ApiResponse } from 'src/app/interface/api-response';
 import { Page } from 'src/app/interface/page';
@@ -35,7 +36,8 @@ export class BookshelfComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private orderService: OrderService) { }
+    private orderService: OrderService,
+    private cartService: CartService,) { }
 
   ngOnInit(): void {
     this.booksState$ = this.bookService.getBooks().pipe(
@@ -50,9 +52,8 @@ export class BookshelfComponent implements OnInit {
         of({ appState: 'APP_ERROR', error: error }))
     );
 
-    this.orderService.getPendingCart().subscribe((response: any) => {
-      this.itemsInCart = response.orderBooks as OrderBook[];
-
+    this.cartService.cartItems$.subscribe((items) => {
+      this.itemsInCart = items;
     });
 
   }

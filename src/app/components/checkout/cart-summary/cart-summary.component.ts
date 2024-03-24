@@ -1,4 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+
+import { CartService } from 'src/app/services/cart.service';
+
 import { OrderBook } from 'src/app/interface/orderBook';
 
 @Component({
@@ -7,8 +11,19 @@ import { OrderBook } from 'src/app/interface/orderBook';
   styleUrls: ['./cart-summary.component.css']
 })
 export class CartSummaryComponent {
-  @Input() dataSource: OrderBook[] = [];
-  @Input() totalPrice: number = 0;
+  cartItems$: Observable<OrderBook[]>;
+  private cartItemsSubscription: Subscription;
+  cartItems: OrderBook[] = [];
+  totalAmount: number = 0;
 
+  constructor(private cartService: CartService) { }
+
+
+  ngOnInit(): void {
+    this.cartItems$ = this.cartService.cartItems$;
+    this.cartItemsSubscription = this.cartItems$.subscribe((cartItems) => {
+      this.totalAmount = cartItems.reduce((acc, orderBook) => acc + orderBook.bookFinalPrice, 0);
+    });
+  }
 
 }

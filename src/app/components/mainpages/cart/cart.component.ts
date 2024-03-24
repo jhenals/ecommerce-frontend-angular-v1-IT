@@ -31,11 +31,9 @@ export class CartComponent implements OnDestroy, OnInit {
 
 
   constructor(
-    private orderService: OrderService,
     private cartService: CartService,
     private utilService: UtilService,
     private bookService: BookService,
-    private cdr: ChangeDetectorRef
   ) {
     this.onOrderFinished = new EventEmitter<boolean>();
 
@@ -50,16 +48,6 @@ export class CartComponent implements OnDestroy, OnInit {
   }
   ngOnDestroy(): void {
     this.cartItemsSubscription.unsubscribe();
-  }
-
-  loadCart() {
-    /*  this.orderService.getPendingCart().subscribe((response: any) => {
-       this.pendingCart = response as Order;
-       this.dataSource = response.orderBooks as OrderBook[];
-       response.orderBooks.forEach((orderBook: OrderBook) => {
-         this.totalAmount += orderBook.bookFinalPrice;
-       });
-     }); */
   }
 
   increaseQuantity(book: Book) {

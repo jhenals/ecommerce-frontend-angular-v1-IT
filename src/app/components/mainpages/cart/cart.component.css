@@ -39,7 +39,8 @@
 }
 
 .checkout-button {
+  position: relative;
   margin-bottom: 10px;
   display: flex;
-  justify-items: right;
+  right: 0;
 }
