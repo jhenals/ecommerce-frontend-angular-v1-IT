@@ -31,7 +31,7 @@ export class CheckoutComponent {
   }
 
   ngOnInit(): void {
-    this.dataSource = this.orderService.getOrderDetailList();
+    this.dataSource = this.orderService.getItemsInPendingCart();
     this.totalPrice = this.orderService.getTotalPrice();
     this.initForm();
   }

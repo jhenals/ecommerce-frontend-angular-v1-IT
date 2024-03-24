@@ -8,6 +8,7 @@
 .themed-button {
   background-color: var(--dark-brown);
   color: #fff;
+  right: 0;
 }
 
 .themed-button:hover {
@@ -35,4 +36,10 @@
 .shoppingCart {
   width: 500px;
   object-fit: fill;
+}
+
+.checkout-button {
+  margin-bottom: 10px;
+  display: flex;
+  justify-items: right;
 }

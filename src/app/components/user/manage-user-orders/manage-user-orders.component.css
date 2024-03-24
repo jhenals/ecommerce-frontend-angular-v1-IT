@@ -30,3 +30,32 @@
   border: solid 1px var(--dark-brown);
   color: var(--dark-brown);
 }
+
+.imgContainer {
+  margin-right: 10px;
+  margin-left: 20px;
+
+}
+
+.bookCover {
+  width: 60px;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.orderContainer {
+  border: #C7C7C7 1.5px solid;
+  margin-bottom: 10px;
+}
+
+.headerContainer {
+  display: flex;
+  padding: 10px;
+  background-color: var(--nude-color);
+  height: 100%;
+}
+
+ul {
+  list-style-type: none;
+}

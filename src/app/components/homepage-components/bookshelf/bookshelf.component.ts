@@ -10,6 +10,9 @@ import { Book } from 'src/app/interface/book';
 import { BehaviorSubject, Observable, catchError, map, of, startWith } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PageEvent } from '@angular/material/paginator';
+import { OrderService } from 'src/app/services/order.service';
+import { Order } from 'src/app/models/Order';
+import { OrderBook } from 'src/app/interface/orderBook';
 
 @Component({
   selector: 'app-bookshelf',
@@ -23,18 +26,22 @@ export class BookshelfComponent implements OnInit {
   private currentPageSubject = new BehaviorSubject<number>(0);
   currentPage$ = this.currentPageSubject.asObservable();
 
+  itemsInCart: OrderBook[] = [];
+  itemsInCart$: Observable<OrderBook[]>;
+ 
   selectedFilters: number[] = [];
   sort: string = 'id';
   sortDirection: string = 'ASC';
 
-  constructor(private bookService: BookService) { }
+  constructor(
+    private bookService: BookService,
+    private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.booksState$ = this.bookService.getBooks().pipe(
       map((response: ApiResponse<Page>) => {
         this.responseSubject.next(response);
         this.currentPageSubject.next(response.data.page.number);
-        console.log("response", response);
         return ({ appState: 'APP_LOADED', appData: response });
       }
       ),
@@ -43,6 +50,10 @@ export class BookshelfComponent implements OnInit {
         of({ appState: 'APP_ERROR', error: error }))
     );
 
+    this.orderService.getPendingCart().subscribe((response: any) => {
+      this.itemsInCart = response.orderBooks as OrderBook[];
+
+    });
 
   }
 
@@ -113,5 +124,9 @@ export class BookshelfComponent implements OnInit {
     this.goToPage(direction === 'forward' ?
       this.currentPageSubject.value + 1 :
       this.currentPageSubject.value - 1);
+  }
+
+  isInCart(book: Book) {
+    return this.itemsInCart.some((orderBook) => orderBook.book.id === book.id);
   }
 }

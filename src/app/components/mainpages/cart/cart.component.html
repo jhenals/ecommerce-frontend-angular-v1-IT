@@ -4,80 +4,81 @@
       <div class="col-6">
         <h1 class="cart-title ml-4">Shopping Cart</h1>
       </div>
-
-      <ng-container *ngIf="dataSource.length !== 0;"> <!-- if cart is not empty -->
-        <div class="col-6 d-flex align-items-center justify-content-end ">
-          <button mat-button class="themed-button mr-4" (click)="goToLink('/checkout')">CHECK-OUT (Total: {{this.totalPrice | currency: 'EUR' : 'symbol' : '1.2-2'}}) </button>
-        </div>
-      </ng-container>
     </div>
 
-    <ng-container *ngIf="dataSource.length === 0; else cartItems">
+
+    <ng-container *ngIf="cartItems$ | async as cartItems">
+
+      <ng-container *ngIf="cartItems.length !=0; else emptyCart">
+
+        <div class="checkout-button">
+          <button mat-button class="themed-button mr-4" (click)="goToLink('/checkout')">
+            CHECK-OUT (Total: {{ totalAmount | currency: 'EUR' : 'symbol' : '1.2-2' }})
+          </button>
+        </div>
+
+        <table mat-table [dataSource]="cartItems" class="mat-elevation-z8">
+          <ng-container matColumnDef="item">
+            <th mat-header-cell *matHeaderCellDef class="item-column-header">Item</th>
+            <td mat-cell *matCellDef="let item" class="item-column">
+              {{ item.book.title }} by
+              <ng-container *ngFor="let author of item.book.authors; let last = last">
+                {{ author.name }}<span *ngIf="!last">,</span>
+              </ng-container>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="unitprice">
+            <th mat-header-cell *matHeaderCellDef class="price-column-header">Unit Price*</th>
+            <td mat-cell *matCellDef="let item" class="price-column">{{ item.book.price | currency : 'EUR' : 'symbol' : '1.2-2' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef class="qty-column-header">Quantity</th>
+            <td mat-cell *matCellDef="let item" class="qty-column">
+              <span class="d-flex">
+                <button mat-icon-button class="ml-2" (click)="decreaseQuantity(item.book)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+                <span class="align-self-center">{{ item.quantity }}</span>
+                <button mat-icon-button class="mr-2" (click)="increaseQuantity(item.book)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef class="qty-column-header">Price</th>
+            <td mat-cell *matCellDef="let item" class="qty-column">{{ item.quantity * item.book.finalPrice | currency: 'EUR' : 'symbol' : '1.2-2' }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="['item', 'unitprice', 'quantity', 'price']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['item', 'unitprice', 'quantity', 'price']"></tr>
+        </table>
+        <sub>*Discount is already applied</sub>
+        <br>
+
+        <button mat-button class="themed-button mt-4" (click)="goToLink('/')">Continue Shopping</button>
+        <button mat-button class="themed-button mt-4 ml-5" (click)="reset()">Reset</button>
+      </ng-container>
+    </ng-container>
+
+    <!-- Empty cart template -->
+    <ng-template #emptyCart>
       <div class="row">
         <div class="col-lg-6">
           <img src="../../../assets/images/empty-shopping-cart.webp" alt="" class="shoppingCart">
         </div>
         <div class="col-lg-6 d-flex align-items-center">
-          <div class="">
-            <h2 class="">Your cart is empty ...</h2>
+          <div>
+            <h2>Your cart is empty...</h2>
             <button mat-button class="themed-button" routerLink="/">Continue Shopping</button>
           </div>
-           </div>
+        </div>
       </div>
-    </ng-container>
-
-
-    <ng-template #cartItems>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="item">
-          <th mat-header-cell *matHeaderCellDef class="item-column-header" >Item</th>
-          <td mat-cell *matCellDef="let item" class="item-column-header" >{{ item.book.title }} by
-              <ng-container *ngFor="let author of item.book.authors; let last = last">
-              {{ author.name }}
-              <span *ngIf="!last">,</span>
-              </ng-container>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="unitprice">
-          <th mat-header-cell *matHeaderCellDef class="price-column-header" >Unit Price*</th>
-          <td mat-cell *matCellDef="let item" class="price-column-header" >{{ item.book.price | currency : 'EUR' : 'symbol' : '1.2-2' }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="quantity">
-          <th mat-header-cell *matHeaderCellDef class="qty-column-header">Quantity</th>
-          <td mat-cell *matCellDef="let item" class="qty-column-header">
-            <span class="d-flex">
-              <button mat-icon-button class="ml-2" (click)="decreaseQuantity(item.book)">
-                <mat-icon>remove</mat-icon>
-              </button>
-              <span class="align-self-center z-index-10">{{ item.quantity }}</span>
-              <button mat-icon-button class="mr-2" (click)="increaseQuantity(item.book)">
-                <mat-icon>add</mat-icon>
-              </button>
-            </span>
-
-            </td>
-        </ng-container>
-
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef class="qty-column-header">Price</th>
-          <td mat-cell *matCellDef="let item" class="qty-column-header">{{ item.quantity * item.book.finalPrice | currency: 'EUR' : 'symbol' : '1.2-2' }}</td>
-        </ng-container>
-
-        <!-- Table rows -->
-        <tr mat-header-row *matHeaderRowDef="['item', 'unitprice', 'quantity','price']"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['item', 'unitprice','quantity', 'price']"></tr>
-
-      </table>
-      <sub> *Discount is already  applied</sub>
-      <br>
-
-      <button mat-button class="themed-button mt-4" (click)="goToLink('/')">Continue Shopping</button>
-      <button mat-button  class="themed-button mt-4 ml-5" (click)="reset()">Reset</button>
-
-
     </ng-template>
+
   </div>
 
 </section>

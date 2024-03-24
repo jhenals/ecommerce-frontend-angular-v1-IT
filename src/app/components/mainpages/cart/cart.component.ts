@@ -1,24 +1,29 @@
-import { Component, EventEmitter, OnInit, Output, ChangeDetectorRef } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ChangeDetectorRef, OnDestroy } from '@angular/core';
 
 import { OrderService } from 'src/app/services/order.service';
 import { UtilService } from 'src/app/services/util.service';
 import { BookService } from 'src/app/services/book.service';
+import { CartService } from 'src/app/services/cart.service';
 
 import { Book } from 'src/app/interface/book';
+import { Order } from 'src/app/models/Order';
 import { OrderBook } from 'src/app/interface/orderBook';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnDestroy, OnInit {
   orderFinished: boolean = false;
 
+  cartItems$: Observable<OrderBook[]>;
+  private cartItemsSubscription: Subscription;
+
   userId: string = '';
-  dataSource: OrderBook[] = [];
-  totalPrice: number = 0;
-  bookFinalPrice: number = 0;
+  pendingCart: Order;
+  totalAmount: number = 0;
   book: Book;
 
   @Output()
@@ -27,6 +32,7 @@ export class CartComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
+    private cartService: CartService,
     private utilService: UtilService,
     private bookService: BookService,
     private cdr: ChangeDetectorRef
@@ -37,51 +43,41 @@ export class CartComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.loadCart();
-    this.loadTotalPrice();
+    this.cartItems$ = this.cartService.cartItems$;
+    this.cartItemsSubscription = this.cartItems$.subscribe((cartItems) => {
+      this.totalAmount = cartItems.reduce((acc, orderBook) => acc + orderBook.bookFinalPrice, 0);
+    });
+  }
+  ngOnDestroy(): void {
+    this.cartItemsSubscription.unsubscribe();
   }
 
   loadCart() {
-    //this.dataSource = this.orderService.getOrderDetailList();
-
-  }
-
-  loadTotalPrice() {
-    /*   this.orderService.getOrderDetailList().forEach((orderDetail) => {
-        this.totalPrice += orderDetail.finalPrice * orderDetail.quantity;
-      });
-      this.cdr.detectChanges(); */
-
-  }
-
-  increaseQuantity(book: Book) {
-    /*  this.orderService.getOrderDetailList().forEach((orderDetail) => {
-       if (orderDetail.book.id === book.id) {
-         orderDetail.quantity++;
-         this.totalPrice += orderDetail.finalPrice;
-       }
+    /*  this.orderService.getPendingCart().subscribe((response: any) => {
+       this.pendingCart = response as Order;
+       this.dataSource = response.orderBooks as OrderBook[];
+       response.orderBooks.forEach((orderBook: OrderBook) => {
+         this.totalAmount += orderBook.bookFinalPrice;
+       });
      }); */
   }
 
-  decreaseQuantity(book: Book) {
-    /*   this.orderService.getOrderDetailList().forEach((orderDetail) => {
-        if (orderDetail.book.id === book.id) {
-          if (orderDetail.quantity > 1) {
-            orderDetail.quantity--;
-            this.totalPrice -= orderDetail.finalPrice;
-          }
-        }
-      }); */
+  increaseQuantity(book: Book) {
+    this.cartService.increaseBookQuantity(book);
+
   }
 
-
-  goToLink(url: string) {
-    this.utilService.goToLink(url);
+  decreaseQuantity(book: Book) {
+    this.cartService.removeFromCart(book);
   }
 
   reset() {
-    //this.cartService.reset();
+    this.cartService.reset();
 
+  }
+
+  goToLink(url: string) {
+    this.utilService.goToLink(url);
   }
 
 }

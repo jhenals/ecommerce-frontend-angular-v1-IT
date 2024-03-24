@@ -6,6 +6,7 @@ import { Book } from 'src/app/interface/book';
 import { Author } from 'src/app/interface/author';
 import { OrderService } from 'src/app/services/order.service';
 import { UtilService } from 'src/app/services/util.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-book',
@@ -14,6 +15,8 @@ import { UtilService } from 'src/app/services/util.service';
 })
 export class BookComponent implements OnInit {
   @Input() bookInput!: Book;
+  @Input() isInCart: boolean = false;
+
   bookTitle: string = '';
   bookAuthors: Author[] = [];
   bookAuthor: string = '';
@@ -21,7 +24,8 @@ export class BookComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private orderService: OrderService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private cartService: CartService
   ) {
 
   }
@@ -46,11 +50,11 @@ export class BookComponent implements OnInit {
   }
 
   addToCart(book: Book) {
-    this.orderService.addToCart(book);
+    this.cartService.addToCart(book);
   }
 
-  bookIsInCart(book: Book): boolean {
-    return this.orderService.bookIsInCart(book);
+  bookIsInCart(): boolean {
+    return this.isInCart;
   }
 
   goToLink(url: string) {

@@ -20,7 +20,7 @@
     </ng-container>
 
     <ng-container  *ngSwitchCase="'APP_LOADED'">
-      <app-book class= "container-flex"  [bookInput]="book" *ngFor="let book of state.appData.data.page.content" ></app-book>
+      <app-book class= "container-flex"  [bookInput]="book" [isInCart]="isInCart(book)" *ngFor="let book of state.appData.data.page.content" ></app-book>
     </ng-container>
 
   </div>
