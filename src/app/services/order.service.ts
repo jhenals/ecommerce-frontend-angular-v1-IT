@@ -27,6 +27,12 @@ export class OrderService {
   ) {
   }
 
+  getPendingCart(): Observable<Order> {
+    const endpoint = `/orders/pending-cart?userId=${this.userId}`;
+    const url = `${this.baseUrl}${endpoint}`;
+    return this.httpClient.get<Order>(url);
+  }
+
   getOrdersOfUser() {
     const endpoint = `/orders/user?id=${this.userId}`;
     const url = `${this.baseUrl}${endpoint}`;
@@ -35,10 +41,10 @@ export class OrderService {
 
   getTotalPrice(): number {
     let totalPrice = 0;
-    this.orderDetails.forEach((orderDetail) => {
-      totalPrice += orderDetail.finalPrice * orderDetail.quantity;
-    }
-    );
+    /*     this.orderDetails.forEach((orderDetail) => {
+          totalPrice += orderDetail.finalPrice * orderDetail.quantity;
+        }
+        ); */
     return totalPrice;
   }
 
@@ -46,15 +52,4 @@ export class OrderService {
     return this.itemsInPendingCart.some((orderBook) => orderBook.book.id === book.id);
   }
 
-
-
-  getTotalPrice(): number {
-    let totalPrice = 0;
-    this.itemsInPendingCart.forEach((orderBook) => {
-      totalPrice += orderBook.bookFinalPrice;
-    });
-    return totalPrice;
-  }
-
-}
 }

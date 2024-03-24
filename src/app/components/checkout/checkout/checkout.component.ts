@@ -3,9 +3,12 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { OrderService } from 'src/app/services/order.service';
 import { UtilService } from 'src/app/services/util.service';
+import { CartService } from 'src/app/services/cart.service';
 
 import { Order } from 'src/app/interface/order';
 import { OrderForm } from 'src/app/models/OrderForm';
+import { Observable } from 'rxjs';
+import { OrderBook } from 'src/app/models/OrderBook';
 
 @Component({
   selector: 'app-checkout',
@@ -13,6 +16,10 @@ import { OrderForm } from 'src/app/models/OrderForm';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
+
+
+  cartItems$: Observable<OrderBook[]>;
+
   dataSource: any[] = []; /* passed from cart component */
   totalPrice: number = 0; /* passed from cart component */
 
@@ -27,11 +34,12 @@ export class CheckoutComponent {
   constructor(
     private utilService: UtilService,
     private formBuilder: FormBuilder,
+    private cartService: CartService,
     private orderService: OrderService) {
   }
 
   ngOnInit(): void {
-    this.dataSource = this.orderService.getItemsInPendingCart();
+    this.cartItems$ = this.cartService.cartItems$;
     this.totalPrice = this.orderService.getTotalPrice();
     this.initForm();
   }
@@ -76,7 +84,7 @@ export class CheckoutComponent {
     orderForm.shippingAddress = this.shippingAddress;
     orderForm.phoneNumber = this.phoneNumber;
 
-    this.orderService.checkout(orderForm);
+    this.cartService.checkout(orderForm);
   }
 
   goToLink(url: string) {

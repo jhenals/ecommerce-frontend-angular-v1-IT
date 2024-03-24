@@ -28,7 +28,7 @@ export class BookshelfComponent implements OnInit {
 
   itemsInCart: OrderBook[] = [];
   itemsInCart$: Observable<OrderBook[]>;
- 
+
   selectedFilters: number[] = [];
   sort: string = 'id';
   sortDirection: string = 'ASC';

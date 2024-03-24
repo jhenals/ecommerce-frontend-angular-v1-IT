@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 import { Order } from '../models/Order';
 import { Book } from '../models/Book';
 import { OrderBook } from '../models/OrderBook';
+import { OrderForm } from '../models/OrderForm';
 
 
 @Injectable({
@@ -75,14 +76,6 @@ export class CartService {
    */
 
 
-  /*  getTotalPrice(): number {
-     let totalPrice = 0;
-     this.itemsInPendingCart.forEach((orderBook) => {
-       totalPrice += orderBook.bookFinalPrice;
-     });
-     return totalPrice;
-   }
-  */
   increaseBookQuantity(book: Book) {
     const endpoint = `/orders/${this.userId}/incr-quantity/book?id=${book.id}`;
     const url = `${this.baseUrl}${endpoint}`;
@@ -116,26 +109,23 @@ export class CartService {
     );
   }
 
+  checkout(orderForm: OrderForm) {
+    const userId = sessionStorage.getItem('id');
+    const endpoint = `/orders/user?id=${userId}`;
+    const url = `${this.baseUrl}${endpoint}`;
+    this.httpClient.post(url, orderForm).subscribe(
+      response => {
+        console.log('API response:', response);
+        this.utilService.showToast('New Order Added Successfully');
+        this.utilService.goToLink('/orders');
+      },
+      error => {
+        console.error('API error:', error);
+        this.utilService.showToast("Error adding new order. Please try again.");
+      }
+    )
+  }
 
-  /*
-
-    checkout(orderForm: OrderForm) {
-      const userId = sessionStorage.getItem('id');
-      const endpoint = `/orders/user?id=${userId}`;
-      const url = `${this.baseUrl}${endpoint}`;
-      this.httpClient.post(url, orderForm).subscribe(
-        response => {
-          console.log('API response:', response);
-          this.utilService.showToast('New Order Added Successfully');
-          this.utilService.goToLink('/orders');
-        },
-        error => {
-          console.error('API error:', error);
-          this.utilService.showToast("Error adding new order. Please try again.");
-        }
-      )
-    }
-   */
 
 
   reset() {

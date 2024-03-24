@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UtilService } from 'src/app/services/util.service';
 import { Book } from 'src/app/interface/book';
 import { OrderService } from 'src/app/services/order.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -19,7 +20,8 @@ export class BookDetailComponent implements OnInit {
     private bookService: BookService,
     private authService: AuthService,
     private utilsService: UtilService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private cartService: CartService
   ) {
 
   }
@@ -45,7 +47,7 @@ export class BookDetailComponent implements OnInit {
   }
 
   addToCart(book: Book) {
-    this.orderService.addToCart(book);
+    this.cartService.addToCart(book);
   }
 
   bookIsInCart(book: Book): boolean {
