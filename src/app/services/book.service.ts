@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { ApiResponse } from '../interface/api-response';
 import { UtilService } from './util.service';
+import { OrderService } from './order.service';
 
 import { Book } from '../interface/book';
 import { Author } from '../interface/author';
@@ -20,6 +21,7 @@ export class BookService {
   constructor(
     private httpClient: HttpClient,
     private utilService: UtilService,
+    private orderService: OrderService,
     private router: Router
   ) { }
 
@@ -83,7 +85,18 @@ export class BookService {
   }
 
   updateBook(book: Book) {
-    //PUT METHOD
+    console.log("book:", book);
+    const endpoint = `/books/book?id=${book.id}`;
+    const url = `${this.baseUrl}${endpoint}`;
+    this.httpClient.put(url, book).subscribe(
+      response => {
+        console.log('API response:', response);
+        this.getBooks(0, 12, 'id', 'ASC');
+      },
+      error => {
+        console.error('API error:', error);
+      }
+    );
   }
 
   deleteBook(book: Book) {

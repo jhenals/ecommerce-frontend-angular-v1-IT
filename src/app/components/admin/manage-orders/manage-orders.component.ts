@@ -25,8 +25,8 @@ export class ManageOrdersComponent {
     this.allOrders$ = this.orderService.orders$;
   }
 
-  ifCanceled(order: Order) {
-    return order.orderStatus === 'CANCELED';
+  disabled(order: Order) {
+    return order.orderStatus === 'CANCELED' || order.orderStatus === 'DELIVERED' || order.orderStatus === 'RETURNED';
   }
 
   updateOrderStatus(order: Order) {

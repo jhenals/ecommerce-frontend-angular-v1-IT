@@ -15,19 +15,11 @@ import { BookService } from 'src/app/services/book.service';
 })
 export class UpdateBookDialogComponent {
   updateBookForm!: FormGroup;
+  originalBook: Book;
   infoChanged: boolean = false;
 
   book: Book | any;
   newBook: Book | any;
-
-  options = [
-    { label: 'Dog', value: 'dog' },
-    { label: 'Cat', value: 'cat' },
-    { label: 'Hamster', value: 'hamster' },
-    { label: 'Parrot', value: 'parrot' },
-    { label: 'Spider', value: 'spider' },
-    { label: 'Goldfish', value: 'goldfish' }
-  ];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Book,
@@ -39,13 +31,12 @@ export class UpdateBookDialogComponent {
     this.book = data;
   }
 
-  ngOnInit(): void { //TODO:
+  ngOnInit(): void {
     this.updateBookForm = this.formBuilder.group({
+      id: this.book.id,
       title: this.book.title,
-      authors: this.book.authors.map((author: Author) => author.name).join(', '),
       price: this.book.price,
       description: this.book.description,
-      categoryId: this.book.category.name,
       bookCoverUrl: this.book.coverUrl,
       dataPubblicazione: this.book.publicationDate,
       editor: this.book.editor,
@@ -54,11 +45,14 @@ export class UpdateBookDialogComponent {
       dateBookAdded: this.book.dateBookAdded,
     });
 
-    this.updateBookForm.valueChanges.subscribe(() => {
-      const updatedValues = this.updateBookForm.getRawValue();
-      this.newBook = updatedValues;
-    }
-    );
+    // Save a copy of the original book object
+    this.originalBook = { ...this.book };
+
+    // Subscribe to form value changes
+    this.updateBookForm.valueChanges.subscribe(updatedValues => {
+      // Merge updated form values with the original book object
+      this.newBook = { ...this.originalBook, ...updatedValues };
+    });
   }
 
   onInputChange(): void {
@@ -66,7 +60,7 @@ export class UpdateBookDialogComponent {
   }
 
   onSubmit() {
-    this.bookService.updateBook(this.newBook);
+    this.bookService.updateBook(this.newBook as Book);
     this.dialogRef.close();
   }
 
