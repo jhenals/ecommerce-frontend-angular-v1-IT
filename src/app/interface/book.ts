@@ -8,6 +8,7 @@ export interface Book {
   discount: number;
   finalPrice: number;
   description: string;
+  publisher: string;
   publicationDate: Date;
   category: Category;
   authors: Author[];

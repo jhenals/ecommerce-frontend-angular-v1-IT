@@ -18,7 +18,8 @@ export class UpdateOrderStatusComponent {
     private utilService: UtilService,
     private orderService: OrderService,
     public dialogRef: MatDialogRef<UpdateOrderStatusComponent>,
-    @Inject(MAT_DIALOG_DATA) public order: Order,) { }
+    @Inject(MAT_DIALOG_DATA)
+    public order: Order,) { }
 
 
   orderStatus = [

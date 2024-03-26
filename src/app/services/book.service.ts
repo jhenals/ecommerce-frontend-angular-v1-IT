@@ -7,15 +7,16 @@ import { UtilService } from './util.service';
 import { OrderService } from './order.service';
 
 import { Book } from '../interface/book';
-import { Author } from '../interface/author';
-import { Category } from '../interface/category';
 import { Observable } from 'rxjs';
 import { Page } from '../interface/page';
+import { Author } from '../models/Author';
+import { Category } from '../models/Category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
+
   private readonly baseUrl = 'http://localhost:8081/api/v1';
   searchInput: string = '';
   constructor(
@@ -68,8 +69,25 @@ export class BookService {
     return this.httpClient.get<Category[]>(`${url}`);
   }
 
-  addNewBook(book: Book) {
-    //POST METHOD
+  addNewBook(book: Book, authorIds: number[], categoryId: number) {
+    let category = new Category();
+    category.id = categoryId;
+    book.category = category;
+    const endpoint = '/books';
+    const url = `${this.baseUrl}${endpoint}?authorIds=${authorIds}`;
+    this.httpClient.post(url, book).subscribe(
+      response => {
+        console.log('API response:', response);
+        this.getBooks(0, 12, 'id', 'ASC');
+        this.utilService.goToLink('/admin/manage-products')
+        this.utilService.showToast('Book added successfully');
+      },
+      error => {
+        console.error('API error:', error);
+        this.utilService.showToast('Failed to add book');
+      }
+    );
+
   }
 
   getAllDiscountedBooks() {
@@ -100,7 +118,36 @@ export class BookService {
   }
 
   deleteBook(book: Book) {
-    //DELETE METHOD
+    const endpoint = `/books/book?id=${book.id}`;
+    const url = `${this.baseUrl}${endpoint}`;
+    this.httpClient.delete(url).subscribe(
+      response => {
+        console.log('API response:', response);
+        this.getBooks(0, 12, 'id', 'ASC');
+      },
+      error => {
+        console.error('API error:', error);
+      }
+    );
   }
 
+  getAllAuthors(): Observable<Author[]> {
+    const endpoint = '/authors';
+    const url = `${this.baseUrl}${endpoint}`;
+    return this.httpClient.get<Author[]>(`${url}`);
+  }
+
+  addNewAuthor(name: string) {
+    const endpoint = '/authors';
+    const url = `${this.baseUrl}${endpoint}`;
+    this.httpClient.post(url, name).subscribe(
+      response => {
+        console.log('API response:', response);
+        this.getAllAuthors();
+      },
+      error => {
+        console.error('API error:', error);
+      }
+    );
+  }
 }//book.service.ts

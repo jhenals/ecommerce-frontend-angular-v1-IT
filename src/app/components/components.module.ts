@@ -21,6 +21,8 @@ import { SpecialoffersComponent } from './mainpages/specialoffers/specialoffers.
 import { BestsellersComponent } from './mainpages/bestsellers/bestsellers.component';
 import { HomeComponent } from './mainpages/home/home.component';
 import { CartComponent } from './mainpages/cart/cart.component';
+
+
 const routes: Routes = [
   { path: 'special-offers', component: SpecialoffersComponent },
   { path: 'bestsellers', component: BestsellersComponent },
@@ -57,8 +59,6 @@ const routes: Routes = [
   exports: [
     TopnavComponent,
     FooterComponent,
-    MaterialModule,
-
   ]
 })
 export class ComponentsModule { }
