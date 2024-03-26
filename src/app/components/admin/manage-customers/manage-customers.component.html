@@ -1,5 +1,5 @@
 <h1 class="text-center">ALL CUSTOMERS</h1>
-<ng-container *ngIf="users$ |async as customers">
+<ng-container *ngIf="users$ |async ">
   <table mat-table [dataSource]="customers" class="mat-elevation-z8">
     <!-- Define the columns -->
     <ng-container matColumnDef="name">

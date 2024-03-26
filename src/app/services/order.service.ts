@@ -19,13 +19,18 @@ export class OrderService {
   private ordersSubject = new BehaviorSubject<Order[]>([]);
   orders$ = this.ordersSubject.asObservable();
 
+  private userOrdersSubject = new BehaviorSubject<Order[]>([]);
+  userOrders$ = this.userOrdersSubject.asObservable();
+
 
   constructor(
     private httpClient: HttpClient,
     private utilService: UtilService,
     private authService: AuthService,
   ) {
+    this.userId = sessionStorage.getItem('id');
     this.fetchAllOrdersFromDB();
+    this.fetchAllOrdersOfUserFromDB();
   }
 
 
@@ -34,6 +39,14 @@ export class OrderService {
     const url = `${this.baseUrl}${endpoint}`;
     return this.httpClient.get(`${url}`).subscribe((response: any) => {
       this.ordersSubject.next(response as Order[]);
+    });
+  }
+
+  fetchAllOrdersOfUserFromDB() {
+    const endpoint = `/orders/user?id=${this.userId}`;
+    const url = `${this.baseUrl}${endpoint}`;
+    return this.httpClient.get(`${url}`).subscribe((response: any) => {
+      this.userOrdersSubject.next(response as Order[]);
     });
   }
 

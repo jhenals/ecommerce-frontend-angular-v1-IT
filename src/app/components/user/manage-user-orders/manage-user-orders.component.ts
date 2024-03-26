@@ -15,8 +15,8 @@ import { OrderBook } from 'src/app/interface/orderBook';
 })
 export class ManageUserOrdersComponent {
 
-  orderList: Order[] = [];
-  cartItems: OrderBook[] = [];
+  userOrders$ = this.orderService.userOrders$;
+
 
   constructor(
     private utilService: UtilService,
@@ -27,18 +27,9 @@ export class ManageUserOrdersComponent {
   }
 
   ngOnInit(): void {
-    this.orderService.getOrdersOfUser().subscribe((response: any) => {
-      response.forEach((order: Order) => {
-        if (order.orderStatus != 'PENDING') {
-          this.orderList.push(order);
-        }
-      });
-    });
+    this.userOrders$ = this.orderService.userOrders$;
   }
 
-  getAuthor(bookId: number) {
-    throw new Error('Method not implemented.');
-  }
 
   reorder(book: Book) {
     this.bookService.goToBookDetails(book);
@@ -47,6 +38,15 @@ export class ManageUserOrdersComponent {
   goToLink(url: string) {
     this.utilService.goToLink(url);
   }
+
+  isCancelled(order: Order) {
+    return order.orderStatus == 'CANCELED' || order.orderStatus == 'DELIVERED' || order.orderStatus == 'SHIPPED';
+  }
+
+  cancelOrder(order: Order) {
+    this.orderService.updateOrder(order, "CANCELED");
+  }
+
 
 
 }

@@ -13,10 +13,10 @@
 }
 
 .themed-button {
-  border-radius: 25px;
+  border-radius: 5px;
   margin-left: 10px;
-  width: 200px;
-  height: 45px;
+  width: fit-content;
+  height: fit-content;
   border: none;
   padding: auto;
   background-color: var(--dark-brown);

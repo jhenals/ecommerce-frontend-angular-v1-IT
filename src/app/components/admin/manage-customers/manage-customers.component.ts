@@ -11,7 +11,7 @@ import { User } from 'src/app/models/User';
 export class ManageCustomersComponent {
 
   users$ = this.userService.users$;
-  //customers: User[] = []
+  customers: User[] = []
   displayedColumns = ['name', 'email', 'phone', 'address', "createdAt"];
 
   constructor(
@@ -19,9 +19,9 @@ export class ManageCustomersComponent {
   ) { }
   ngOnInit(): void {
     this.users$ = this.userService.users$;
-    /* this.userService.users$.subscribe((users) => {
+    this.userService.users$.subscribe((users) => {
       this.customers = users.filter(user => user.roles.includes('user'));
     });
-    console.log(this.customers); */
+    console.log(this.customers);
   }
 }

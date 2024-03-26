@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { KeycloakService, KeycloakEventType } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { from, Observable, } from 'rxjs';
@@ -22,6 +23,7 @@ export class AuthService {
 
   constructor(
     private keycloak: KeycloakService,
+    private http: HttpClient,
     private utilService: UtilService
   ) {
     this.initializeKeycloak();
@@ -63,7 +65,7 @@ export class AuthService {
 
   register() {
     this.keycloak.register({ redirectUri: "http://localhost:4200" });
-    //save the id in User table in backend
+    this.loggedin = true;
   }
 
   login() {
@@ -72,8 +74,12 @@ export class AuthService {
 
   logout() {
     sessionStorage.clear();
-    this.keycloak.logout("http://localhost:4200");
-    this.utilService.showToast("Logout Successful");
+    this.keycloak.logout("http://localhost:4200").then(() => {
+      this.utilService.showToast("Logout Successful");
+    }).catch((error) => {
+      this.utilService.showToast("Logout Failed");
+      console.log("Error in logout", error);
+    });
   }
 
   isLoggedIn(): Promise<boolean> {
@@ -84,4 +90,9 @@ export class AuthService {
   isAdmin() {
     return this.keycloak.isUserInRole('admin');
   }
+
+  deleteUserAccount(userId: string) {
+    const 
+  }
+
 }

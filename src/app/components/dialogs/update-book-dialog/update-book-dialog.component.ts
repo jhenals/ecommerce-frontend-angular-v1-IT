@@ -39,7 +39,7 @@ export class UpdateBookDialogComponent {
       description: this.book.description,
       bookCoverUrl: this.book.coverUrl,
       dataPubblicazione: this.book.publicationDate,
-      editor: this.book.editor,
+      publisher: this.book.publisher,
       discount: this.book.discount ? this.book.discount : 0,
       quantity: this.book.quantity ? this.book.quantity : 0,
       dateBookAdded: this.book.dateBookAdded,
