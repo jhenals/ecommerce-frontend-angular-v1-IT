@@ -92,7 +92,8 @@ export class AuthService {
   }
 
   deleteUserAccount(userId: string) {
-    const 
+    const url = `http://localhost:8081/api/v1/keycloak/users?id=${userId}`;
+    return this.http.delete(url);
   }
 
 }
