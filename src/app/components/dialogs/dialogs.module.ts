@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from 'src/app/core/material/material.module';
-import { SharedModule } from '../shared/shared.module';
 
 import { DeleteBookDialogComponent } from './delete-book-dialog/delete-book-dialog.component';
 import { UpdateBookDialogComponent } from './update-book-dialog/update-book-dialog.component';
@@ -18,7 +17,6 @@ import { UpdateOrderStatusComponent } from './update-order-status/update-order-s
   imports: [
     CommonModule,
     MaterialModule,
-    SharedModule
   ],
   exports: [
     DeleteBookDialogComponent,

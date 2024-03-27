@@ -99,6 +99,11 @@ export class TopnavComponent {
     this.hidden = !this.hidden;
   }
 
+  getPendingCart() {
+    this.cartService.getPendingCart().subscribe((response) => {
+      console.log('Pending cart:', response);
+    });
+  }
 
 
 }
