@@ -57,6 +57,7 @@ export class AddNewBookComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('A new Author has been added in the database: ', result);
       this.author = result;
+      this.getAllAuthorsInDB();
     });
   }
 

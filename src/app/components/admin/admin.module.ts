@@ -11,7 +11,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { AddNewBookComponent } from './add-new-book/add-new-book.component';
 import { AddNewAuthorDialog } from './add-new-book/add-new-book.component';
-
+import { DeleteBookDialog } from './manage-products/manage-products.component';
+import { UpdateBookDialog } from './manage-products/manage-products.component';
+import { UpdateOrderStatus } from './manage-orders/manage-orders.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { AddNewAuthorDialog } from './add-new-book/add-new-book.component';
     DashboardComponent,
     SidenavComponent,
     AddNewBookComponent,
-    AddNewAuthorDialog
+    AddNewAuthorDialog,
+    DeleteBookDialog,
+    UpdateBookDialog,
+    UpdateOrderStatus
   ],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
-
   ],
   exports: [
     ManageCustomersComponent,
@@ -36,7 +40,10 @@ import { AddNewAuthorDialog } from './add-new-book/add-new-book.component';
     DashboardComponent,
     SidenavComponent,
     AddNewBookComponent,
-    AddNewAuthorDialog
+    AddNewAuthorDialog,
+    DeleteBookDialog,
+    UpdateBookDialog,
+    UpdateOrderStatus
   ]
 })
 export class AdminModule { }
