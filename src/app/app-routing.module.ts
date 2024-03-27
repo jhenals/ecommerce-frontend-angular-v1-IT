@@ -22,7 +22,7 @@ export const routes: Routes = [
   { path: 'book/:id/:title', component: BookDetailComponent },
   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
-  { path: 'manage-user-account/:userProfile', component: UserAccountComponent, canActivate: [AuthGuard] }, /* , canActivate: [AuthGuard], data: { edit: true }  TODO: change with user's name */
+  { path: 'manage-user-account/:userProfile', component: UserAccountComponent, canActivate: [AuthGuard] },
   { path: 'orders', component: ManageUserOrdersComponent, canActivate: [AuthGuard] },
   {
     path: 'admin',

@@ -7,8 +7,10 @@
       <mat-card class="mb-4 p-2">
         <mat-card-header class="card" >
           <div class="d-flex justify-content-between">
-            <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
+            <mat-card-title> <h2>{{firstName}} {{lastName}}</h2></mat-card-title>
+            <button mat-raised-button class="updateBtn" (click)=" openUpdateAccountDialog()">Update</button>
           </div>
+
           <div>
             <mat-card-subtitle>Account holder</mat-card-subtitle>
           </div>
@@ -17,7 +19,7 @@
         <mat-divider class="m-2"></mat-divider>
 
         <mat-card-content class="mt-2">
-          <h3>Default Address</h3>
+          <h4>Default Address</h4>
             <mat-card-subtitle>{{address}}</mat-card-subtitle>
         </mat-card-content>
       </mat-card>
@@ -31,7 +33,7 @@
 
           <div class="d-flex justify-content-between">
             <div class="column">
-              <h3>Mobile Number</h3>
+              <h4>Mobile Number</h4>
               <mat-card-subtitle>{{mobile}}</mat-card-subtitle>
             </div>
           </div>
@@ -40,7 +42,7 @@
 
           <div class="d-flex justify-content-between">
             <div class="column">
-              <h3>Email</h3>
+              <h4>Email</h4>
               <ng-container>
                 <mat-card-subtitle>{{email}}</mat-card-subtitle>
               </ng-container>
@@ -50,7 +52,7 @@
       </mat-card>
 
 
-      <button mat-raised-button (click)=" openDialog()"> Delete my account</button>
+      <button mat-raised-button (click)="openDeleteAccountDialog()"> Delete my account</button>
   </div>
 
 

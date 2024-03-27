@@ -139,6 +139,5 @@ export class AddNewAuthorDialog {
   submitNewAuthor(name: string) {
     this.bookService.addNewAuthor(name);
     this.dialogRef.close();
-
   }
 } //AddNewAuthorDialog

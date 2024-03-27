@@ -26,9 +26,7 @@ export class UserService {
     return this.httpClient.get(`${url}`).subscribe((response: any) => {
       this.usersSubject.next(response as User[]);
     });
-
   }
-
 
 
 } //user service

@@ -9,6 +9,9 @@ import { UtilService } from './util.service';
   providedIn: 'root'
 })
 export class AuthService {
+  updateAccount(firstName: string, lastName: string) {
+    throw new Error('Method not implemented.');
+  }
 
   userProfile: KeycloakProfile | null = null;
   roles: string[] = [];
@@ -37,8 +40,6 @@ export class AuthService {
 
   }
 
-
-
   private initializeKeycloak() {
     this.keycloak.isLoggedIn().then((loggedIn) => {
       if (loggedIn) {
@@ -51,7 +52,6 @@ export class AuthService {
             this.firstName = user.firstName as string
             this.lastName = this.userProfile?.lastName as string;
             this.email = this.userProfile?.email as string;
-
             sessionStorage.setItem('id', this.id);
             sessionStorage.setItem('firstName', this.firstName);
             sessionStorage.setItem('lastName', this.lastName);
@@ -74,12 +74,10 @@ export class AuthService {
 
   logout() {
     sessionStorage.clear();
-    this.keycloak.logout("http://localhost:4200").then(() => {
-      this.utilService.showToast("Logout Successful");
-    }).catch((error) => {
-      this.utilService.showToast("Logout Failed");
-      console.log("Error in logout", error);
-    });
+    this.keycloak.logout();
+    this.utilService.goToLink("");
+    this.utilService.showToast("Logout Successful");
+
   }
 
   isLoggedIn(): Promise<boolean> {
@@ -93,7 +91,24 @@ export class AuthService {
 
   deleteUserAccount(userId: string) {
     const url = `http://localhost:8081/api/v1/keycloak/users?id=${userId}`;
-    return this.http.delete(url);
+    sessionStorage.clear();
+    this.http.delete(url).subscribe((response: any) => {
+      console.log('Account deleted.', response);
+      this.utilService.showToast("Account deleted.");
+      this.logout();
+    });
+  }
+
+  updateUserAccount(firstName: string, lastName: string) {
+    console.log(firstName, lastName);
+    const url = `http://localhost:8081/api/v1/keycloak/users`;
+    const body = {
+      id: this.id,
+      firstName: firstName,
+      lastName: lastName,
+      email: this.email
+    }
+    return this.http.put(url, body);
   }
 
 }

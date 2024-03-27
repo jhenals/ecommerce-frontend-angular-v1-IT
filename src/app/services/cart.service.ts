@@ -30,6 +30,7 @@ export class CartService {
 
   ) {
     this.fetchCartItemsFromDatabse();
+    this.userId = sessionStorage.getItem('id');
   }
 
   private fetchCartItemsFromDatabse() { //fetch initial cart items from database
