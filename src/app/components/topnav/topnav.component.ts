@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { AuthService } from 'src/app/services/auth.service';
@@ -19,7 +18,6 @@ export class TopnavComponent {
 
   userProfile: KeycloakProfile | null = null;
   isLogin: boolean = false;
-
   firstName: string = '';
   lastName: string = '';
 
