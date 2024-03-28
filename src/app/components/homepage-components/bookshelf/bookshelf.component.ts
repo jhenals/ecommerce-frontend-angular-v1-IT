@@ -64,6 +64,7 @@ export class BookshelfComponent implements OnInit {
     this.booksState$ = this.bookService.getBooksByCategories(this.selectedFilters).pipe(
       map((response: ApiResponse<Page>) => {
         this.responseSubject.next(response);
+        this.currentPageSubject.next(response.data.page.number);
         this.selectedFilters = [];
         console.log("response", response);
         return ({ appState: 'APP_LOADED', appData: response });
@@ -93,8 +94,6 @@ export class BookshelfComponent implements OnInit {
         this.responseSubject.next(response);
         this.currentPageSubject.next(response.data.page.number);
         console.log("response", response);
-        this.sort = 'id';
-        this.sortDirection = 'ASC';
         return ({ appState: 'APP_LOADED', appData: response });
       }
       ),
