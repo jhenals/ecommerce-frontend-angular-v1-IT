@@ -70,13 +70,14 @@ export class AuthService {
 
   login() {
     this.keycloak.login({ redirectUri: "http://localhost:4200" });
+    this.utilService.goToLink("/");
   }
 
   logout() {
     sessionStorage.clear();
     this.keycloak.logout();
-    this.utilService.goToLink("");
     this.utilService.showToast("Logout Successful");
+    this.utilService.goToLink("/");
 
   }
 

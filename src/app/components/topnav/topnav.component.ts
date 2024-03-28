@@ -60,12 +60,10 @@ export class TopnavComponent {
 
   login() {
     this.authService.login();
-    this.utilService.goToLink('');
   }
 
   logout() {
     this.authService.logout();
-    this.utilService.goToLink('');
   }
 
   goToLink(url: string) {

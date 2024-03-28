@@ -6,7 +6,7 @@
     <ng-container  *ngIf="orderList.length !== 0; else emptyOrderList">
       <ng-container *ngFor="let order of orderList ">
         <div class="orderContainer">
-          <div class="d-flex headerContainer">
+          <div class="d-flex headerContainer" [class.cancelled]="order.orderStatus === 'CANCELED'">
             <div class="col-2">
               <h3>Order Placed</h3>
               <p>{{ order.dateCreated| date: 'medium' }}</p>

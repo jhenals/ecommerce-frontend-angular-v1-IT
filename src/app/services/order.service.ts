@@ -29,13 +29,8 @@ export class OrderService {
     private authService: AuthService,
   ) {
     this.userId = sessionStorage.getItem('id');
-    this.authService.isLoggedIn().then((loggedIn) => {
-      if (loggedIn) {
-        this.fetchAllOrdersFromDB();
-        this.fetchAllOrdersOfUserFromDB();
-      }
-    }
-    );
+    this.fetchAllOrdersFromDB();
+    this.fetchAllOrdersOfUserFromDB();
   }
 
 
