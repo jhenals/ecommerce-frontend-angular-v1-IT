@@ -1,6 +1,8 @@
-import { Injectable, ChangeDetectorRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { KeycloakProfile } from 'keycloak-js';
+import { KeycloakService } from 'keycloak-angular';
 
 import { UtilService } from './util.service';
 import { BookService } from './book.service';
@@ -17,7 +19,7 @@ import { OrderForm } from '../models/OrderForm';
 })
 export class CartService {
   private readonly baseUrl = 'http://localhost:8081/api/v1';
-  private readonly userId = sessionStorage.getItem('id');
+  private userId = sessionStorage.getItem('id');
 
   private cartItemsSubject = new BehaviorSubject<OrderBook[]>([]);
   cartItems$ = this.cartItemsSubject.asObservable();
@@ -25,12 +27,21 @@ export class CartService {
   constructor(
     private httpClient: HttpClient,
     private utilService: UtilService,
-    private bookService: BookService,
+    private keycloakService: KeycloakService,
     private authService: AuthService,
 
   ) {
-    this.fetchCartItemsFromDatabse();
-    this.userId = sessionStorage.getItem('id');
+    this.authService.isLoggedIn().then((loggedIn) => {
+      if (loggedIn) {
+        this.keycloakService.getKeycloakInstance().loadUserProfile()
+          .then((user: KeycloakProfile) => {
+            this.userId = user.id as string;
+            console.log('User ID:', this.userId);
+            this.fetchCartItemsFromDatabse();
+          })
+
+      }
+    });
   }
 
   private fetchCartItemsFromDatabse() { //fetch initial cart items from database

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { AuthService } from 'src/app/services/auth.service';
@@ -19,7 +18,6 @@ export class TopnavComponent {
 
   userProfile: KeycloakProfile | null = null;
   isLogin: boolean = false;
-
   firstName: string = '';
   lastName: string = '';
 
@@ -37,6 +35,11 @@ export class TopnavComponent {
     private utilService: UtilService,
     private cartService: CartService
   ) {
+
+    this.bookService.getBooks().subscribe((response) => {
+      this.bookList = response.data.page.content;
+    });
+
     this.authService.isLoggedIn().then((loggedIn) => {
       if (loggedIn) {
         this.isLogin = true;
@@ -45,15 +48,11 @@ export class TopnavComponent {
             this.userProfile = user;
             this.firstName = user.firstName as string;
           })
-        this.bookService.getBooks().subscribe((response) => {
-          this.bookList = response.data.page.content;
-        });
       }
     }).catch((error) => {
       console.log('Error in checking login status:', error);
     }
     );
-
     this.cartService.cartItems$.subscribe((cartItems) => {
       this.cartItemsCount = cartItems.length;
     });

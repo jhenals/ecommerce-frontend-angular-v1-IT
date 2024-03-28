@@ -32,10 +32,10 @@ export class BookService {
     return this.httpClient.get<ApiResponse<Page>>(`${url}?page=${page}&size=${size}&sortBy=${sortBy}&sortDirection=${sortDirection}`);
   }
 
-  getBooksByCategories(categoryIds: number[], page: number = 0, size: number = 12): Observable<ApiResponse<Page>> {
+  getBooksByCategories(categoryIds: number[]): Observable<ApiResponse<Page>> {
     const endpoint = '/books/categories';
     const url = `${this.baseUrl}${endpoint}`;
-    return this.httpClient.get<ApiResponse<Page>>(`${url}?ids=${categoryIds}&page=${page}&size=${size}`);
+    return this.httpClient.get<ApiResponse<Page>>(`${url}?ids=${categoryIds}`);
   }
 
   getAuthorsByBookId(id: number): Observable<Author[]> {

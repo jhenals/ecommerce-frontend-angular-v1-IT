@@ -14,7 +14,7 @@ import { OrderBook } from '../models/OrderBook';
 })
 export class OrderService {
   private readonly baseUrl = 'http://localhost:8081/api/v1';
-  private readonly userId = sessionStorage.getItem('id');
+  private userId = sessionStorage.getItem('id');
 
   private ordersSubject = new BehaviorSubject<Order[]>([]);
   orders$ = this.ordersSubject.asObservable();
@@ -29,8 +29,13 @@ export class OrderService {
     private authService: AuthService,
   ) {
     this.userId = sessionStorage.getItem('id');
-    this.fetchAllOrdersFromDB();
-    this.fetchAllOrdersOfUserFromDB();
+    this.authService.isLoggedIn().then((loggedIn) => {
+      if (loggedIn) {
+        this.fetchAllOrdersFromDB();
+        this.fetchAllOrdersOfUserFromDB();
+      }
+    }
+    );
   }
 
 
