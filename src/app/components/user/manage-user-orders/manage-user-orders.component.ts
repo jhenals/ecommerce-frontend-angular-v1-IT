@@ -6,7 +6,6 @@ import { BookService } from 'src/app/services/book.service';
 
 import { Book } from 'src/app/interface/book';
 import { Order } from 'src/app/models/Order';
-import { OrderBook } from 'src/app/interface/orderBook';
 
 @Component({
   selector: 'app-manage-user-orders',

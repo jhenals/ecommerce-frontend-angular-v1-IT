@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { BookService } from 'src/app/services/book.service';
-import { AuthService } from 'src/app/services/auth.service';
 import { UtilService } from 'src/app/services/util.service';
-import { Book } from 'src/app/interface/book';
-import { OrderService } from 'src/app/services/order.service';
 import { CartService } from 'src/app/services/cart.service';
+
+import { Book } from 'src/app/interface/book';
+
 
 @Component({
   selector: 'app-book-detail',
@@ -18,9 +19,7 @@ export class BookDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
-    private authService: AuthService,
     private utilsService: UtilService,
-    private orderService: OrderService,
     private cartService: CartService
   ) {
 

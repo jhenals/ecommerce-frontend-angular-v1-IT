@@ -1,6 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable, catchError, map, of, startWith } from 'rxjs';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 
 import { OrderService } from 'src/app/services/order.service';

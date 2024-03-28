@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 import { CartService } from 'src/app/services/cart.service';

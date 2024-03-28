@@ -5,7 +5,6 @@ import { KeycloakProfile } from 'keycloak-js';
 import { KeycloakService } from 'keycloak-angular';
 
 import { UtilService } from './util.service';
-import { BookService } from './book.service';
 import { AuthService } from './auth.service';
 
 import { Order } from '../models/Order';
@@ -92,7 +91,6 @@ export class CartService {
   }
 
 
-
   increaseBookQuantity(book: Book) {
     const endpoint = `/orders/${this.userId}/incr-quantity/book?id=${book.id}`;
     const url = `${this.baseUrl}${endpoint}`;
@@ -145,8 +143,6 @@ export class CartService {
     this.cartItemsSubject.unsubscribe();
   }
 
-
-
   reset() {
     const endpoint = `/orders/${this.userId}/reset`;
     const url = `${this.baseUrl}${endpoint}`;
@@ -160,9 +156,6 @@ export class CartService {
         this.utilService.showToast('Error resetting cart. Please try again.');
       }
     );
-  }
-
-  getCartItems() {
   }
 
 

@@ -6,7 +6,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Author } from 'src/app/models/Author';
 import { Book } from 'src/app/interface/book';
 import { BookService } from 'src/app/services/book.service';
-import { MaterialModule } from 'src/app/core/material/material.module';
 import { Category } from 'src/app/models/Category';
 
 

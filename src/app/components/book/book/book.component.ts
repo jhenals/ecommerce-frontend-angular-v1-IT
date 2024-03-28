@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { BookService } from 'src/app/services/book.service';
+import { UtilService } from 'src/app/services/util.service';
+import { CartService } from 'src/app/services/cart.service';
 
 import { Book } from 'src/app/interface/book';
 import { Author } from 'src/app/interface/author';
-import { OrderService } from 'src/app/services/order.service';
-import { UtilService } from 'src/app/services/util.service';
-import { CartService } from 'src/app/services/cart.service';
+
 
 @Component({
   selector: 'app-book',
@@ -23,7 +23,6 @@ export class BookComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private orderService: OrderService,
     private utilService: UtilService,
     private cartService: CartService
   ) {

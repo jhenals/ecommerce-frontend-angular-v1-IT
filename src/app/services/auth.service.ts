@@ -2,16 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { KeycloakService, KeycloakEventType } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
-import { from, Observable, } from 'rxjs';
 import { UtilService } from './util.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  updateAccount(firstName: string, lastName: string) {
-    throw new Error('Method not implemented.');
-  }
 
   userProfile: KeycloakProfile | null = null;
   roles: string[] = [];
@@ -37,7 +33,6 @@ export class AuthService {
         }
       }
     });
-
   }
 
   private initializeKeycloak() {

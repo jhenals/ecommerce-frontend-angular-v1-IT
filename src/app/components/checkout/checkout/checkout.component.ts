@@ -1,13 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 import { OrderService } from 'src/app/services/order.service';
 import { UtilService } from 'src/app/services/util.service';
 import { CartService } from 'src/app/services/cart.service';
 
-import { Order } from 'src/app/interface/order';
 import { OrderForm } from 'src/app/models/OrderForm';
-import { Observable } from 'rxjs';
 import { OrderBook } from 'src/app/models/OrderBook';
 
 @Component({
@@ -21,10 +20,8 @@ export class CheckoutComponent {
   cartItems$: Observable<OrderBook[]>;
   cartItems: OrderBook[] = [];
 
-
-  dataSource: any[] = []; /* passed from cart component */
-  totalPrice: number = 0; /* passed from cart component */
-
+  dataSource: any[] = [];
+  totalPrice: number = 0;
 
   recipientName: string = '';
   shippingAddress: string = '';
@@ -36,8 +33,7 @@ export class CheckoutComponent {
   constructor(
     private utilService: UtilService,
     private formBuilder: FormBuilder,
-    private cartService: CartService,
-    private orderService: OrderService) {
+    private cartService: CartService) {
   }
 
   ngOnInit(): void {

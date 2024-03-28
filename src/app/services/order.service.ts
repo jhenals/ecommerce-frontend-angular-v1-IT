@@ -5,9 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { UtilService } from './util.service';
 import { AuthService } from './auth.service';
 
-import { Book } from '../interface/book';
 import { Order } from '../models/Order';
-import { OrderBook } from '../models/OrderBook';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +23,6 @@ export class OrderService {
 
   constructor(
     private httpClient: HttpClient,
-    private utilService: UtilService,
-    private authService: AuthService,
   ) {
     this.userId = sessionStorage.getItem('id');
     this.fetchAllOrdersFromDB();

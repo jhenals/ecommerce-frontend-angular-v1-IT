@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Book } from 'src/app/interface/book';
 
@@ -16,8 +15,7 @@ export class BestsellersComponent {
   book: Book;
 
   constructor(
-    private bookService: BookService,
-    private router: Router) { }
+    private bookService: BookService) { }
 
   ngOnInit(): void {
     return this.getBestSellers();

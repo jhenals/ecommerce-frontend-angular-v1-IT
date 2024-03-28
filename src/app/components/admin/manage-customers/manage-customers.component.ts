@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 import { User } from 'src/app/models/User';

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { BookService } from 'src/app/services/book.service';
-import { UtilService } from 'src/app/services/util.service';
 
 import { Book } from 'src/app/interface/book';
+
 @Component({
   selector: 'app-specialoffers',
   templateUrl: './specialoffers.component.html',
@@ -14,9 +13,7 @@ export class SpecialoffersComponent {
   discountedbooks: Book[] = [];
 
   constructor(
-    private bookService: BookService,
-    private utilService: UtilService,
-    private router: Router) {
+    private bookService: BookService) {
 
   }
 
