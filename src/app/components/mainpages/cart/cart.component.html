@@ -2,21 +2,21 @@
   <div class="container">
     <div class="row mt-4 mb-3">
       <div class="col-6">
-        <h1 class="cart-title ml-4">Shopping Cart</h1>
+        <h1 class="cart-title ml-4">Carrello degli acquisti</h1>
       </div>
     </div>
     <ng-container *ngIf="cartItems$ | async as cartItems; else emptyCart">
 
       <ng-container *ngIf="cartItems.length !=0; else emptyCart">
         <div class="col-12 d-flex mb-4 align-items-center justify-content-end ">
-          <button mat-button class="themed-button mr-4" (click)="goToLink('/checkout')">CHECK-OUT (Total: {{ totalAmount | currency: 'EUR' : 'symbol' : '1.2-2'}}) </button>
+          <button mat-button class="themed-button mr-4" (click)="goToLink('/checkout')">CHECK-OUT (Totale: {{ totalAmount | currency: 'EUR' : 'symbol' : '1.2-2'}}) </button>
         </div>
 
         <table mat-table [dataSource]="cartItems" class="mat-elevation-z8">
           <ng-container matColumnDef="item">
-            <th mat-header-cell *matHeaderCellDef class="item-column-header">Item</th>
+            <th mat-header-cell *matHeaderCellDef class="item-column-header">Articolo</th>
             <td mat-cell *matCellDef="let item" class="item-column">
-              {{ item.book.title }} by
+              {{ item.book.title }} -
               <ng-container *ngFor="let author of item.book.authors; let last = last">
                 {{ author.name }}<span *ngIf="!last">,</span>
               </ng-container>
@@ -24,12 +24,12 @@
           </ng-container>
 
           <ng-container matColumnDef="unitprice">
-            <th mat-header-cell *matHeaderCellDef class="price-column-header">Unit Price*</th>
+            <th mat-header-cell *matHeaderCellDef class="price-column-header">Prezzo unitario*</th>
             <td mat-cell *matCellDef="let item" class="price-column">{{ item.book.price | currency : 'EUR' : 'symbol' : '1.2-2' }}</td>
           </ng-container>
 
           <ng-container matColumnDef="quantity">
-            <th mat-header-cell *matHeaderCellDef class="qty-column-header">Quantity</th>
+            <th mat-header-cell *matHeaderCellDef class="qty-column-header">Quantità</th>
             <td mat-cell *matCellDef="let item" class="qty-column">
               <span class="d-flex">
                 <button mat-icon-button class="ml-2" (click)="decreaseQuantity(item.book)">
@@ -44,17 +44,17 @@
           </ng-container>
 
           <ng-container matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef class="qty-column-header">Price</th>
+            <th mat-header-cell *matHeaderCellDef class="qty-column-header">Prezzo</th>
             <td mat-cell *matCellDef="let item" class="qty-column">{{ item.quantity * item.book.finalPrice | currency: 'EUR' : 'symbol' : '1.2-2' }}</td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="['item', 'unitprice', 'quantity', 'price']"></tr>
           <tr mat-row *matRowDef="let row; columns: ['item', 'unitprice', 'quantity', 'price']"></tr>
         </table>
-        <sub>*Discount is already applied</sub>
+        <sub>*Lo sconto è già stato applicato</sub>
         <br>
 
-        <button mat-button class="themed-button mt-4" (click)="goToLink('/')">Continue Shopping</button>
+        <button mat-button class="themed-button mt-4" (click)="goToLink('/')">Continua lo shopping</button>
         <button mat-button class="themed-button mt-4 ml-5" (click)="reset()">Reset</button>
       </ng-container>
     </ng-container>
@@ -67,8 +67,8 @@
         </div>
         <div class="col-lg-6 d-flex align-items-center">
           <div>
-            <h2>Your cart is empty...</h2>
-            <button mat-button class="themed-button" routerLink="/">Continue Shopping</button>
+            <h2>Il tuo carrello è vuoto...</h2>
+            <button mat-button class="themed-button" routerLink="/">Continua lo shopping</button>
           </div>
         </div>
       </div>

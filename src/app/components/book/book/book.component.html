@@ -26,8 +26,8 @@
     </div>
 
     <div class="buttonContainer ">
-      <button class="themed-button-1  " (click)="addToCart(bookInput)" *ngIf="!bookIsInCart()"> Add to cart</button>
-      <button class="themed-button-1 " *ngIf="bookIsInCart()" (click)="goToLink('/cart')"> Go to cart</button>
+      <button class="themed-button-1  " (click)="addToCart(bookInput)" *ngIf="!bookIsInCart()"><span class="addToCartButton">Aggiungi al carrello</span></button>
+      <button class="themed-button-1 " *ngIf="bookIsInCart()" (click)="goToLink('/cart')">Vai al carrello</button>
     </div>
 
 

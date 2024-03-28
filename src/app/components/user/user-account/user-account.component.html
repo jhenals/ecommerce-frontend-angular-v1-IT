@@ -1,39 +1,39 @@
 <section>
   <div class="container">
     <div class="row">
-       <app-title-bar [title]="'Manage your profile'"></app-title-bar>
+       <app-title-bar [title]="'Gestisci il tuo profilo'"></app-title-bar>
    </div>
 
       <mat-card class="mb-4 p-2">
         <mat-card-header class="card" >
           <div class="d-flex justify-content-between">
             <mat-card-title> <h2>{{firstName}} {{lastName}}</h2></mat-card-title>
-            <button mat-raised-button class="updateBtn" (click)=" openUpdateAccountDialog()">Update</button>
+            <button mat-raised-button class="updateBtn" (click)=" openUpdateAccountDialog()">Aggiorna</button>
           </div>
 
           <div>
-            <mat-card-subtitle>Account holder</mat-card-subtitle>
+            <mat-card-subtitle>Titolare dell'account</mat-card-subtitle>
           </div>
         </mat-card-header>
 
         <mat-divider class="m-2"></mat-divider>
 
         <mat-card-content class="mt-2">
-          <h4>Default Address</h4>
+          <h4>Indirizzo Predefinito</h4>
             <mat-card-subtitle>{{address}}</mat-card-subtitle>
         </mat-card-content>
       </mat-card>
 
       <mat-card class="mb-4 p-2">
         <mat-card-header class="card" >
-          <h2>Contact Details</h2>
-          <p>Receive important alerts for your profile here</p>
+          <h2>Dettagli di Contatto</h2>
+          <p>Ricevi avvisi importanti per il tuo profilo qui</p>
 
           <mat-divider class="m-2"></mat-divider>
 
           <div class="d-flex justify-content-between">
             <div class="column">
-              <h4>Mobile Number</h4>
+              <h4>Numero di telefono</h4>
               <mat-card-subtitle>{{mobile}}</mat-card-subtitle>
             </div>
           </div>
@@ -52,7 +52,7 @@
       </mat-card>
 
 
-      <button mat-raised-button (click)="openDeleteAccountDialog()"> Delete my account</button>
+      <button mat-raised-button (click)="openDeleteAccountDialog()">Cancella il mio account</button>
   </div>
 
 

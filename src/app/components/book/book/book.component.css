@@ -79,3 +79,8 @@
   border: solid 1px var(--dark-brown);
   color: var(--dark-brown);
 }
+
+.addToCartButton {
+  font-size: 14px;
+  padding: 2px;
+}

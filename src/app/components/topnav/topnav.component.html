@@ -7,7 +7,7 @@
       <div class="col-lg-3">
         <input
         type="text"
-        placeholder="Search books or authors ..."
+        placeholder="Cerca libri o autori..."
         class="text search-term"
         [(ngModel)]="searchInput"
         (keyup)="fetchBooks($event)"
@@ -15,14 +15,14 @@
 
         <mat-nav-list  *ngIf="searchInput " class="searchResultBox">
           <ng-container *ngIf="filteredList.length===0; else renderList">
-            <p>No result...</p>
+            <p>Nessun risultato...</p>
           </ng-container>
 
           <ng-template #renderList>
              <a mat-list-item class="m-2"
               (click)="goToBookDetails(book)" *ngFor="let book of filteredList">
                 <img class="search-image" src="{{book.coverUrl}}" alt="{{book.title}}">
-                <span class="font-weight-bold">{{ book.title }}</span> by {{book.authors.at(0).name}}
+                <span class="font-weight-bold">{{ book.title }}</span> - {{book.authors.at(0).name}}
               </a>
           </ng-template>
 
@@ -42,7 +42,7 @@
 
         <ng-container *ngIf="isLogin; else notLoggedIn">
           <span class="greetUser" (click)="goToLink('/manage-user-account/' + firstName + lastName)">
-             Hello, {{firstName}}!
+             Ciao, {{firstName}}!
           </span>
           <button mat-icon-button class="topnav-buttons" [matMenuTriggerFor]="menu"  matTooltip="Account">
             <mat-icon >
@@ -53,8 +53,8 @@
           </button>
 
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="goToLink('/manage-user-account/' + firstName + lastName)">Profile</button>
-            <button mat-menu-item (click)="goToLink('/orders')">View Orders</button>
+            <button mat-menu-item (click)="goToLink('/manage-user-account/' + firstName + lastName)">Profilo</button>
+            <button mat-menu-item (click)="goToLink('/orders')">Visualizza Ordini</button>
             <button mat-menu-item (click)="logout()">Logout</button>
           </mat-menu>
         </ng-container>

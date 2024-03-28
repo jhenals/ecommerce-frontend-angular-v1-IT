@@ -23,56 +23,56 @@
       <div class="row mt-4 mb-4">
           <button mat-button class="themed-button" (click)="addToCart(book)" *ngIf="!bookIsInCart(book)">
             <mat-icon>shopping_basket</mat-icon>
-            Add to cart
+            Aggiungi al carrello
           </button>
 
           <button mat-button class="themed-button"(click)="goToLink('/cart')" *ngIf="bookIsInCart(book)">
             <mat-icon>shopping_basket</mat-icon>
-            Go to cart
+            Vai al carrello
           </button>
       </div>
 
       <p>{{book.description}}</p>
 
 
-      <h2 class="mt-4">Product Details</h2>
+      <h2 class="mt-4">Dettagli del Prodotto</h2>
       <div class="product-details">
 
         <table style="border-collapse: collapse;">
           <tr>
-            <td><strong>Suggested Price:</strong></td>
-            <td>{{book.price | currency: 'EUR' : 'symbol' : '1.2-2' }}</td>
+            <td><strong>Prezzo Suggerito:</strong></td>
+            <td >{{book.price | currency: 'EUR' : 'symbol' : '1.2-2' }}</td>
           </tr>
           <tr>
             <td><strong>ISBN:</strong></td>
             <td></td>
           </tr>
           <tr>
-            <td><strong>Pages:</strong></td>
+            <td><strong>Pagine:</strong></td>
             <td></td>
           </tr>
           <tr>
-            <td><strong>Language:</strong></td>
+            <td><strong>Lingua:</strong></td>
             <td></td>
           </tr>
           <tr>
-            <td><strong>Pubisher:</strong></td>
+            <td><strong>Editore:</strong></td>
             <td>{{book.publisher}}</td>
           </tr>
           <tr>
-            <td><strong>Publication:</strong></td>
-            <td>{{book.publicationDate}}</td>
+            <td><strong>Data di Pubblicazione:</strong></td>
+            <td >{{book.publicationDate}}</td>
           </tr>
           <tr>
             <td><strong>Format:</strong></td>
             <td></td>
           </tr>
           <tr>
-            <td><strong>Weight:</strong></td>
+            <td><strong>Peso:</strong></td>
             <td></td>
           </tr>
           <tr>
-            <td><strong>Category:</strong></td>
+            <td><strong>Categoria:</strong></td>
             <td>{{book.category.name}}</td>
           </tr>
         </table>
