@@ -55,7 +55,7 @@ export class UpdateOrderStatus {
 
 
   orderStatus = [
-    'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELED'];
+    'PROCESSING', 'SHIPPED', 'DELIVERED'];
 
   updateOrder(order: Order) {
     this.orderService.updateOrder(order, this.selectedStatus);

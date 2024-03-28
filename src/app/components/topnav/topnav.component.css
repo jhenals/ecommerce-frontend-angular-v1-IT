@@ -31,8 +31,26 @@
 
 }
 
+
+.search-term {
+  width: 300px;
+  border: none;
+  padding-left: 15px;
+  font-size: medium;
+  border-radius: 10px;
+  outline: none;
+}
+
+.search-image {
+  height: 50px;
+  width: 32px;
+  object-fit: cover;
+  margin-right: 10px;
+
+}
+
 .searchBox {
-  width: 200px;
+  width: 100%;
   height: 30px;
   border: none;
   padding-left: 15px;
@@ -56,22 +74,6 @@ p {
   margin-left: 10px;
 }
 
-.search-term {
-  width: 400px;
-  border: none;
-  padding-left: 15px;
-  font-size: medium;
-  border-radius: 10px;
-  outline: none;
-}
-
-.search-image {
-  height: 50px;
-  width: 32px;
-  object-fit: cover;
-  margin-right: 10px;
-
-}
 
 .greetUser {
   font-size: small;

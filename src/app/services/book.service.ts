@@ -79,7 +79,7 @@ export class BookService {
       response => {
         console.log('API response:', response);
         this.getBooks(0, 12, 'id', 'ASC');
-        this.utilService.goToLink('/admin/manage-products')
+        window.location.reload();
         this.utilService.showToast('Book added successfully');
       },
       error => {
@@ -103,16 +103,17 @@ export class BookService {
   }
 
   updateBook(book: Book) {
-    console.log("book:", book);
-    const endpoint = `/books/book?id=${book.id}`;
+    const endpoint = `/books?id=${book.id}`;
     const url = `${this.baseUrl}${endpoint}`;
     this.httpClient.put(url, book).subscribe(
       response => {
         console.log('API response:', response);
         this.getBooks(0, 12, 'id', 'ASC');
+        this.utilService.showToast('Book updated successfully');
       },
       error => {
         console.error('API error:', error);
+        this.utilService.showToast('Error in updating book');
       }
     );
   }
@@ -124,9 +125,11 @@ export class BookService {
       response => {
         console.log('API response:', response);
         this.getBooks(0, 12, 'id', 'ASC');
+        this.utilService.showToast('Book deleted successfully');
       },
       error => {
         console.error('API error:', error);
+        this.utilService.showToast('Error in deleting book');
       }
     );
   }

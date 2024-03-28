@@ -134,7 +134,7 @@ export class CartService {
       response => {
         console.log('API response:', response);
         this.utilService.showToast('New Order Added Successfully');
-        this.utilService.goToLink('/orders');
+        this.utilService.goToLink('');
       },
       error => {
         console.error('API error:', error);

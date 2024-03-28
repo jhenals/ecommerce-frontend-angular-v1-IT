@@ -45,6 +45,7 @@ export class ManageUserOrdersComponent {
 
   cancelOrder(order: Order) {
     this.orderService.updateOrder(order, "CANCELED");
+    this.utilService.showToast("Order Cancelled Successfully.Please refresh the page to see the changes.");
   }
 
 
