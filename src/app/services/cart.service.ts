@@ -133,6 +133,7 @@ export class CartService {
     this.httpClient.post(url, orderForm).subscribe(
       response => {
         console.log('API response:', response);
+        this.cartItemsSubject.unsubscribe();
         this.utilService.showToast('New Order Added Successfully');
         this.utilService.goToLink('');
       },
