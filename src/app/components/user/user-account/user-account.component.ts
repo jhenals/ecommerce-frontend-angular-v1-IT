@@ -86,7 +86,7 @@ export class DeleteAccountDialog {
 } //DeleteAccountDialog
 
 
-export interface UserDialogData {
+export interface UserUpdateRequest {
   firstName: string;
   lastName: string;
 }
@@ -106,7 +106,7 @@ export class UpdateAccountDialog {
     private authService: AuthService,
     private utilService: UtilService,
     @Inject(MAT_DIALOG_DATA)
-    public data: UserDialogData
+    public data: UserUpdateRequest
   ) {
     this.firstname = sessionStorage.getItem('firstName') as string;
     this.lastname = sessionStorage.getItem('lastName') as string;
@@ -118,8 +118,15 @@ export class UpdateAccountDialog {
 
   onUpdateAccountClick() {
     this.authService.updateUserAccount(this.firstname, this.lastname).subscribe((response: any) => {
-      this.utilService.showToast('Account updated successfully.');
-    })
+      console.log('Account updated:', response);
+      sessionStorage.setItem('firstName', this.firstname);
+      sessionStorage.setItem('lastName', this.lastname);
+      this.utilService.showToast('Account updated successfully. Refresh the page to see changes.');
+    }, (error) => {
+      console.log('Error in updating account:', error);
+      this.utilService.showToast('Error in updating account.');
+    }
+    )
     this.dialogRef.close();
   }
 

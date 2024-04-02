@@ -4,6 +4,8 @@ import { KeycloakService, KeycloakEventType } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { UtilService } from './util.service';
 
+import { UserUpdateRequest } from '../interface/user-update-request';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -96,15 +98,14 @@ export class AuthService {
   }
 
   updateUserAccount(firstName: string, lastName: string) {
-    console.log(firstName, lastName);
-    const url = `http://localhost:8081/api/v1/keycloak/users`;
-    const body = {
-      id: this.id,
-      firstName: firstName,
-      lastName: lastName,
-      email: this.email
-    }
-    return this.http.put(url, body);
+    const url = `http://localhost:8081/api/v1/keycloak/users?id=${this.id}`;
+    console.log("id", this.id);
+    const request: UserUpdateRequest = {
+      firstname: firstName,
+      lastname: lastName
+    };
+
+    return this.http.put(url, request)
   }
 
 }
