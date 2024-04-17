@@ -21,12 +21,43 @@ This repository contains the source code for an E-commerce web application built
 - **Angular Material**: Material Design components for Angular applications.
 - **Bootstrap**: Frontend framework for responsive design.
 
-## Images
+## Features
+
+Homepage:
 ![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/4d7a522e-fab8-4e7f-be54-d776a9b426fc)
+
+Book Catalog:
 ![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/74a06461-9da8-496d-848f-3f22765bfb4b)
+
+Special Offers:
 ![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/e0205707-6aaa-4757-b672-cd4783937d90)
+
+Best Selling Books:
 ![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/44fcf2b1-55e6-4d57-a4c4-a9ffc23fad52)
 
+Login/Registration Page
+![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/c1c81b73-a264-4b6f-bcd7-9ff66d77c7e9)
+
+Cart:
+![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/43608294-1854-46af-8c22-a5b91229f001)
+
+Checkout Form:
+![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/5a2738b7-6079-49de-bdf6-8637d5d9445b)
+
+User's Order History:
+![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/ee0daa12-83f6-4eb3-9a94-3778352050ce)
+
+Admin Dashboard- Manage products:
+![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/2571fc8d-e3cd-4aa9-8cd3-1e60ce1668e9)
+
+Admin Dashboard - Manage clients:
+![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/31c5fc3d-fa9b-4ae7-be41-c80e77868b00)
+
+Admin Dashboard - Manage Orders:
+![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/82188534-25db-489b-b90d-bb577489b48c)
+
+Searchbar:
+![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/b1cf3c10-4fd0-4bef-a73e-24478fe160eb)
 
 
 ## Prerequisites
