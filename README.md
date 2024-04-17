@@ -21,7 +21,7 @@ This repository contains the source code for an E-commerce web application built
 - **Angular Material**: Material Design components for Angular applications.
 - **Bootstrap**: Frontend framework for responsive design.
 
-## Features
+## Features Images
 
 Homepage:
 ![image](https://github.com/jhenals/ecommerce-frontend-angular-v1/assets/77573528/4d7a522e-fab8-4e7f-be54-d776a9b426fc)
