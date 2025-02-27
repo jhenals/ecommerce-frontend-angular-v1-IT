@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the **frontend** source code for an E-commerce web application built using SpringBoot for the backend, Angular for the frontend, Keycloak for authentication and authorization, and MySQL for the database. The application is specifically tailored for an online bookstore.
+This repository contains the **backend** source code for an E-commerce web application built using SpringBoot for the backend, Angular for the frontend, Keycloak for authentication and authorization, and MySQL for the database. The application is specifically tailored for an online bookstore.
 
 ## Features
 
@@ -84,31 +84,41 @@ Before running the application, ensure you have the following installed:
    git clone https://github.com/jhenals/ecommerce-backend-springboot-v1.git
    ```
 
-3. Navigate to the backend directory and run the SpringBoot application:
+3. Running Keycloak manually (Make sure that you have installed Keycloak to your local machine): Navigate to Keycloak directory and run Keycloak Server:
 
+On Linux, run:
+```bash
+bin/kc.sh start-dev
+```
+On Windows, run:
    ```bash
-   cd <YOUR_PATH>\ecommerce-backend
-   ./mvnw spring-boot:run
+   cd <YOUR_PATH>\bin
+   kc.bat start-dev
    ```
 
-4. Navigate to the frontend directory and install dependencies:
+Access Keycloak Admin Console at ```http://localhost:8080/admin```. <br/>
+username: keycloak <br/>
+password: MyPassword$
+
+4. Navigate to the backend directory and run the SpringBoot application:
+
+   ```bash
+    cd <YOUR_PATH>\ecommerce-backend
+    mvn clean install
+    mvn spring-boot:run
+   ```
+
+5. Navigate to the frontend directory and install dependencies:
 
    ```bash
    cd <YOUR_PATH>\ecommerce-frontend
    npm install
    ```
 
-5. Run the Angular application:
+6. Run the Angular application:
 
    ```bash
    npm start
-   ```
-
-6. Navigate to Keycloak directory and run Keycloak Server:
-
-   ```bash
-   cd <YOUR_PATH>\bin
-   kc.bat start-dev
    ```
 
 7. Access the application in your web browser at `http://localhost:4200`.
@@ -124,6 +134,6 @@ Before running the application, ensure you have the following installed:
 - Visit `http://localhost:4200` in your web browser to access the application.
 - Use the provided login interface to authenticate. You can use the default admin credentials for testing or create a new account.
 - Navigate through the bookstore, add products to your cart, and complete the checkout process.
----
 
+---
 
