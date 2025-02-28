@@ -1,0 +1,96 @@
+<div class="container">
+  <h1 class="text-center">AGGIUNGI NUOVO LIBRO</h1>
+
+  <form [formGroup]="addNewBookForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Titolo del Libro</label>
+      <input type="text" class="form-control" id="title" formControlName="title" placeholder="Inserisci il titolo del libro">
+    </div>
+
+    <div class="form-group">
+      <label for="coverUrl">Copertina del libro</label>
+      <input type="text" class="form-control" id="coverUrl" formControlName="coverUrl" placeholder="Inserisci l'URL della copertina del libro">
+    </div>
+
+    <div class="d-flex p-0">
+      <div class="form-group col-6 pl-0 dropdown">
+        <label for="authors">Autore/i</label>
+        <div class="filterContainer">
+          <div class="form-control authorMenuBtn" [matMenuTriggerFor]="authorMenu">
+            {{selectedAuthors.length ? selectedAuthors.length + ' author(s) selected' : 'Choose authors'}}
+          </div>
+          <mat-menu #authorMenu="matMenu" >
+            <div *ngFor="let author of authors" class="checkboxContainer" (click)="$event.stopPropagation()">
+              <label>
+                <span class="example-list-section">
+                  <mat-checkbox
+                  [checked]="selectedAuthors.includes(author.id)"
+                  (change)="handleCheckboxChange(author , $event.checked)"
+                  >
+                    {{author.name}}
+                  </mat-checkbox>
+                </span>
+              </label>
+            </div>
+            <button mat-button (click)="updateBookAuthors()" class="ml-2"> Scegli autore/i</button>
+          </mat-menu>
+        </div>
+
+    </div>
+
+      <div class="form-group col-2 pl-0">
+        <label class="xs">L'autore non è ancora nella lista?</label>
+        <button mat-raised-button
+          (click)=" openDialog()"
+          matTooltip="Info about the action"
+          aria-label="Button that displays a tooltip when focused or hovered over">
+            Aggiungi nuovo autore
+        </button>
+      </div>
+
+      <div class="form-group col-2 pl-0">
+        <label for="price">Prezzo</label>
+        <input type="text" class="form-control" id="price" formControlName="price" placeholder="Inserisci il prezzo">
+      </div>
+
+      <div class="form-group col-2 p-0">
+        <label for="discount">Sconto(%)</label>
+        <input type="number" min="0" class="form-control" id="discount" formControlName="discount" placeholder="Inserisci lo sconto">
+      </div>
+    </div>
+
+    <div class="d-flex p-0">
+      <div class="form-group col-4 pl-0">
+        <label for="category">Categoria</label>
+        <select class="form-control" id="category" formControlName="category" >
+          <option *ngFor="let category of categories" [value]="category.id">{{category.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-group  col-4 pl-0">
+        <label for="publisher">Editore</label>
+        <input type="text" class="form-control" id="publisher" formControlName="publisher" placeholder="Enter editor/publisher">
+      </div>
+
+      <div class="form-group  col-4 p-0">
+        <label for="publicationDate">Data di Pubblicazione</label>
+        <input type="date" class="form-control" id="publicationDate" formControlName="publicationDate" >
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descrizione del Libro</label>
+      <textarea class="form-control" id="description" formControlName="description" placeholder="Inserisci la descrizione del libro"></textarea>
+    </div>
+
+    <h3>INVENTARIO:</h3>
+    <div class="form-group">
+      <label for="bookQuantity">Quantità</label>
+      <input type="number" class="form-control" id="quantity" formControlName="quantity" placeholder="Inserisci la quantità del libro">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Invia</button>
+  </form>
+</div>
+

@@ -1,0 +1,22 @@
+<div class="container">
+  <ng-container *ngIf="discountedBooks.length !== 0; else emptyArray">
+    <ng-container class="" *ngFor="let book of discountedBooks">
+      <div (click)="goToBookDetails(book)" class="card">
+        <img class="discbooks-images" [src]="book.coverUrl" alt="discountedBook" />
+      </div>
+      </ng-container>
+  </ng-container>
+
+  <ng-template #emptyArray>
+    <div class="empty-container">
+      <div class="col-lg-6">
+        <img class="flowervase" src="../../../../assets/images/flower-vase2.png" alt="">
+      </div>
+    </div>
+  </ng-template>
+  <img class="bookstand" src="../../../../assets/images/book-stand.png" alt="bookstand" />
+</div>
+
+
+
+

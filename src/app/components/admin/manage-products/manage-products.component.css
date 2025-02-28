@@ -1,0 +1,35 @@
+.bookDetail:hover {
+  background-color: var(--nude-color);
+  cursor: pointer;
+}
+
+.dialogUpdateBookContainer {
+  width: 700px;
+  height: 600px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.cancelButton {
+  margin-top: 10px;
+  width: fit-content;
+}
+
+.disabled-input {
+  pointer-events: none;
+  background-color: #f0f0f0;
+  color: #808080;
+}
+
+
+.dialogBox {
+  width: 300px;
+  padding: 20px;
+}
+
+.warning {
+  font-size: small;
+  color: red;
+}

@@ -1,0 +1,17 @@
+<div class="m-2 d-flex flex-column align-items-center justify-content-center">
+
+  <h3>Aggiungi nuovo autore</h3>
+  <div mat-dialog-content>
+    <p class="center">Inserisci nome e cognome dell'autore</p>
+    <mat-form-field>
+      <input matInput placeholder="Insert new author's name" class="stretch" [(ngModel)]="data.author">
+    </mat-form-field>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button  (click)="submitNewAuthor(data.author)" cdkFocusInitial>Aggiungi</button> <!-- [mat-dialog-close]="data.author" -->
+  </div>
+
+</div>
+

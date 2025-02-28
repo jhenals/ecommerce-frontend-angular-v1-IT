@@ -1,0 +1,15 @@
+.topnav-secondrow {
+  height: 50px;
+  background-color: var(--nude-color);
+  display: flex;
+  align-items: center;
+  margin: 0, 5px, 0, 5px;
+  justify-content: space-evenly;
+
+}
+
+.topnav-categories .mat-mdc-button:hover {
+  background-color: #F6F5F7;
+  color: #4c1f04;
+  cursor: pointer;
+}

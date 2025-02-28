@@ -1,0 +1,9 @@
+.table {
+  width: 700px;
+  overflow-x: auto;
+}
+
+.header {
+  align-items: center;
+  justify-content: center;
+}

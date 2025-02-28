@@ -1,0 +1,32 @@
+<div class="subtitle-container">
+  <div class="sortfilter">
+    <div class="filterContainer">
+      <button mat-raised-button [matMenuTriggerFor]="filterMenu">Categorie</button>
+      <mat-menu #filterMenu="matMenu" >
+        <div *ngFor="let filter of filterOptions" class="checkboxContainer" (click)="$event.stopPropagation()">
+          <label>
+            <span class="example-list-section">
+              <mat-checkbox
+              [checked]="selectedFilters.includes(filter.id)"
+              (change)="handleCheckboxChange(filter , $event.checked)"
+              >
+                {{filter.name}}
+              </mat-checkbox>
+            </span>
+          </label>
+        </div>
+        <button mat-button (click)="updateFilters()" class="ml-2"> Applica Filtri</button>
+      </mat-menu>
+    </div>
+
+    <mat-card>
+      <select [(ngModel)]="selectedSort" (change)="updateSort()" class="selectSort">
+        <option value="default" class="font-weight-bold">Sort</option>
+        <option value="alphabetical">Alfabetico </option>
+        <option value="price-low-high">Prezzo crescente</option>
+        <option value="price-high-low">Prezzo decrescente</option>
+      </select>
+    </mat-card>
+
+  </div>
+</div>

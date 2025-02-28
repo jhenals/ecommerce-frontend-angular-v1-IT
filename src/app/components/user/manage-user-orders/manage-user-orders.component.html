@@ -1,0 +1,82 @@
+<section class="container">
+  <app-title-bar [title]="'I miei ordini'"></app-title-bar>
+  <mat-divider/>
+
+  <ng-container *ngIf="userOrders$ | async as orderList">
+    <ng-container  *ngIf="orderList.length !== 0; else emptyOrderList">
+      <ng-container *ngFor="let order of orderList ">
+        <div class="orderContainer">
+          <div class="d-flex headerContainer" [class.cancelled]="order.orderStatus === 'CANCELED'">
+            <div class="col-2">
+              <h3>Ordine Effettuato</h3>
+              <p>{{ order.dateCreated| date: 'medium' }}</p>
+            </div>
+            <div class="col-2">
+              <h3>Totale</h3>
+              <p class="font-weight-bold">{{order.totalAmount| currency:'EUR':'symbol':'1.2-2'}}</p>
+            </div>
+            <div class="col-2">
+              <h3>Spedito a</h3>
+              <p>{{order.recipientName}}</p>
+            </div>
+
+            <div class="col-3">
+              <h3>Indirizzo di Spedizione</h3>
+              <p>{{order.shippingAddress}}</p>
+            </div>
+
+            <div class="col-3 d-flex pr-4 justify-content-end">
+              <div class=>
+                <h3>STATO DI CONSEGNA:</h3>
+                <p class= "italic">{{order.orderStatus}}</p>
+                <button mat-raised-button (click)="cancelOrder(order)" class="themed-button" [hidden] = "isCancelled(order)">Annulla l'ordine</button>
+              </div>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+
+          <div class="row">
+            <ul >
+              <li *ngFor="let orderBook of order.orderBooks" class="m-4">
+                <div class="d-flex">
+                  <div class="col-sm-2 imgContainer">
+                    <img [src]="orderBook.book.coverUrl" [alt]="(orderBook.book.title) + ' book cover'" class="bookCover">
+                 </div>
+                  <div class="col-sm-8 d-flex flex-column">
+                    <p> <span class="font-weight-bold">{{orderBook.book.title}} </span> -
+                      <ng-container *ngFor="let author of orderBook.book.authors; let last = last">
+                        {{ author.name }}
+                        <span *ngIf="!last">,</span>
+                        </ng-container>
+                    </p>
+                    <p> <span class="font-italic">Quantità:  </span>{{orderBook.quantity}}</p>
+                    <p> <span class="font-italic">Prezzo:</span> {{orderBook.book.finalPrice | currency:'EUR':'symbol':'1.2-2'}}</p>
+                  </div>
+                  <button class="col-sm-2" mat-raised-button (click)="reorder(orderBook.book)">Riordina</button>
+                </div>
+              </li>
+            </ul>
+          </div>
+      </div>
+
+
+      </ng-container>
+    </ng-container>
+
+
+
+    <ng-template #emptyOrderList>
+      <div class="empty-container ">
+        <div class="col-lg-4">
+        <img class="emptyBox" src="https://img.freepik.com/vecteurs-premium/boite-carton-vide-ouverte-livraison-cadeau-deballage-illustration-vectorielle-noir-blanc-dessine-main_172597-432.jpg?w=740" alt="">
+        </div>
+        <div class="col-lg-6 d-flex flex-column align-items-center justify-content-center">
+          <h1 class="mb-4">Vuoto</h1>
+          <button mat-raised-button class="themed-button" (click)="goToLink('/')">Acquista ora!</button>
+        </div>
+      </div>
+    </ng-template>
+
+  </ng-container>
+
+</section>

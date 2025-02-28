@@ -1,0 +1,34 @@
+.subtitle-container {
+  background-color: var(--nude-color);
+  color: var(--light-brown);
+  max-width: 100vw;
+  height: 45px;
+  padding: 5px;
+}
+
+.sortfilter {
+  position: relative;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+}
+
+
+.filter-subcontainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.selectSort {
+  position: relative;
+  border: 0;
+  font: 15px Arial;
+  font-weight: 700;
+}
+
+.checkboxContainer {
+  padding: 5px 10px 0 10px;
+}

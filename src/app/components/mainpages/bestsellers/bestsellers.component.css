@@ -1,0 +1,32 @@
+.banner {
+  width: 100%;
+  height: 20rem;
+  background-image: url("../../../../assets/images/wall-bg1.jpg");
+  background-size: cover;
+  background-color: #F6F5F7;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.bannerimage {
+  position: relative;
+  height: 20rem;
+}
+
+.bestsellerbooks {
+  display: flex;
+}
+
+.bookimage {
+  height: 12rem;
+  margin-right: 1rem;
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+.bestsellerscontainer {
+  height: 13rem;
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}

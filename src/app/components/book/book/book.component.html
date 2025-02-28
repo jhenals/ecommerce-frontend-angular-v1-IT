@@ -1,0 +1,40 @@
+<div class="book-card container d-flex">
+  <div class="d-flex">
+    <a (click)="goToBookDetails(bookInput)"> <img class="book-imageUrl" [src]="bookInput.coverUrl"/></a>
+  </div>
+
+  <div class=" book-content "  >
+    <div (click)="goToBookDetails(bookInput)">
+      <div class="title-container ">
+        <a class=" book-title d-block" >{{this.bookTitle}}</a>
+      </div>
+      <p class="text-secondary text-truncate">{{this.bookAuthor}}</p>
+
+      <div class="priceContainer d-flex">
+        <ng-container *ngIf="bookInput.discount ===0 ||bookInput.discount ===null ; else discountedPrice">
+          <p class="newPrice"> {{bookInput.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</p>
+        </ng-container>
+
+        <ng-template #discountedPrice>
+          <p class="newPrice mr-4">
+            {{getDiscountedPrice(bookInput)| currency: 'EUR' : 'symbol' : '1.2-2'}}
+          </p>
+          <p class="oldPrice">{{bookInput.price | currency: 'EUR' : 'symbol' : '1.2-2'}} </p>
+        </ng-template>
+      </div>
+
+    </div>
+
+    <div class="buttonContainer ">
+      <button class="themed-button-1  " (click)="addToCart(bookInput)" *ngIf="!bookIsInCart()"><span class="addToCartButton">Aggiungi al carrello</span></button>
+      <button class="themed-button-1 " *ngIf="bookIsInCart()" (click)="goToLink('/cart')">Vai al carrello</button>
+    </div>
+
+
+  <div>
+
+    </div>
+
+
+  </div>
+ </div>

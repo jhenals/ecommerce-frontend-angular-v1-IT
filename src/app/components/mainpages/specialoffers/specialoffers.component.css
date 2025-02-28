@@ -1,0 +1,95 @@
+.banner {
+  height: 20rem;
+  background-image: url("../../../../assets/images/wall-bg1.jpg");
+  background-size: cover;
+  background-color: #F6F5F7;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.banner-left-column {
+  margin-left: -50px;
+}
+
+.bannerimage {
+  position: relative;
+  height: 20rem;
+}
+
+.bookimage {
+  width: 10rem;
+}
+
+
+.themed-button {
+  background-color: var(--dark-brown);
+  color: #fff;
+}
+
+.themed-button:hover {
+  background-color: var(--nude-color);
+  border: solid 1px var(--dark-brown);
+  color: var(--dark-brown);
+}
+
+.book-card {
+  border: none;
+  border-radius: 0;
+  box-shadow: 5px 5px 5px grey;
+  background-color: var(--nude-color);
+  width: 230px;
+  height: 480px;
+  padding: 10px;
+}
+
+.book-card:hover {
+  box-shadow: 5px 5px 20px grey;
+  cursor: pointer;
+}
+
+
+.bookimage {
+  width: 100%;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.oldPrice {
+  color: red;
+  text-decoration: line-through;
+}
+
+.newPrice {
+  font-weight: bold;
+
+}
+
+.discountStar {
+  position: absolute;
+  width: 80px;
+}
+
+.discount {
+  z-index: 2;
+  font-weight: 700;
+  color: #F6F5F7;
+  font-size: 25px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+}
+
+.discount-container {
+  top: 0;
+  right: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}

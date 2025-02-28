@@ -1,0 +1,5 @@
+.updateBtn {
+  width: fit-content;
+  background-color: var(--dark-brown);
+  color: white;
+}

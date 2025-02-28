@@ -1,0 +1,77 @@
+<div class="dialogUpdateBookContainer">
+  <h1 class="text-center">EDIT THIS BOOK</h1>
+
+  <form [formGroup]="updateBookForm" (ngSubmit)="onSubmit()">
+      <div class="d-flex">
+        <div class="form-group col-6">
+          <label for="title">Book Title</label>
+          <input type="text" class="form-control" id="title" (input)="onInputChange()" formControlName="title"  >
+        </div>
+        <div class="form-group col-6 d-flex flex-column">
+          <label for="author">Author</label>
+          <div class="form-control disabled-input" id="authors">
+            <ng-container *ngFor="let author of book.authors; let last = last">
+              {{ author.name }}<span *ngIf="!last">,</span>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="d-flex">
+        <div class="form-group col-4">
+          <label for="price">Price</label>
+          <input type="text" class="form-control" id="price" formControlName="price" (input)="onInputChange()">
+        </div>
+
+        <div class="form-group col-4">
+          <label for="discount">Discount <span>(%)</span></label>
+          <input type="number"  min="0" class="form-control" id="discount" formControlName="discount" (input)="onInputChange()">
+        </div>
+
+        <div class="form-group col-4">
+          <label for="categoryId">Book Category</label>
+          <div class="form-control disabled-input" id="category">{{book.category.name}}</div>
+        </div>
+
+      </div>
+
+      <div class="d-flex">
+        <div class="form-group col-6">
+          <label for="dataPubblicazione">Data di Pubblicazione</label>
+          <input type="date" class="form-control" id="dataPubblicazione" formControlName="dataPubblicazione" (input)="onInputChange()">
+        </div>
+
+        <div class="form-group col-6">
+          <label for="editor">Publisher</label>
+          <input type="text" class="form-control" id="editor" formControlName="publisher" (input)="onInputChange()">
+        </div>
+      </div>
+
+      <div class="d-flex flex-column">
+        <div class="form-group col-12">
+          <label for="description">Book Description</label>
+          <textarea class="form-control" id="description" formControlName="description" (input)="onInputChange()"></textarea>
+        </div>
+
+        <div class="form-group col-12">
+          <label for="bookCoverUrl">Book Image URL</label>
+          <input type="text" class="form-control" id="bookCoverUrl" formControlName="bookCoverUrl" (input)="onInputChange()">
+        </div>
+
+      </div>
+
+      <h3>INVENTORY</h3>
+
+    <div class="d-flex">
+        <div class="form-group col-6">
+          <label for="bookQuantity">Quantity</label>
+          <input type="text" class="form-control" id="quantity" formControlName="quantity" (input)="onInputChange()">
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!infoChanged">Submit</button>
+  </form>
+
+  <button mat-raised-button color='warn'(click)="onNoClick()" class="cancelButton">Cancel</button>
+</div>

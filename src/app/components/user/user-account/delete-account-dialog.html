@@ -1,0 +1,9 @@
+<!-- delete-account-dialog.component.html -->
+<h2 mat-dialog-title>Eliimina Account</h2>
+<mat-dialog-content>
+  <p>Sei sicuro di voler eliminare il tuo account?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Annulla</button>
+  <button mat-button color="warn" [mat-dialog-close]="true">Elimina</button>
+</mat-dialog-actions>

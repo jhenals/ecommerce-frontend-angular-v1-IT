@@ -1,0 +1,154 @@
+.header-container {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.topnav-firstrow {
+  height: 70px;
+  background-color: var(--dark-brown);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-logo {
+  height: 60px;
+  cursor: pointer;
+  margin-top: 6px;
+  margin-left: -15px;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 10000;
+
+}
+
+
+.search-term {
+  width: 300px;
+  border: none;
+  padding-left: 15px;
+  font-size: medium;
+  border-radius: 10px;
+  outline: none;
+}
+
+.search-image {
+  height: 50px;
+  width: 32px;
+  object-fit: cover;
+  margin-right: 10px;
+
+}
+
+.searchBox {
+  width: 100%;
+  height: 30px;
+  border: none;
+  padding-left: 15px;
+  font-size: medium;
+  border-radius: 10px;
+  outline: none;
+}
+
+.searchResultBox {
+  position: absolute;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  z-index: 10000;
+  width: 400px;
+  border: 1px solid #4c1f04;
+  box-shadow: 0 0 10px #4c1f04;
+}
+
+p {
+  margin-left: 10px;
+}
+
+
+.greetUser {
+  font-size: small;
+  color: #F6F5F7;
+  margin-right: 10px;
+
+}
+
+.greetUser:hover {
+  cursor: pointer;
+  color: var(--dark-brown);
+  background-color: var(--nude-color);
+  border-radius: 5px;
+}
+
+
+.topnav-right {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+}
+
+.topnav-toprow-buttons {
+  color: #F6F5F7;
+}
+
+
+.shopping-cart {
+  color: var(--light-brown);
+}
+
+.topnav-buttons:hover {
+  background-color: #F6F5F7;
+  color: var(--dark-brown);
+  cursor: pointer;
+}
+
+.topnav-secondrow {
+  height: 50px;
+  background-color: var(--nude-color);
+  display: flex;
+  align-items: center;
+  margin: 0, 5px, 0, 5px;
+  justify-content: space-evenly;
+
+}
+
+.topnav-categories .mat-mdc-button:hover {
+  background-color: #F6F5F7;
+  color: #4c1f04;
+  cursor: pointer;
+}
+
+.dashboard-button {
+  display: flex;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.dashboard-button span {
+  font-size: small;
+  color: #F6F5F7;
+  margin-right: 10px;
+}
+
+.dashboard-button:hover {
+  background-color: #F6F5F7;
+  color: var(--dark-brown);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dashboard-button span:hover {
+  color: var(--dark-brown);
+}

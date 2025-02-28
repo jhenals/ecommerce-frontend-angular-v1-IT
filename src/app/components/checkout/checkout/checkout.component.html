@@ -1,0 +1,92 @@
+<section class="mt-4">
+
+  <div class="container p-0">
+    <mat-stepper class="mt-4" [linear]="true" #stepper>
+        <mat-step [stepControl]="shippingInfoControl">
+          <form [formGroup]="shippingInfoControl" >
+            <ng-template matStepLabel>Fill out shipping details</ng-template>
+                <mat-form-field class="container-fluid">
+                  <mat-label>Recipient</mat-label>
+                  <input matInput placeholder="First name, LastName" formControlName="recipientCtrl" required  [(ngModel)]="recipientName">
+                </mat-form-field>
+
+                  <mat-form-field  class="container-fluid">
+                    <mat-label>Shipping Address</mat-label>
+                    <input matInput formControlName="addressCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                      [(ngModel)]="shippingAddress" required>
+                  </mat-form-field>
+
+                    <mat-form-field class="container-fluid">
+                      <mat-label>Phone number</mat-label>
+                      <input matInput formControlName="phoneCtrl" placeholder="Ex. 123-456-7890"
+                      [(ngModel)]="phoneNumber" required>
+                    </mat-form-field>
+
+              <div>
+                  <button mat-raised-button (click)="goToLink('/cart')" class="align-items-center justify-content-center">
+                  Back to cart
+                  </button>
+                <button mat-raised-button matStepperNext>Next</button>
+              </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="paymentMethodControl" label="Payment Method">
+          <form [formGroup]="paymentMethodControl">
+            <ng-template matStepLabel>Payment </ng-template>
+              <div>
+                <mat-form-field class="col-4">
+                  <mat-label>Card number</mat-label>
+                  <input matInput formControlName="cardCtrl" required>
+                </mat-form-field>
+                <mat-form-field class="col-4">
+                  <mat-label>Expiration Date</mat-label>
+                  <input matInput formControlName="expDateCtrl" placeholder="MM/YYYY" pattern="^(0[1-9]|1[0-2])\/\d{4}$" required>
+                  <mat-error *ngIf="paymentMethodControl.get('expDateCtrl').invalid">
+                    Expiration date must be in the format MM/YYYY.
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-4">
+                  <mat-label>CVV</mat-label>
+                  <input matInput placeholder="Insert CVV" formControlName="emptyInputCtrl" required>
+                </mat-form-field>
+              </div>
+              <mat-form-field class="col-12">
+                <mat-label>Card Holder</mat-label>
+                <input matInput  formControlName="cardHolderCtrl" isDisabled>
+              </mat-form-field>
+
+            <div>
+              <button mat-raised-button matStepperPrevious>Back</button>
+              <button mat-raised-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Confirmation</ng-template>
+          <div class="d-flex">
+            <div class="col-6">
+              <h2 class="mb-2">Order</h2>
+               <app-cart-summary></app-cart-summary>
+            </div>
+
+            <div class="col-6" >
+            <div>
+                <h2>Shipping Information</h2>
+                <p><span class="font-weight-bold">Recipient:</span> {{recipientName}}</p>
+                <p><span class="font-weight-bold">Shipping address:</span> {{shippingAddress}}</p>
+                <p> <span class="font-weight-bold">Contact number:</span> {{phoneNumber}}</p>
+              </div>
+              <mat-divider class="mb-4"></mat-divider>
+          </div>
+
+          </div>
+          <div  class="stepperButton">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button (click)="checkout()">Checkout</button>
+          </div>
+        </mat-step>
+    </mat-stepper>
+  </div>
+</section>

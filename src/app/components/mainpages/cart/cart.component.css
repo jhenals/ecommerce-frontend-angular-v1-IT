@@ -1,0 +1,46 @@
+.cart-title {
+  font: 3rem Robota Bold;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+
+.themed-button {
+  background-color: var(--dark-brown);
+  color: #fff;
+  right: 0;
+}
+
+.themed-button:hover {
+  background-color: var(--nude-color);
+  border: solid 1px var(--dark-brown);
+  color: var(--dark-brown);
+}
+
+.item-column-header {
+  width: 50%;
+}
+
+
+.price-column-header {
+  width: 20%;
+  text-align: center;
+}
+
+
+.qty-column-header {
+  width: 10%;
+  text-align: center;
+}
+
+.shoppingCart {
+  width: 500px;
+  object-fit: fill;
+}
+
+.checkout-button {
+  position: relative;
+  margin-bottom: 10px;
+  display: flex;
+  right: 0;
+}

@@ -1,0 +1,91 @@
+<mat-toolbar class="nav nav-tabs header-container">
+  <mat-toolbar-row class="topnav-firstrow" >
+      <div class="col-lg-4">
+        <a routerLink="/"><img class="main-logo" src="../../../assets/images/Bookhaven.png" /></a>
+      </div>
+
+      <div class="col-lg-3">
+        <input
+        type="text"
+        placeholder="Cerca libri o autori..."
+        class="text search-term"
+        [(ngModel)]="searchInput"
+        (keyup)="fetchBooks($event)"
+        >
+
+        <mat-nav-list  *ngIf="searchInput " class="searchResultBox">
+          <ng-container *ngIf="filteredList.length===0; else renderList">
+            <p>Nessun risultato...</p>
+          </ng-container>
+
+          <ng-template #renderList>
+             <a mat-list-item class="m-2"
+              (click)="goToBookDetails(book)" *ngFor="let book of filteredList">
+                <img class="search-image" src="{{book.coverUrl}}" alt="{{book.title}}">
+                <span class="font-weight-bold">{{ book.title }}</span> - {{book.authors.at(0).name}}
+              </a>
+          </ng-template>
+
+      </mat-nav-list>
+
+
+      </div>
+
+
+      <div class="col-lg-4 topnav-toprow-buttons topnav-right ">
+        <ng-container class="dashboard-button" *ngIf=" isAdmin()===true">
+          <div class="dashboard-button" (click)= "goToAdminDashboard()">
+            <mat-icon>dashboard</mat-icon>
+            <span>ADMIN DASHBOARD</span>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="isLogin; else notLoggedIn">
+          <span class="greetUser" (click)="goToLink('/manage-user-account/' + firstName + lastName)">
+             Ciao, {{firstName}}!
+          </span>
+          <button mat-icon-button class="topnav-buttons" [matMenuTriggerFor]="menu"  matTooltip="Account">
+            <mat-icon >
+              <span class="material-symbols-outlined">
+                manage_accounts
+              </span>
+            </mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="goToLink('/manage-user-account/' + firstName + lastName)">Profilo</button>
+            <button mat-menu-item (click)="goToLink('/orders')">Visualizza Ordini</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+          </mat-menu>
+        </ng-container>
+
+        <ng-template #notLoggedIn>
+          <button mat-icon-button class="topnav-buttons" (click)= "login()" >
+            <mat-icon>person</mat-icon>
+          </button>
+        </ng-template>
+
+        <ng-container>
+         <button mat-icon-button
+            matTooltip="Cart"
+            [matBadge]="cartItemsCount"
+            matBadgeColor="warn" matBadgeSize="small"
+            [matBadgeHidden]="hidden || cartItemsCount === 0"
+            routerLink="/cart" (click)="toggleBadgeVisibility()"
+            class="topnav-buttons"
+            aria-label="shopping cart"
+            (click)="getPendingCart()">
+            <mat-icon>shopping_cart</mat-icon>
+          </button>
+        </ng-container>
+
+      </div>
+
+  </mat-toolbar-row>
+
+
+  <mat-toolbar-row class="topnav-secondrow">
+    <app-topsubnav></app-topsubnav>
+  </mat-toolbar-row>
+</mat-toolbar>
+
